@@ -66,9 +66,61 @@ ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy))
 # right
 ggplot(data = mpg) + geom_smooth(mapping = aes(x = displ, y = hwy))
 
-
+# Here geom_smooth() separates the cars into three lines based on their drv value, which describes a car’s drivetrain.
+ggplot(data = mpg) + geom_smooth(mapping = aes(x = displ, y = hwy, linetype = drv))
        
-       
-       
+# we can make it more clear by overlaying the lines on top of the raw data and then coloring everything according to drv.
+ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy, linetype = drv, color=drv))+
+geom_smooth(mapping = aes(x = displ, y = hwy, linetype = drv, color=drv))
 
+ggplot(data = mpg) + geom_smooth(mapping = aes(x = displ, y = hwy))
+ggplot(data = mpg) + geom_smooth(mapping = aes(x = displ, y = hwy, group = drv))
+ggplot(data = mpg) + geom_smooth( mapping = aes(x = displ, y = hwy, color = drv), show.legend = FALSE)
 
+# To display multiple geoms in the same plot, add multiple geom functions to ggplot():
+ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy)) + geom_smooth(mapping = aes(x = displ, y = hwy))
+
+# more efficient code for the same plot
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + geom_point() + geom_smooth()
+
+# to display different aesthetics in different layers:
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + geom_point(mapping = aes(color = class)) + geom_smooth()
+
+# Here, our smooth line displays just a subset of the mpg dataset, the subcompact cars
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + geom_point(mapping = aes(color = class)) + 
+  geom_smooth( 
+    data = filter(mpg, class == "subcompact"), se = FALSE
+    )
+
+#Will these two graphs look different? Why/why ( the same)
+
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + geom_point() + geom_smooth()
+
+ggplot() + geom_point( data = mpg, mapping = aes(x = displ, y = hwy)
+) +
+  geom_smooth( data = mpg, mapping = aes(x = displ, y = hwy)
+  )
+
+# Re-create the R code necessary to generate the following graphs.
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + geom_point() + geom_smooth()
+
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, linetype = drv))+
+  geom_smooth(se=FALSE, size=2)+
+  geom_point(size=4)
+
+ggplot(data = mpg) + 
+    geom_point(mapping = aes(x = displ, y = hwy, linetype = drv, color=drv, size=2))
+
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv))+
+  geom_point(size=3)+
+  geom_smooth(se=FALSE)
+
+ggplot() + geom_point( data = mpg, mapping = aes(x = displ, y = hwy, color=drv, size=2)
+) +
+  geom_smooth( data = mpg, mapping = aes(x = displ, y = hwy, size=1)
+               , se=FALSE)
+
+ggplot() + geom_point( data = mpg, mapping = aes(x = displ, y = hwy, color=drv, size=1)
+) +
+  geom_smooth( data = mpg, mapping = aes(x = displ, y = hwy,linetype=drv, size=1)
+               , se=FALSE)

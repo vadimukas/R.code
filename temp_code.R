@@ -39,4 +39,7 @@ library(nlme)
 gls<-gls(beauty ~ gender,  weights=varIdent(form = ~ 1 | gender),data=TeachingRatings)
 summary(gls)
 
+#check local time
+Sys.timezone()
+Sys.Date()
 
