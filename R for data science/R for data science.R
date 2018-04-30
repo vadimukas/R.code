@@ -1,7 +1,9 @@
 # first install.packages(c("nycflights13", "gapminder", "Lahman"))
 # and tidyverse
+
 # install tidyverse
 install.packages("tidyverse")
+
 
 # load the required packages
 library(nycflights13)
@@ -124,3 +126,4 @@ ggplot() + geom_point( data = mpg, mapping = aes(x = displ, y = hwy, color=drv, 
 ) +
   geom_smooth( data = mpg, mapping = aes(x = displ, y = hwy,linetype=drv, size=1)
                , se=FALSE)
+
