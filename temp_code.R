@@ -44,7 +44,3 @@ summary(gls)
 Sys.timezone()
 Sys.Date()
 
-=======
-
-# Is it time to ditch the Comparison of Means (T) Test?
->>>>>>> b3422757db7b9a45e7c2f62173e95ca748891488
