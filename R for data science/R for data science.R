@@ -4,7 +4,6 @@
 # install tidyverse
 install.packages("tidyverse")
 
-
 # load the required packages
 library(nycflights13)
 library(tidyverse)

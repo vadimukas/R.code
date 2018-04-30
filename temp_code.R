@@ -21,7 +21,6 @@ par(mfrow = c(1, 1))
 lines(TaSh$X1, xlab = "date", ylab = "Ta", col="blue")
 lines(TaSh$X2, xlab = "date", ylab = "Ta", col="red")
 
-<<<<<<< HEAD
 # Is it time to ditch the Comparison of Means (T) Test?
 
 #To download data in R, use the following syntax:
@@ -44,7 +43,3 @@ summary(gls)
 Sys.timezone()
 Sys.Date()
 
-=======
-
-# Is it time to ditch the Comparison of Means (T) Test?
->>>>>>> b3422757db7b9a45e7c2f62173e95ca748891488
