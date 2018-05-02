@@ -21,7 +21,6 @@ par(mfrow = c(1, 1))
 lines(TaSh$X1, xlab = "date", ylab = "Ta", col="blue")
 lines(TaSh$X2, xlab = "date", ylab = "Ta", col="red")
 
-<<<<<<< HEAD
 # Is it time to ditch the Comparison of Means (T) Test?
 
 #To download data in R, use the following syntax:
@@ -43,4 +42,39 @@ summary(gls)
 #check local time
 Sys.timezone()
 Sys.Date()
+
+# fasttime packages to import data into R
+library(fasttime)
+fastPOSIXct("2003-02-27")
+
+# farst_strtime() vs lubridate
+library(lubridate)
+parse_date_time(x, order = "ymd")
+
+library(fasttime)
+fast_strptime(x, format = "%Y-%m-%d")
+library(fasttime)
+# Examine structure of dates
+str(dates)
+# Use fastPOSIXct() to parse dates
+fastPOSIXct(dates) %>% str(dates)
+
+# export datetimes
+library(tidyverse)
+akl_hourly %>%
+  select(datetime) %>%
+  write_csv("tmp.csv")
+
+# formatting datetimes
+library(lubridate)
+mystamp<-stamp("Tuesday October 10 2017")
+
+#using fast_srttime() for lubridate
+# Head of dates
+head(dates)
+
+# Parse dates with fast_strptime for "2015-12-31T11:00:00Z" 
+fast_strptime(dates, 
+format = "%Y-%m-%dT%H:%M:%SZ") %>% str(dates)
+
 

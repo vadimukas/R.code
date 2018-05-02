@@ -4,14 +4,13 @@
 # install tidyverse
 install.packages("tidyverse")
 
-
 # load the required packages
 library(nycflights13)
 library(tidyverse)
 
 #explore nycflights 
 nycflights13::flights
-View(flights)
+# can view View(flights)
 
 # ggplot2 + dataframe mpg
 library (ggplot2)
@@ -127,3 +126,16 @@ ggplot() + geom_point( data = mpg, mapping = aes(x = displ, y = hwy, color=drv, 
   geom_smooth( data = mpg, mapping = aes(x = displ, y = hwy,linetype=drv, size=1)
                , se=FALSE)
 
+# statstical transformations
+# exploring diamonds dataset with bar charts
+library (ggplot2)
+ggplot2::diamonds
+ggplot(data = diamonds) + geom_bar(mapping = aes(x = cut))
+# using stat_count instead of geom_bar
+ggplot(data = diamonds) + stat_count(mapping = aes(x = cut))
+
+#you might want to display a bar chart of proportion, rather than count:
+ggplot(data = diamonds) + geom_bar( mapping = aes(x = cut, y = ..prop.., group = 1))
+
+#you might use stat_sum mary(), which summarizes the y values for each unique x value
+ggplot(data = diamonds) + stat_summary( mapping = aes(x = cut, y = depth), fun.ymin = min, fun.ymax = max, fun.y = median) 
