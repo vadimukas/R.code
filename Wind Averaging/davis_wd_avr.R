@@ -26,7 +26,7 @@ head(data.davis.day, 5)
 # write dataframe to file
 write.table(data.davis.day, file = 'data.davis.day.2016', sep = ',') 
 
-# read and plot windroses in R 
+# read and plot windroses in R 2014
 # Read prepared raw wind data file and format to POSIXCT
 data.davis2014 <- read.delim("D:/R/R.code/Wind Averaging/wd_davis_2014P.txt")
 Sys.timezone()
@@ -40,7 +40,7 @@ windRose(data.davis2014, breaks = 6)
 # plot wind rose monthly
 windRose(data.davis2014, type="month", breaks = 6)
 
-# Read prepared daily wind data file and format to POSIXCT
+# Read prepared daily wind data file 2014 and format to POSIXCT
 data.davis2014d <- read.delim("D:/R/R.code/Wind Averaging/wind.dir.davis.daily.2014.txt")
 Sys.timezone()
 data.davis2014d$date<-as.POSIXct(data.davis2014d$date,format ="%Y%m%d", tz="Asia/Dhaka")
@@ -48,7 +48,7 @@ tz(data.davis2014d$date)
 is.POSIXct(data.davis2014d$date)
 View(data.davis2014d)
 
-# first plot wind rose based on daily data
+# first plot wind rose based on daily data 2014
 windRose(data.davis2014d, na="-999.0",   breaks = 6)
 # plot daily wind rose monthly
 windRose(data.davis2014d, type="month", breaks = 6)
