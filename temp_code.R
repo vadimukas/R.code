@@ -1,4 +1,4 @@
-Lqq# to write R output table to txt file
+# to write R output table to txt file
 write.table(dataframename, file = 'filename', sep = ',')
 
 ## Plotting the CRU time series for CRU!
