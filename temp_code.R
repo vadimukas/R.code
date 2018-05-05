@@ -1,4 +1,4 @@
-Lqq# to write R output table to txt file
+# to write R output table to txt file
 write.table(dataframename, file = 'filename', sep = ',')
 
 ## Plotting the CRU time series for CRU!
@@ -77,4 +77,71 @@ head(dates)
 fast_strptime(dates, 
 format = "%Y-%m-%dT%H:%M:%SZ") %>% str(dates)
 
+#How to plot Air Pollution Data with Openair 
+# https://www.r-exercises.com/2018/03/05/how-to-plot-with-air-pollution-data-openair/ 
+# tutorial will cover the following openair functions:
 
+# SummaryPlot()
+# windRose()
+# pollutionRose()
+# percentileRose()
+# timePlot()
+
+# install devtools
+# install region5air using devtools
+# calendarPlot()
+devtools::install_github("NateByers/region5air")
+
+# load region5air and chicago_air dataframe
+library(region5air)
+data(chicago_air)
+head(chicago_air)
+
+# the class of that “date” column is character, We need to change it using the as.POSIXct() function. 
+chicago_air$date <- as.POSIXct(chicago_air$date, tz = "America/Chicago")
+
+# Now we just feed the first four columns of the data frame to the summaryPlot() function. 
+# We use the select() function from dplyr to select our columns and we use the short hand date
+# “solar” to select the “date” column, the “solar” column, and all the columns in between.
+
+library(openair)
+library(dplyr)
+
+summaryPlot(select(chicago_air, date:solar))
+
+data(chicago_wind)
+head(chicago_wind)
+
+# We need to create a “date” column with a POSIXct class, so we’ll use the as.POSIXct() function again. 
+# This time we will need to provide information in the format parameter.
+
+chicago_wind$datetime <- as.POSIXct(chicago_wind$datetime, format ="%Y%m%dT%H%M",tz = "America/Chicago")
+
+# Now we’ll rename the columns using the rename() function from dplyr
+chicago_wind <- rename(chicago_wind, date = datetime, ws = wind_speed, wd = wind_dir) 
+
+# We have prepared the dates and column names above so that now 
+# we can feed the data frame to the windRose() function.
+
+windRose(chicago_wind) # default is m/s
+
+#We can split the data frame by time periods by using the type argument.
+
+windRose(chicago_wind, type = "weekday")
+
+pollutionRose(chicago_wind, pollutant = "ozone", # we can use the breaks parameter
+breaks = c(0, .02, .04, .06, .07, .08)) # to create our own breakpoints
+
+#We can also look at the values by time periods.
+pollutionRose(chicago_wind, pollutant = "ozone", type = "month")
+
+# The percentileRose() function calculates percentile levels of a pollutant 
+#and plots them by wind direction. This can help you quickly visually identify potential sources by wind direction.
+percentileRose(chicago_wind, pollutant = "ozone", smooth =TRUE)
+
+#time series plots can be easily produced using timePlot().
+timePlot(chicago_air, pollutant = c("zone", "temp", "solar"))
+
+# calendarPlot() displays daily values in a calendar format.
+calendarPlot(chicago_air, pollutant = "ozone")
+calendarPlot(chicago_wind, pollutant = "ozone", annotate = "ws") 
