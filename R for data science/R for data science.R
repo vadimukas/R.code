@@ -130,7 +130,7 @@ ggplot() + geom_point( data = mpg, mapping = aes(x = displ, y = hwy, color=drv, 
 # exploring diamonds dataset with bar charts
 library (ggplot2)
 ggplot2::diamonds
-ggplot(data = diamonds) + geom_bar(mapping = aes(x = cut))
+ggplot(data = diamonds) + geom_col(mapping = aes(x = cut))
 # using stat_count instead of geom_bar
 ggplot(data = diamonds) + stat_count(mapping = aes(x = cut))
 
@@ -138,4 +138,19 @@ ggplot(data = diamonds) + stat_count(mapping = aes(x = cut))
 ggplot(data = diamonds) + geom_bar( mapping = aes(x = cut, y = ..prop.., group = 1))
 
 #you might use stat_sum mary(), which summarizes the y values for each unique x value
-ggplot(data = diamonds) + stat_summary( mapping = aes(x = cut, y = depth), fun.ymin = min, fun.ymax = max, fun.y = median) 
+ggplot(data = diamonds) + stat_summary( mapping = aes(x = cut, y = depth), 
+                                        fun.ymin = min, fun.ymax = max, fun.y = median) 
+
+#the other way to do the same as above but a boxplot
+ggplot(data = diamonds) + geom_boxplot(mapping = aes(x=cut, y=depth))
+
+# You can color a bar chart using either the color aesthetic, or more usefully, fill:
+ggplot(data = diamonds) + geom_bar(mapping = aes(x = cut, color = cut))
+ggplot(data = diamonds) + geom_bar(mapping = aes(x = cut, fill = cut))
+
+#Note what happens if you map the fill aesthetic to another variable, like clarity: the
+ggplot(data = diamonds) + geom_bar(mapping = aes(x = cut, fill = clarity))
+
+
+
+
