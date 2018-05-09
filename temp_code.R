@@ -145,3 +145,5 @@ timePlot(chicago_air, pollutant = c("zone", "temp", "solar"))
 # calendarPlot() displays daily values in a calendar format.
 calendarPlot(chicago_air, pollutant = "ozone")
 calendarPlot(chicago_wind, pollutant = "ozone", annotate = "ws") 
+
+
