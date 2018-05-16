@@ -151,6 +151,47 @@ ggplot(data = diamonds) + geom_bar(mapping = aes(x = cut, fill = cut))
 #Note what happens if you map the fill aesthetic to another variable, like clarity: the
 ggplot(data = diamonds) + geom_bar(mapping = aes(x = cut, fill = clarity))
 
+#If you don’t want a stacked bar chart, you can use one of three other options: 
+#"identity", "dodge" or "fill":
 
+# position = "identity"
+ggplot( data = diamonds, mapping = aes(x = cut, fill = clarity))
++ geom_bar(alpha = 1/5, position = "identity")
+ggplot( data = diamonds, mapping = aes(x = cut, color = clarity)) 
++ geom_bar(fill = NA, position = "identity")
 
+# position = "fill"
+ggplot(data = diamonds) + geom_bar( mapping = aes(x = cut, fill = clarity), 
+                                    position = "fill")
+# position = "dodge" places
+ggplot(data = diamonds) + geom_bar( mapping = aes(x = cut, fill = clarity), 
+                                    position = "dodge")
+# position = "jitter" 
+ggplot(data = mpg) + geom_point( mapping = aes(x = displ, y = hwy), position = "jitter", size=1)
+# ggplot2 comes with a shorthand for geom_point(posi tion = "jitter"): geom_jitter()
 
+#excercise 1
+ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) + geom_point(position = "jitter")
+
+# excercise 4
+ggplot(data = mpg) + geom_boxplot(mapping = aes(x = drv, y = hwy), position = "dodge")
+
+# Boxplots on mpg dataset
+ggplot2::mpg
+ggplot(mpg, aes(class, hwy)) + 
+  geom_boxplot()
+
+ggplot(mpg, aes(class, hwy))+ 
+  geom_boxplot() + geom_jitter(width = 0.2)
+
+ggplot(mpg, aes(class, hwy))+ 
+  geom_boxplot() + coord_flip()
+
+ggplot(mpg, aes(class, hwy))+ 
+  geom_boxplot(notch = TRUE)
+
+ggplot(mpg, aes(class, hwy))+ 
+  geom_boxplot(varwidth = TRUE)
+
+ggplot(mpg, aes(class, hwy))+ 
+geom_boxplot(aes(colour = drv))
