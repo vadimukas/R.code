@@ -144,4 +144,17 @@ timePlot(chicago_air, pollutant = c("zone", "temp", "solar"))
 
 # calendarPlot() displays daily values in a calendar format.
 calendarPlot(chicago_air, pollutant = "ozone")
-calendarPlot(chicago_wind, pollutant = "ozone", annotate = "ws") 
+calendarPlot(chicago_wind, pollutant = "ozone", annotate = "ws")
+
+# cleaning data
+# missing values (NA)
+is.na()
+# is there is any missing value in dataframe
+any(is.na())
+# to see which rows have no missing values
+complete.cases()
+# to remove rows with missing values
+na.omit()
+# Replace all empty strings in status with NA
+#data$string [data$string == ""] <- NA
+
