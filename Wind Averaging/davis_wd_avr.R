@@ -35,22 +35,63 @@ tz(data.davis2014$date)
 is.POSIXct(data.davis2014$date)
 View(data.davis2014)
 
-# first try to plot wind rose
-windRose(data.davis2014, breaks = 6)
-# plot wind rose monthly
-windRose(data.davis2014, type="month", breaks = 6)
-
-# Read prepared daily wind data file 2014 and format to POSIXCT
-data.davis2014d <- read.delim("D:/R/R.code/Wind Averaging/wind.dir.davis.daily.2014.txt")
-Sys.timezone()
-data.davis2014d$date<-as.POSIXct(data.davis2014d$date,format ="%Y%m%d", tz="Asia/Dhaka")
-tz(data.davis2014d$date)
-is.POSIXct(data.davis2014d$date)
+# Make daily averages 2014
+data.davis2014d <- timeAverage(data.davis2014, avg.time = 'day')
+head(data.davis2014d, 5)
 View(data.davis2014d)
 
-# first plot wind rose based on daily data 2014
-windRose(data.davis2014d, na="-999.0",   breaks = 6)
-# plot daily wind rose monthly
+# write dataframe to file
+write.table(data.davis2014d, file = 'D:/R/R.code/Wind Averaging/data.davis.day.2014d.txt', sep = ',') 
+
+# first try to plot wind rose
+windRose(data.davis2014d, breaks = 6)
+# plot wind rose monthly
 windRose(data.davis2014d, type="month", breaks = 6)
 
+# do the same for 2016 AWS Davis
 
+# read and plot windroses in R 2016
+data.davis2016 <- read.delim("D:/R/R.code/Wind Averaging/wd_davis_2016P.txt")
+Sys.timezone()
+data.davis2016$date
+data.davis2016$date<-as.POSIXct(data.davis2016$date, tz="Asia/Dhaka")
+tz(data.davis2016$date)
+is.POSIXct(data.davis2016$date)
+View(data.davis2016)
+
+# Make daily averages 2016
+data.davis2016d <- timeAverage(data.davis2016, avg.time = 'day')
+head(data.davis2016d, 5)
+View(data.davis2016d)
+
+# write dataframe to file
+write.table(data.davis2016d, file = 'D:/R/R.code/Wind Averaging/data.davis.day.2016d.txt', sep = ',') 
+
+# first try to plot wind rose
+windRose(data.davis2016d, breaks = 6)
+# plot wind rose monthly
+windRose(data.davis2016d, type="month", breaks = 6)
+
+# do the same for 2016 Burabay new
+# read and plot windroses in R 2016
+data.burabay2016 <- read.delim("D:/R/R.code/Wind Averaging/wind.dir.burabay.daily.2016P.txt")
+Sys.timezone()
+library(lubridate)
+data.burabay2016$date<-parse_date_time(data.burabay2016$date, order = "dmy")
+is.POSIXct(data.burabay2016$date)
+data.burabay2016$date<-as.POSIXct(data.burabay2016$date, tz="Asia/Dhaka")
+tz(data.burabay2016$date)
+View(data.burabay2016)
+
+# Make daily averages 2016
+data.burabay2016 <- timeAverage(data.burabay2016, avg.time = 'day')
+head(data.burabay2016, 5)
+View(data.burabay2016)
+
+# write dataframe to file
+write.table(data.burabay2016, file = 'D:/R/R.code/Wind Averaging/data.davis.day.2016d.txt', sep = ',') 
+
+# first try to plot wind rose
+windRose(data.burabay2016, breaks = 6)
+# plot wind rose monthly
+windRose(data.burabay2016, type="month", breaks = 6)
