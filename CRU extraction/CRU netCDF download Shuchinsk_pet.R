@@ -7,7 +7,7 @@ library(maptools)
 library(ncdf4)
 
 #  function brick() reads different raster-formats into the R workspace!
-pet<- brick("cru_ts3.24.01.1981.1990.pet.dat.nc")
+pet<- brick("cru_ts4.01.2011.2016.pet.dat.nc")
 pet
 
 ## Point scale climatological data can be extracted from gridded data sets.
@@ -26,4 +26,10 @@ date<-ISOdate(year, month,1)
 plot(date,pet_shuchinsk, type="l", col='red')
 
 # write output in txt file
-write.table(pet_shuchinsk, file = 'pet_shuchinks', sep = ',')
+write.table(pet_shuchinsk, file = 'pet_shuchinks.txt', sep = ',')
+
+
+
+
+
+
