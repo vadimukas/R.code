@@ -43,3 +43,27 @@ p.rm = add_lines(p.rm, x=tt, y=rmean20, line=line.fmt, name="Bandwidth = 20")
 p.rm = add_lines(p.rm, x=tt, y=rmean5, line=line.fmt, name="Bandwidth = 5")
 p.rm = layout(p.rm, title = "Running mean")
 print(p.rm)
+
+# ii. Running line smoothers
+rlcv = supsmu(tt, xx)
+rlst = supsmu(tt, xx, span = 0.05)
+rllt = supsmu(tt, xx, span = 0.75)
+
+p.rl = plot_ly(x=tt, y=xx, type="scatter", mode="lines", line = data.fmt, name="Data")
+p.rl = add_lines(p.rl, x=tt, y=rllt$y, line=line.fmt, name="Span = 0.75")
+p.rl = add_lines(p.rl, x=tt, y=rlst$y, line=line.fmt, name="Span = 0.05")
+p.rl = add_lines(p.rl, x=tt, y=rlcv$y, line=line.fmt, name="Cross-validated span")
+p.rl = layout(p.rl, title = "Running line smoothers")
+print(p.rl)
+
+# iii. Kernel smoothers
+ks1 = ksmooth(tt, xx, "normal", 20, x.points=tt)
+ks2 = ksmooth(tt, xx, "normal", 5, x.points=tt)
+
+p.ks = plot_ly(x=tt, y=xx, type="scatter", mode="lines", line=data.fmt, name="Data")
+p.ks = add_lines(p.ks, x=ks1$x, y=ks1$y, line=line.fmt, name="Bandwidth = 20")
+p.ks = add_lines(p.ks, x=ks1$x, y=ks2$y, line=line.fmt, name="Bandwidth = 5")
+p.ks = layout(p.ks, title = "Kernel smoother")
+print(p.ks)
+
+
