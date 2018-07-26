@@ -195,3 +195,19 @@ ggplot(mpg, aes(class, hwy))+
 
 ggplot(mpg, aes(class, hwy))+ 
 geom_boxplot(aes(colour = drv))
+
+# coordinate system
+nz <- map_data("nz")
+ggplot(nz, aes(long, lat, group = group)) + geom_polygon(fill = "white", color = "black")
+ggplot(nz, aes(long, lat, group = group)) + geom_polygon(fill = "white", color = "black") + coord_quickmap()
+
+#coord_polar() uses polar coordinates. Polar coordinates reveal an interesting connection between a bar chart and a Coxcomb chart:
+
+bar <- ggplot(data = diamonds) + 
+  geom_bar( mapping = aes(x = cut, fill = cut), show.legend = FALSE, width = 1
+) +
+  theme(aspect.ratio = 1) + labs(x = NULL, y = NULL)
+bar + coord_flip() 
+bar + coord_polar()
+
+
