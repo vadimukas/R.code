@@ -25,7 +25,7 @@ head(table)
 
 #working with real data
 
-temp<-read.table("data_temp.txt", header = T)
+temp<-read.table("CAWa/data/data_temp.txt", header = T)
 head (temp)
 min (temp)
 max(temp[,3])

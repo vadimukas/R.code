@@ -66,7 +66,6 @@ p.ks = add_lines(p.ks, x=ks1$x, y=ks2$y, line=line.fmt, name="Bandwidth = 5")
 p.ks = layout(p.ks, title = "Kernel smoother")
 print(p.ks)
 
-
 #iv. Smoothing splines
 library(gam)
 require(mgcv)
