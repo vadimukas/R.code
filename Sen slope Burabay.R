@@ -13,6 +13,9 @@ Shuchinsk_Ta <- read_delim("Shuchinsk_Ta.csv", ";", escape_double = FALSE, na = 
     )
   
 View(Shuchinsk_Ta)
+# create a multiple plots 5X2
+par(mfrow = c(5,2))
+
 # Linear regression models
 # Tair annual Shuchisk with trendline
 plot(Shuchinsk_Ta$Years, Shuchinsk_Ta$Temp, type="l", main = "T air annual Shuchinsk", ylab = 'T,C', xlab = 'Years', col='red', ylim = c(-2,5))
@@ -27,6 +30,11 @@ sen_slope_ann<-zyp.sen(y~x)
 sen_slope_ann
 #add sen$slopes to plot
 abline(sen_slope_ann$coefficients[1], sen_slope_ann$coefficients[2], col="violet")
+r2 <- round(summary(trend_lm)$r.squared, 4)
+eqn<-bquote(r^2 == .(r2))
+text(x=1980, y=4, eqn, pos=4)
+summary (trend_lm)
+
 
 # Tair seasonal Shuchisk with trendline and Sen's slope
 # winter
@@ -105,6 +113,7 @@ sen_slope_ann<-zyp.sen(y~x)
 sen_slope_ann
 #add sen$slopes to plot
 abline(sen_slope_ann$coefficients[1], sen_slope_ann$coefficients[2], col="violet")
+
 
 # P seasonal Shuchisk with trendline and Sen's slope
 # winter
