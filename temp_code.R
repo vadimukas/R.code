@@ -157,3 +157,4 @@ complete.cases()
 na.omit()
 # Replace all empty strings in status with NA
 #data$string [data$string == ""] <- NA
+

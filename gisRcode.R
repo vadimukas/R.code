@@ -43,3 +43,13 @@ sp::plot(ne_states(country = 'kazakhstan'))
 sp::plot(ne_countries())
 #kz in blue color to world countries
 sp::plot(ne_countries(country = 'kazakhstan'), col="blue", add=TRUE)
+
+# Quick RgoogleMaps Tutorial 
+# http://rgooglemaps.r-forge.r-project.org/QuickTutorial.html
+(library(RgoogleMaps))
+par(pty="s")
+mapBG1 = plotmap("Brandenburg Gate, Berlin", zoom = 15)
+mapBG2 = plotmap("Brandenburg Gate, Berlin", zoom = 16, maptype="satellite")
+
+
+
