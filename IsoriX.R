@@ -8,3 +8,5 @@ setwd("D:/R/R.code/Isorix")
 # setting global options for isoriX
 options_IsoriX(example_maxtime = Inf)
 options_IsoriX(Ncpu = 4) 
+# load the toy data - Germany's GNIP
+head(GNIPDataDE)
