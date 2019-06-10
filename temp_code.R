@@ -158,3 +158,43 @@ na.omit()
 # Replace all empty strings in status with NA
 #data$string [data$string == ""] <- NA
 
+#How to save (and load) datasets in R: An overview
+#https://www.r-bloggers.com/how-to-save-and-load-datasets-in-r-an-overview/
+data <- read.table("https://vincentarelbundock.github.io/Rdatasets/csv/carData/MplsStops.csv",
+                   sep = ",", header = T,
+                   row.names = 1)
+scroll_box(kable(head(data), row.names = F),
+           width = "100%", height = "300px")
+View(data)
+
+# I’m assigning a new column data$gender.not.known which is TRUE whenever data$gender is "Unknown" or NA
+data$gender.not.known <- is.na(data$gender) | data$gender == "Unknown"
+
+#saving your dataset
+# Option 1.1: save()
+save(data, file = "data.Rdata")
+# if not compressing the data (faster) add compress=F 
+save(data, file = "data.Rdata",compress=F)
+# to load dataset
+load(file = "data.Rdata")
+# to save dataset with a different name (2 dataframes)
+data2 <- data
+save(list = c("data", "data2"), file = "data.Rdata")
+#Option 1.2: saveRDS() - one object in one file
+saveRDS(data, file = "data.Rds")
+data.copy <- readRDS(file = "data.Rds")
+#Option 2: Save as a CSV file
+# Option 2.1: write.table()
+write.table(data, file = "data.csv",
+            sep = "\t", row.names = F)
+# Option 2.2: fwrite() for very big datasets
+library(data.table)
+fwrite(data,
+       file = "fwrite-data.csv",
+       sep = "\t")
+# Option 3: Save as an Excel file
+library(WriteXLS)
+WriteXLS(data, ExcelFileName = "data.xlsx",
+         SheetNames = "my data",
+         AdjWidth = T,
+         BoldHeaderRow = T)
