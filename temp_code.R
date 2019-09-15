@@ -198,3 +198,32 @@ WriteXLS(data, ExcelFileName = "data.xlsx",
          SheetNames = "my data",
          AdjWidth = T,
          BoldHeaderRow = T)
+
+#     ******************
+# Explore Your Dataset in R
+# https://www.littlemissdata.com/blog/simple-eda 
+#Load the readr library to bring in the dataset
+library(readr)
+
+#Download the data set
+df= read_csv('https://raw.githubusercontent.com/lgellis/STEM/master/DATA-ART-1/Data/FinalData.csv', col_names = TRUE)
+head(df, 10)
+dim(df)
+
+#Displays the type and a preview of all columns as a row so that it's very easy to take in.
+
+library(dplyr)
+glimpse(df)
+summary(df)
+
+#Next we run the skim function from the skimr package
+install.packages("skimr")
+library(skimr)
+skim(df)
+
+# install and use DataExplorer package
+install.packages("DataExplorer", dependencies = TRUE)
+library(DataExplorer)
+DataExplorer::create_report(df)
+
+

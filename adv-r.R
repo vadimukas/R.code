@@ -61,4 +61,11 @@ structure(1:10, my_attribute = "This is a vector")
 #When working with these attributes, 
 #use names(x), dim(x), and class(x), not attr(x, "names"), attr(x, "dim"), and attr(x, "class").
 
-
+#Names
+#You can name a vector in three ways:
+x <- c(a = 1, b = 2, c = 3)
+x <- 1:3; names(x) <- c("a", "b", "c")
+x <- setNames(1:3, c("a", "b", "c"))
+# removing names from a vector
+names(x) <- NULL
+#Factor
