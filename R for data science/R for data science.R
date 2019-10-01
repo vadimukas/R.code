@@ -1,5 +1,8 @@
 # the books is avalable online https://r4ds.had.co.nz/ 
 
+# the answers to exercises here 
+#https://github.com/maxconway/r4ds_solutions/blob/master/transform_solutions.Rmd
+
 # first install.packages(c("nycflights13", "gapminder", "Lahman"))
 # and tidyverse
 
@@ -297,3 +300,337 @@ select(flights, one_of(vars))
 select(flights, contains("TIME"))
 
 #5.5 Add new variables with mutate()
+# it’s often useful to add new columns that are functions of existing columns. That’s the job of mutate()
+# mutate() always adds new columns at the end of your dataset 
+
+
+mutate(flights_sml,
+       gain = dep_delay-arr_delay,
+       speed = distance/air_time*60
+)
+
+mutate(flights_sml,
+       gain = dep_delay-arr_delay,
+       hours = air_time/60,
+       gain_per_hour = gain/hours
+)
+# if you want to keep the new variables use transmutate
+transmute(flights,
+       gain = dep_delay - arr_delay,
+       hours = air_time/60,
+       gain_per_hour = gain/hours
+)
+#5.5.1 Useful creation functions 
+# Modular arithmetic: %/% (integer division) and %% (remainder), where x == y * (x %/% y) + (x %% y)
+transmute(flights,
+          dep_time,
+          hour = dep_time %/% 100,
+          minute = dep_time %% 100
+)
+# Logs: log(), log2(), log10() - Logarithms
+# Offsets: lead() and lag() allow you to refer to leading or lagging values (offset them)
+(x <- 1:10)
+lead(x)
+lag(x)
+
+# Cumulative and rolling aggregates: R provides functions for running sums, products, mins and maxes: 
+#cumsum(), cumprod(), cummin(), cummax(); and dplyr provides cummean() for cumulative means.
+cumsum(x)
+cummean(x)
+# Logical comparisons, <, <=, >, >=, !=, and ==
+# Ranking - start with min_rank()
+y <- c(1, 2, 2, NA, 3, 4)
+min_rank(y)
+min_rank(desc(y))
+# the other ranking variants row_number(), dense_rank()
+row_number(y)
+dense_rank(y)
+View(flights)
+
+#5.5.2 Exercises
+#1
+mutate(flights,
+       dep_time = (dep_time %/% 100) * 60 + (dep_time %% 100),
+       sched_dep_time=(sched_dep_time%/%100)*60+(sched_dep_time%%100))
+#2
+flights %>% 
+  mutate(dep_time = (dep_time %/% 100) * 60 + (dep_time %% 100),
+         sched_dep_time = (sched_dep_time %/% 100) * 60 + (sched_dep_time %% 100),
+         arr_time = (arr_time %/% 100) * 60 + (arr_time %% 100),
+         sched_arr_time = (sched_arr_time %/% 100) * 60 + (sched_arr_time %% 100)) %>%
+  transmute((arr_time - dep_time) %% (60*24) - air_time)
+
+#3
+flights %>% 
+  mutate(dep_time = (dep_time %/% 100) * 60 + (dep_time %% 100),
+         sched_dep_time = (sched_dep_time %/% 100) * 60 + (sched_dep_time %% 100),
+         arr_time = (arr_time %/% 100) * 60 + (arr_time %% 100),
+         sched_arr_time = (sched_arr_time %/% 100) * 60 + (sched_arr_time %% 100)) %>%
+  transmute(near((sched_dep_time + dep_delay) %% (60*24), dep_time, tol=1))
+# 4 
+filter(flights, min_rank(desc(dep_delay))<=10)
+flights %>% top_n(n = 10, wt = dep_delay)
+# 5
+1:3+1:10
+#6
+?Trig
+
+# 5.6 Grouped summaries with summarise()
+#summarise a dataframe to a single row
+summarise(flights, delay = mean(dep_delay, na.rm = TRUE))
+
+# summarise() is not terribly useful unless we pair it with group_by()
+by_day <- group_by(flights, year, month, day)
+summarise(by_day, delay = mean(dep_delay, na.rm = TRUE))
+
+# 5.6.1 Combining multiple operations with the pipe
+by_dest <- group_by(flights, dest)
+delay <- summarise(by_dest,
+                   count = n(),
+                   dist = mean(distance, na.rm = TRUE),
+                   delay = mean(arr_delay, na.rm = TRUE)
+)
+delay <- filter(delay, count > 20, dest != "HNL")
+
+ggplot(data = delay, mapping = aes(x = dist, y = delay)) +
+  geom_point(aes(size = count), alpha = 1/3) +
+  geom_smooth(se = FALSE)
+
+# There’s another way to tackle the same problem with the pipe, %>%: 
+
+delays <- flights %>% 
+  group_by(dest) %>% 
+  summarise(
+    count = n(),
+    dist = mean(distance, na.rm = TRUE),
+    delay = mean(arr_delay, na.rm = TRUE)
+  ) %>% 
+  filter(count > 20, dest != "HNL")
+#5.6.2 Missing values
+flights %>% 
+  group_by(year, month, day) %>% 
+  summarise(mean = mean(dep_delay, na.rm = TRUE))
+# remove values with cancelted flights
+not_cancelled <- flights %>% 
+  filter(!is.na(dep_delay), !is.na(arr_delay))
+# then summirize 
+not_cancelled %>% 
+  group_by(year, month, day) %>% 
+  summarise(mean = mean(dep_delay))
+
+# 5.6.3 Counts
+#Whenever you do any aggregation, it’s always a good idea to include either a count (n()), 
+# or a count of non-missing values (sum(!is.na(x))). 
+
+delays <- not_cancelled %>% 
+  group_by(tailnum) %>% 
+  summarise(
+    delay = mean(arr_delay)
+  )
+
+ggplot(data = delays, mapping = aes(x = delay)) + 
+  geom_freqpoly(binwidth = 10)
+# scatterplot of number of flights vs average delay
+delays <- not_cancelled %>% 
+  group_by(tailnum) %>% 
+  summarise(
+    delay = mean(arr_delay, na.rm = TRUE),
+    n = n()
+  )
+
+ggplot(data = delays, mapping = aes(x = n, y = delay)) + 
+  geom_point(alpha = 1/10)
+
+# filtering out the groups with smalest number of observations
+
+delays %>% 
+  filter(n > 25) %>% 
+  ggplot(mapping = aes(x = n, y = delay)) + 
+  geom_point(alpha = 1/10)
+
+# Convert to a tibble so it prints nicely
+batting <- as_tibble(Lahman::Batting)
+
+batters <- batting %>% 
+  group_by(playerID) %>% 
+  summarise(
+    ba = sum(H, na.rm = TRUE) / sum(AB, na.rm = TRUE),
+    ab = sum(AB, na.rm = TRUE)
+  )
+
+batters %>% 
+  filter(ab > 100) %>% 
+  ggplot(mapping = aes(x = ab, y = ba)) +
+  geom_point() + 
+  geom_smooth(se = FALSE)
+#> `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+
+# 5.6.4 Useful summary functions
+# It’s sometimes useful to combine aggregation with logical subsetting
+not_cancelled %>% 
+  group_by(year, month, day) %>% 
+  summarise(
+    avg_delay1 = mean(arr_delay),
+    avg_delay2 = mean(arr_delay[arr_delay > 0]) # the average positive delay
+)
+#Measures of spread: sd(x), IQR(x), mad(x)
+# Why is distance to some destinations more variable than to others?
+not_cancelled %>% 
+  group_by(dest) %>% 
+  summarise(distance_sd = sd(distance)) %>% 
+  arrange(desc(distance_sd))
+# Measures of rank: min(x), quantile(x, 0.25), max(x)
+# When do the first and last flights leave each day?
+not_cancelled %>% 
+  group_by(year, month, day) %>% 
+  summarise(
+    first = min(dep_time),
+    last = max(dep_time)
+  )
+#Measures of position: first(x), nth(x, 2), last(x) 
+#For example, we can find the first and last departure for each day: 
+not_cancelled %>% 
+  group_by(year, month, day) %>% 
+  summarise(
+    first_dep = first(dep_time), 
+    last_dep = last(dep_time)
+  )
+#These functions are complementary to filtering on ranks
+not_cancelled %>% 
+  group_by(year, month, day) %>% 
+  mutate(r = min_rank(desc(dep_time))) %>% 
+  filter(r %in% range(r))
+#Counts: You’ve seen n(), which takes no arguments, and returns the size of the current group
+#To count the number of non-missing values, use sum(!is.na(x)). 
+#To count the number of distinct (unique) values, use n_distinct(x)
+
+# Which destinations have the most carriers?
+not_cancelled %>% 
+  group_by(dest) %>% 
+  summarise(carriers = n_distinct(carrier)) %>% 
+  arrange(desc(carriers))
+
+#Counts are so useful that dplyr provides a simple helper if all you want is a count:
+not_cancelled %>% 
+  count(dest)
+# You can optionally provide a weight variable
+not_cancelled %>% 
+  count(tailnum, wt = distance)
+
+# How many flights left before 5am? (these usually indicate delayed
+# flights from the previous day)
+not_cancelled %>% 
+  group_by(year, month, day) %>% 
+  summarise(n_early = sum(dep_time < 500))
+
+# What proportion of flights are delayed by more than an hour?
+not_cancelled %>% 
+  group_by(year, month, day) %>% 
+  summarise(hour_perc = mean(arr_delay > 60))
+
+#5.6.5 Grouping by multiple variables
+daily <- group_by(flights, year, month, day)
+(per_day   <- summarise(daily, flights = n()))
+(per_month <- summarise(per_day, flights = sum(flights)))
+(per_year  <- summarise(per_month, flights = sum(flights)))
+
+#5.6.6 Ungrouping
+daily %>% 
+  ungroup() %>%             # no longer grouped by date
+  summarise(flights = n())  # all flights
+
+#5.6.7 Exercises
+# 4
+flights %>%
+  mutate(dep_date = lubridate::make_datetime(year, month, day)) %>%
+  group_by(dep_date) %>%
+  summarise(cancelled = sum(is.na(dep_delay)), 
+            n = n(),
+            mean_dep_delay = mean(dep_delay,na.rm=TRUE),
+            mean_arr_delay = mean(arr_delay,na.rm=TRUE)) %>%
+  ggplot(aes(x= cancelled/n)) + 
+  geom_point(aes(y=mean_dep_delay), colour='blue', alpha=0.5) + 
+  geom_point(aes(y=mean_arr_delay), colour='red', alpha=0.5) + 
+  ylab('mean delay (minutes)')
+
+#5.7 Grouped mutates (and filters)
+#Grouping is most useful in conjunction with summarise(), 
+#but you can also do convenient operations with mutate() and filter():
+
+#Find the worst members of each group:
+flights_sml %>% 
+  group_by(year, month, day) %>%
+  filter(rank(desc(arr_delay)) < 10)
+
+# Find all groups bigger than a threshold:
+popular_dests <- flights %>% 
+  group_by(dest) %>% 
+  filter(n() > 365)
+popular_dests
+
+#Standardise to compute per group metrics:
+popular_dests %>% 
+  filter(arr_delay > 0) %>% 
+  mutate(prop_delay = arr_delay / sum(arr_delay)) %>% 
+  select(year:day, dest, arr_delay, prop_delay)
+
+
+#7 Exploratory Data Analysis
+#https://r4ds.had.co.nz/exploratory-data-analysis.html 
+library(tidyverse)
+library (ggplot2)
+
+#7.3.1 Visualising distributions
+ggplot2::diamonds
+ggplot(data=diamonds)+
+geom_bar(mapping = aes(x=cut))
+
+diamonds %>%
+  count(cut)
+# the continuous variable distributiion can be examined by histogram:
+ggplot(data = diamonds)+
+  geom_histogram(mapping = aes(x=carat), binwidth = 0.5)
+# with dplyr::count()
+diamonds %>%
+  count(cut_width(carat, 0.5))
+#diamonds of less than three carats
+smaller <- diamonds %>% 
+  filter(carat < 3)
+
+ggplot(data = smaller, mapping = aes(x = carat)) +
+  geom_histogram(binwidth = 0.1)
+
+#to overlay multiple histograms in the same plot use frequepoly
+ggplot(data=smaller, mapping = aes(x=carat, color=cut))+
+  geom_freqpoly(binwidth=0.1)
+#Typical values+
+ggplot(data=smaller, mapping=aes(x=carat))+
+  geom_histogram(binwidth = 0.01)
+#unusual values
+ggplot(data = diamonds)+
+  geom_histogram(mapping = aes(x=y), binwidth = 0.5)
+#and zoom into data
+ggplot(diamonds)+
+  geom_histogram(mapping = aes(x=y), binwidth = 0.5)+
+  coord_cartesian(ylim=c(0,50))
+#filtering unusual values with dplyr
+unusual <- diamonds%>%
+  filter(y<3|y>20)%>%
+  arrange(y)
+unusual
+# 7.3.4 Exercises
+#1
+ggplot(data = diamonds)+
+  geom_histogram(mapping = aes(x=x), binwidth = 0.5)+
+  facet_grid(.~cut)
+ggplot(data = diamonds)+
+  geom_histogram(mapping = aes(x=y), binwidth = 0.5, color="blue")+
+  facet_grid(. ~ cut)
+ggplot(data = diamonds)+
+  geom_histogram(mapping = aes(x=z), binwidth = 0.5, color="red")+
+  facet_grid(. ~ cut)
+#2
+ggplot(data = diamonds)+
+  geom_line(mapping = aes(x=price), binwidth = 0.5, color="yellow")
+
+
