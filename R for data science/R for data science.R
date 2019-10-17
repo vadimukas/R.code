@@ -633,4 +633,140 @@ ggplot(data = diamonds)+
 ggplot(data = diamonds)+
   geom_line(mapping = aes(x=price), binwidth = 0.5, color="yellow")
 
+# 7.4 Missing values
+# replacing the unusual values with missing values
+diamonds2 <- diamonds %>% 
+  mutate(y = ifelse(y < 3 | y > 20, NA, y))
+ggplot(data = diamonds2, mapping = aes(x = x, y = y)) + 
+  geom_point()
+# Other times you want to understand what makes observations with missing values different 
+# to observations with recorded values.
+
+nycflights13::flights %>% 
+  mutate(
+    cancelled = is.na(dep_time),
+    sched_hour = sched_dep_time %/% 100,
+    sched_min = sched_dep_time %% 100,
+    sched_dep_time = sched_hour + sched_min / 60
+  ) %>% 
+  ggplot(mapping = aes(sched_dep_time)) + 
+  geom_freqpoly(mapping = aes(colour = cancelled), binwidth = 1/4)
+
+# 7.5 Covariation
+# 7.5.1 A categorical and continuous variable
+ggplot(data = diamonds, mapping = aes(x = price)) + 
+  geom_freqpoly(mapping = aes(colour = cut), binwidth = 500)
+# It’s hard to see the difference in distribution because the overall counts differ so much:
+ggplot(diamonds)+
+  geom_bar(mapping = aes(x=cut))
+
+ggplot(data = diamonds, mapping = aes(x = price, y = ..density..)) + 
+  geom_freqpoly(mapping = aes(colour = cut), binwidth = 500)
+
+# Boxplots
+ggplot(data = diamonds, mapping = aes(x = cut, y = price)) +
+  geom_boxplot()
+
+ggplot(data = mpg, mapping = aes(x = class, y = hwy)) +
+  geom_boxplot()
+
+ggplot(data = mpg) +
+  geom_boxplot(mapping = aes(x = reorder(class, hwy, FUN = median), y = hwy))
+
+ggplot(data = mpg) +
+  geom_boxplot(mapping = aes(x = reorder(class, hwy, FUN = median), y = hwy)) +
+  coord_flip()
+
+ggplot(data = mpg) +
+  geom_violin(mapping = aes(x = reorder(class, hwy, FUN = median), y = hwy))+
+  facet_wrap(~ class, nrow = 2)
+ggplot(data = mpg) +
+  geom_jitter(mapping = aes(x = reorder(class, hwy, FUN = median), y = hwy))+
+  facet_wrap(~ class, nrow = 2)
+
+# 7.5.2 Two categorical variables
+
+ggplot(data = diamonds) +
+  geom_count(mapping = aes(x = cut, y = color))
+
+# Another approach is to compute the count with dplyr:
+diamonds %>% 
+  count(color, cut)
+diamonds %>% 
+  count(color, cut) %>%  
+  ggplot(mapping = aes(x = color, y = cut)) +
+  geom_tile(mapping = aes(fill = n))
+
+# 7.5.3 Two continuous variables
+
+ggplot(data = diamonds) +
+  geom_point(mapping = aes(x = carat, y = price))
+# to overcome overplottling
+
+ggplot(data = diamonds) + 
+  geom_point(mapping = aes(x = carat, y = price), alpha = 1 / 100)
+
+ggplot(data = smaller) +
+  geom_bin2d(mapping = aes(x = carat, y = price))
+
+# use hexbin package 
+install.packages("hexbin")
+
+ggplot(data = smaller) +
+  geom_hex(mapping = aes(x = carat, y = price))
+
+# or use boxplots with binned data
+ggplot(data = smaller, mapping = aes(x = carat, y = price)) + 
+  geom_boxplot(mapping = aes(group = cut_width(carat, 0.1)))
+
+ggplot(data = smaller, mapping = aes(x = carat, y = price)) + 
+  geom_boxplot(mapping = aes(group = cut_number(carat, 20)))
+
+# scatterplot
+ggplot(data = diamonds) +
+  geom_point(mapping = aes(x = x, y = y)) +
+  coord_cartesian(xlim = c(4, 11), ylim = c(4, 11))
+
+#7.6 Patterns and models
+
+ # A scatterplot of Old Faithful eruption lengths versus the wait time between eruptions shows a pattern:
+
+ggplot(data=faithful)+
+  geom_point(mapping=aes(x=eruptions, y=waiting))
+
+mod<-lm(data=faithful, waiting~eruptions)
+plot(faithful$eruptions, faithful$waiting, col='yellow')
+abline(mod, col="red", lty=2)
+
+#Models are a tool for extracting patterns out of data. 
+
+library(modelr)
+
+mod <- lm(log(price) ~ log(carat), data = diamonds)
+
+diamonds2 <- diamonds %>% 
+  add_residuals(mod) %>% 
+  mutate(resid = exp(resid))
+
+ggplot(data = diamonds2) + 
+  geom_point(mapping = aes(x = carat, y = resid))
+
+ggplot(data = diamonds2) + 
+  geom_boxplot(mapping = aes(x = cut, y = resid))
+
+#7.7 ggplot2 calls
+
+ggplot(data = faithful, mapping = aes(x = eruptions)) + 
+  geom_freqpoly(binwidth = 0.25)
+
+# more concise
+ggplot(faithful, aes(eruptions)) + 
+  geom_freqpoly(binwidth = 0.25)
+
+diamonds %>% 
+  count(cut, clarity) %>% 
+  ggplot(aes(clarity, cut, fill = n)) + 
+  geom_tile()
+
+# more about ggplot2 book "ggplot2: Elegant Graphics for Data Analysis"
 

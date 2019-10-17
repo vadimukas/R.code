@@ -111,3 +111,4 @@ p.llci = add_lines(p.llci, x=tt, y=ll.pred$fit, name="Mean", line=list(color="#3
 p.llci = add_ribbons(p.llci, x=ll.df$tt, ymin=ll.df$lb, ymax=ll.df$ub, name="95% CI", line=list(opacity=0.4, width=0, color="#366092"))
 p.llci = layout(p.llci, title = "LOESS with confidence intervals")
 print(p.llci)
+
