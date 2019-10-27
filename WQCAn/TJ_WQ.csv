@@ -1,0 +1,43 @@
+Sample Nr,Date sampled,Time,Month,Location,Sample description,Sample type,Coordinate 1,Coordinate 2,T [C],pH,EC [microS/cm],TDS    [mg/L],NO+3-N [mg/L]  ,PO3-4-P [mg/L],Fe [mg/L]  
+1,23-07-2019,08:40,7,Maykhura river,"MH1, stream water",streamwater,39.026767,68.784795,7,8.2,170,80,0.46,0.006,0.02
+2,23-07-2019,10:00,7,"Varzob river, Gauging station","GP2, streamwater",streamwater,38.872408,68.832686,9,8.1,110,60,0.54,0.014,0.01
+3,23-07-2019,11:20,7,Luchob river,"LU3, streamflow",streamwater,38.587298,68.771622,22,8.2,110,50,0.44,0.006,0.02
+4,23-07-2019,14:50,7,Kafarnigan river,"KF3, streamflow",streamwater,38.493434,68.783604,19,8,110,60,0.63,0.009,0.02
+5,23-07-2019,13:15,7,"South-East water uptake,  drinking water facility","GWP4, groundwater",groundwater,38.522381,68.720056,22,7.2,460,220,5.82,0.006,0.01
+6,23-07-2019,15:09,7,Potable water well,"GWP6, groundwater",groundwater,38.489616,68.785221,21,6.9,700,350,10,0.006,0.02
+7,07-08-2019,08:30,8,Maykhura river,"MH1, stream water",streamwater,39.026767,68.784795,8,8.2,150,80,0.56,0.025,0.01
+8,07-08-2019,09:22,8,"Varzob river, Gauging station","GP2, streamwater",streamwater,38.872408,68.832686,10,8.1,110,60,0.47,0.009,0.01
+9,07-08-2019,10:48,8,Luchob river,"LU3, streamflow",streamwater,38.587298,68.771622,23,8.3,130,60,0.34,0.023,0.01
+10,07-08-2019,13:09,8,Kafarnigan river,"KF3, streamflow",streamwater,38.493434,68.783604,20,7.4,280,140,2.59,0.017,0.03
+11,07-08-2019,11:30,8,"South-East water uptake,  drinking water facility","GWP4, groundwater",groundwater,38.522381,68.720056,21,7.3,570,300,6.03,0.023,0.02
+12,07-08-2019,11:30,8,Potable water well,"GWP6, groundwater",groundwater,38.489616,68.785221,19,6.9,900,460,16.7,0.021,0.02
+13,21-08-2019,08:04,8,Maykhura river,"MH1, stream water",streamwater,39.026767,68.784795,7,8.3,180,90,0.37,0.017,0.1
+14,21-08-2019,08:52,8,"Varzob river, Gauging station","GP2, streamwater",streamwater,38.872408,68.832686,10,8.2,120,60,0.42,0.011,0.1
+15,21-08-2019,09:54,8,Luchob river,"LU3, streamflow",streamwater,38.587298,68.771622,19,8.4,180,90,0.49,0.018,0.1
+16,21-08-2019,12:22,8,Kafarnigan river,"KF3, streamflow",streamwater,38.493434,68.783604,18,7.3,390,200,2.07,0.013,0.1
+17,21-08-2019,11:36,8,"South-East water uptake,  drinking water facility","GWP4, groundwater",groundwater,38.522381,68.720056,19,7.2,580,300,6.23,0.018,0.1
+18,21-08-2019,12:46,8,Potable water well,"GWP6, groundwater",groundwater,38.489616,68.785221,20,7,900,450,14.9,0.021,0.14
+19,06-09-2019,09:08,9,Maykhura river,"MH1, stream water",streamwater,39.026767,68.784795,8,8.3,170,80,0.45,0.011,0.01
+20,06-09-2019,10:07,9,"Varzob river, Gauging station","GP2, streamwater",streamwater,38.872408,68.832686,9,8.6,150,70,0.32,0.021,0.01
+21,06-09-2019,11:20,9,Luchob river,"LU3, streamflow",streamwater,38.587298,68.771622,20,8.6,220,110,0.55,0.016,0.01
+22,06-09-2019,12:46,9,Kafarnigan river,"KF3, streamflow",streamwater,38.493434,68.783604,18,7.8,290,140,0.21,0.016,0.11
+23,06-09-2019,11:50,9,"South-East water uptake,  drinking water facility","GWP4, groundwater",groundwater,38.522381,68.720056,18,7.4,570,280,6.1,0.022,0.11
+24,06-09-2019,13:04,9,Potable water well,"GWP6, groundwater",groundwater,38.489616,68.785221,20,7,900,450,15,0.024,0.22
+25,24-09-2019,08:40,9,Maykhura river,"MH1, stream water",streamwater,39.026767,68.784795,8,8.2,180,90,0.42,0.024,0.1
+26,24-09-2019,09:24,9,"Varzob river, Gauging station","GP2, streamwater",streamwater,38.872408,68.832686,11,8.1,140,70,0.4,0.02,0.1
+27,24-09-2019,10:30,9,Luchob river,"LU3, streamflow",streamwater,38.587298,68.771622,20,8.3,250,120,0.52,0.017,0.11
+28,24-09-2019,12:20,9,Kafarnigan river,"KF3, streamflow",streamwater,38.493434,68.783604,19,7.8,340,160,3.09,0.017,0.11
+29,24-09-2019,,9,"South-East water uptake,  drinking water facility","GWP4, groundwater",groundwater,38.522381,68.720056,20,7.3,570,290,5.67,0.021,0.11
+30,24-09-2019,12:45,9,Potable water well,"GWP6, groundwater",groundwater,38.489616,68.785221,22,6.8,900,450,13.9,0.022,0.2
+31,09-10-2019,09:45,10,Maykhura river,"MH1, stream water",streamwater,39.026767,68.784795,8,8.3,200,100,0.49,0.023,0.12
+32,09-10-2019,10:45,10,"Varzob river, Gauging station","GP2, streamwater",streamwater,38.872408,68.832686,10,8.1,150,70,0.53,0.019,0.13
+33,09-10-2019,11:50,10,Luchob river,"LU3, streamflow",streamwater,38.587298,68.771622,17,8.5,260,130,0.69,0.025,0.12
+34,09-10-2019,13:34,10,Kafarnigan river,"KF3, streamflow",streamwater,38.493434,68.783604,18,7.9,290,140,2.04,0.033,0.1
+35,09-10-2019,13:02,10,"South-East water uptake,  drinking water facility","GWP4, groundwater",groundwater,38.522381,68.720056,19,7.2,620,310,6.23,0.033,0.1
+36,09-10-2019,13:52,10,Potable water well,"GWP6, groundwater",groundwater,38.489616,68.785221,20,6.9,860,430,11.1,0.018,0.17
+37,23-10-2019,09:36,10,Maykhura river,"MH1, stream water",streamwater,39.026767,68.784795,7,8.3,210,100,0.503,0.026,0.1
+38,23-10-2019,10:12,10,"Varzob river, Gauging station","GP2, streamwater",streamwater,38.872408,68.832686,8,8,180,90,0.594,0.016,0.1
+39,23-10-2019,11:06,10,Luchob river,"LU3, streamflow",streamwater,38.587298,68.771622,14,8.3,260,130,0.711,0.019,0.1
+40,23-10-2019,13:05,10,Kafarnigan river,"KF3, streamflow",streamwater,38.493434,68.783604,15,7.5,360,190,2.42,0.029,0.1
+41,23-10-2019,12:30,10,"South-East water uptake,  drinking water facility","GWP4, groundwater",groundwater,38.522381,68.720056,17,7.2,650,320,6.13,0.019,0.1
+42,23-10-2019,13:30,10,Potable water well,"GWP6, groundwater",groundwater,38.489616,68.785221,19,6.8,890,440,11,0.019,0.16

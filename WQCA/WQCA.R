@@ -2,30 +2,36 @@ library(readr)
 library(ggplot2)
 library(tidyverse)
 
+#set working directory to subfolder WQCA
+setwd("D:/R/R.code")
+
 #load Kishi Almaty upper data monthly
 library(readr)
 KA_1_monthly_KZ <- read_csv("WQCA/KA-1_monthly_KZ.csv", 
-                            col_types = cols(TDS_ppm = col_double()))
+                            col_types = cols(month = col_character(), 
+                                             year = col_character()))
 View(KA_1_monthly_KZ)
+
 #https://boxuancui.github.io/DataExplorer/ - package DataExplorer to explore the dataset
 library(DataExplorer)
+library(psych) 
 
 summary(KA_1_monthly_KZ)
-plot_histogram(KA_1_monthly_KZ, title="KA_1_monthly_KZ")
+plot_histogram(KA_1_monthly_KZ, title="KA_1_monthly_KZ", ggtheme = theme_light())
 plot(KA_1_monthly_KZ$TDS_ppm,KA_1_monthly_KZ$Mg_ppm)
-plot_scatterplot(KA_1_monthly_KZ, by="Q", title = "KA_1_monthly_KZ by Q", ggtheme = theme_bw())
+plot_scatterplot(KA_1_monthly_KZ, by="Q", title = "KA_1_monthly_KZ by Q", c)
 pairs(KA_1_monthly_KZ [c(3:8)], col=KA_1_monthly_KZ$year)
 # library(psych)
 install.packages("psych")
 library(psych)
 pairs.panels(KA_1_monthly_KZ [c(3:8)],
-             method="pearson",
+             method="kendall",
              hist.col="#00AFBB",
-             density=TRUE
+             density=TRUE, main="KA 1 monthly correlations, major ions and flow"
              )
 
-plot_boxplot(KA_1_monthly_KZ, by = "year", title = "KA_1_monthly_KZ by year")
-plot_boxplot(KA_1_monthly_KZ, by = "month", title = "KA_1_monthly_KZ by month")
+plot_boxplot(KA_1_monthly_KZ, by = "year", title = "KA_1_monthly_KZ by year", ggtheme = theme_test())
+plot_boxplot(KA_1_monthly_KZ, by = "month", title = "KA_1_monthly_KZ by month", ggtheme = theme_test())
 plot_correlation(KA_1_monthly_KZ, title = "KA_1_monthly_KZ corrlations")
 create_report(KA_1_monthly_KZ)
 plot.ts(KA_1_monthly_KZ$Fe_total_ppm)
@@ -38,21 +44,22 @@ plot.ts(KA_1_monthly_KZ$Fe_total_ppm, title = "KA_1_monthly_KZ$Fe_total_ppm")
 
 #load Kishi Almaty downsntream data monthly
 KA_2_monthly_KZ <- read_csv("WQCA/KA-2_monthly_KZ.csv", 
-                            col_types = cols(TDS_ppm = col_double()))
+                            col_types = cols(month = col_character(), 
+                                             year = col_character(),TDS_ppm = col_double()))
 View(KA_2_monthly_KZ)
 summary(KA_2_monthly_KZ)
 plot_histogram(KA_2_monthly_KZ, title = "KA 2 monthly")
 plot_scatterplot(KA_2_monthly_KZ, by="Q", title="KA_2_monthly_KZ by Q")
-plot(KA_2_monthly_KZ$BOD,KA_2_monthly_KZ$PO4)
+plot(KA_2_monthly_KZ$BOD,KA_2_monthly_KZ$PO4_P)
 ggplot(data=KA_2_monthly_KZ, mapping = aes(x=BOD, y=PO4), ylim=1, xlim=0.4)+
   geom_point()
 pairs.panels(KA_2_monthly_KZ [c(3:9)],
-             method="pearson",
+             method="kendall",
              hist.col="#00AFBB",
-             density=TRUE
+             density=TRUE, main="KA 2 monthly correlations"
 )
-plot_boxplot(KA_2_monthly_KZ, by = "year", title = "KA 2 monthly by year")
-plot_boxplot(KA_2_monthly_KZ, by = "month", title = "KA_2_monthly_KZ by month", ggtheme = theme_bw())
+plot_boxplot(KA_2_monthly_KZ, by = "year", title = "KA 2 monthly by year", ggtheme = theme_test())
+plot_boxplot(KA_2_monthly_KZ, by = "month", title = "KA_2_monthly_KZ by month", ggtheme = theme_test())
 plot_correlation(KA_2_monthly_KZ, title="KA_2_monthly_KZ")
 create_report(KA_2_monthly_KZ)
 plot.ts(KA_2_monthly_KZ$Fe_total, title(main = "KA_2_monthly_KZ$Fe_total"))
@@ -96,6 +103,7 @@ plot.ts(UA_1_yearly_KZ$Mg, title(main = "UA1_yearly_KZ$Mg"))
 plot.ts(UA_1_yearly_KZ$TPH, title(main = "UA1_yearly_KZ$TPH"))
 plot(UA_1_yearly_KZ$SO4,UA_1_yearly_KZ$TPH)
 
+
 #load Ulken Almaty downstream data yearly
 UA_2_yearly_KZ <- read_csv("WQCA/UA-2_yearly_KZ.csv")
 View(UA_2_yearly_KZ)
@@ -111,12 +119,13 @@ create_report(UA_2_yearly_KZ)
 
 #load Chirchik at Mulala upstream monthly data and explore
 Chirchik_1_Mulala_UZ <- read_csv("WQCA/Chirchik_1_Mulala_UZ.csv", 
-                           col_types = cols(TDS_ppm = col_double()))
+                           col_types = cols(month = col_character(), 
+                                            year = col_character(), TDS_ppm = col_double()))
 View(Chirchik_1_Mulala_UZ)
 summary(Chirchik_1_Mulala_UZ)
 plot_histogram(Chirchik_1_Mulala_UZ, title = "Chirchik_1_Mulala_UZ")
 # do some 1:1 plots with flow
-plot_scatterplot(Chirchik_1_Mulala_UZ, by = "Q", title="Chirchik_1_Mulala_UZ by Q")
+plot_scatterplot(Chirchik_1_Mulala_UZ, by = "Q", title="Chirchik_1_Mulala_UZ by Q", ggtheme = theme_test())
 plot.ts(Chirchik_1_Mulala_UZ$`Q`, x=Chirchik_1_Mulala_UZ$month)
 plot.ts(Chirchik_1_Mulala_UZ$`NO3-N_ppm`)
 plot.ts(y=Chirchik_1_Mulala_UZ$PO4_ppm, x=Chirchik_1_Mulala_UZ$year)
@@ -132,23 +141,30 @@ plot(Chirchik_1_Mulala_UZ$`Q`,Chirchik_1_Mulala_UZ$SO4_ppm)
 plot(Chirchik_1_Mulala_UZ$`Q`,Chirchik_1_Mulala_UZ$HCO3_ppm)
 plot(Chirchik_1_Mulala_UZ$`Q`,Chirchik_1_Mulala_UZ$Fe_total_ppm)
 plot(Chirchik_1_Mulala_UZ$HCO3_ppm,Chirchik_1_Mulala_UZ$Ca_ppm, title(main ="HCO3_ppm - Ca_ppm" ))
-plot_boxplot(Chirchik_1_Mulala_UZ, by = "year", title = "Chirchik_1_Mulala_UZ by year")
-plot_boxplot(Chirchik_1_Mulala_UZ, by = "month", title = "Chirchik_1_Mulala_UZ by month", ggtheme = theme_bw())
+plot_boxplot(Chirchik_1_Mulala_UZ, by = "year", title = "Chirchik_1_Mulala_UZ by year",  ggtheme = theme_test())
+plot_boxplot(Chirchik_1_Mulala_UZ, by = "month", title = "Chirchik_1_Mulala_UZ by month", ggtheme = theme_test())
 plot_correlation(Chirchik_1_Mulala_UZ, title = "Chirchik_1_Mulala_UZ correlations")
 create_report(Chirchik_1_Mulala_UZ)
 
+pairs.panels(Chirchik_1_Mulala_UZ [c(5, 8:13)],
+             method="kendall",
+             hist.col="#00AFBB",
+             density=TRUE, main="Chirchik 1 Mulala_UZ correlations"
+)
+
 #load Chirchik at Chinaz downstream monthly data and explore
 Chirchik_2_Chinaz_UZ <- read_csv("WQCA/Chirchik_2_Chinaz_UZ.csv", 
-                                 col_types = cols(TDS_ppm = col_double()))
+                                 col_types = cols(month = col_character(), 
+                                                  year = col_character(), TDS_ppm = col_double()))
 View(Chirchik_2_Chinaz_UZ)
 summary(Chirchik_2_Chinaz_UZ)
-plot_histogram(Chirchik_2_Chinaz_UZ, title = "Chirchik_2_Chinaz_UZ")
+plot_histogram(Chirchik_2_Chinaz_UZ, title = "Chirchik_2_Chinaz_UZ", ggtheme = theme_test())
 
 # do some 1:1 plots with flow
-plot_scatterplot(Chirchik_2_Chinaz_UZ, by = "Q", title="Chirchik_2_Chinaz_UZ by Q")
+plot_scatterplot(Chirchik_2_Chinaz_UZ, by = "Q", title="Chirchik_2_Chinaz_UZ by Q", ggtheme = theme_test())
 plot.ts(Chirchik_2_Chinaz_UZ$`Q`)
 plot.ts(Chirchik_2_Chinaz_UZ$`NO3-N_ppm`)
-plot.ts(y=Chirchik_2_Chinaz_UZ$PO4_ppm, x=Chirchik_2_Chinaz_UZ$year)
+plot.ts(y=Chirchik_2_Chinaz_UZ$PO4_P, x=Chirchik_2_Chinaz_UZ$year)
 plot.ts(Chirchik_2_Chinaz_UZ$`NH4-N_ppm`, title(main = 'Chirchik_2_Chinaz_UZ$`NH4-N_ppm'))
 plot.ts(Chirchik_2_Chinaz_UZ$Cu_ppb)
 plot.ts(Chirchik_2_Chinaz_UZ$F_ppm, title(main = "Chirchik_2_Chinaz_UZ$F_ppm"))
@@ -156,19 +172,26 @@ plot.ts(Chirchik_2_Chinaz_UZ$Cd_ppb)
 plot.ts(Chirchik_2_Chinaz_UZ$Q, x=Chirchik_2_Chinaz_UZ$month)
 
 plot(Chirchik_2_Chinaz_UZ$`Q`,Chirchik_2_Chinaz_UZ$`NO3-N_ppm`)
-plot(Chirchik_2_Chinaz_UZ$`Q`,Chirchik_2_Chinaz_UZ$PO4_ppm)
+plot(Chirchik_2_Chinaz_UZ$`Q`,Chirchik_2_Chinaz_UZ$PO4_P)
 plot(Chirchik_2_Chinaz_UZ$`Q`,Chirchik_2_Chinaz_UZ$Ca_ppm)
 plot(Chirchik_2_Chinaz_UZ$`Q`,Chirchik_2_Chinaz_UZ$Mg_ppm)
 plot(Chirchik_2_Chinaz_UZ$`Q`,Chirchik_2_Chinaz_UZ$SO4_ppm)
 plot(Chirchik_2_Chinaz_UZ$`Q`,Chirchik_2_Chinaz_UZ$HCO3_ppm, title(main = "Q - HCO3_ppm"))
 plot(Chirchik_2_Chinaz_UZ$`Q`,Chirchik_2_Chinaz_UZ$Cd_ppb)
 plot(Chirchik_2_Chinaz_UZ$HCO3_ppm,Chirchik_2_Chinaz_UZ$Ca_ppm, title(main = "Chirchik_2_Chinaz_UZ$HCO3_ppm,Chirchik_2_Chinaz_UZ$Ca_ppm"))
-plot_boxplot(Chirchik_2_Chinaz_UZ, by = "year", title = "Chirchik_2_Chinaz_UZ by year")
-plot_boxplot(Chirchik_2_Chinaz_UZ, by = "month", title = "Chirchik_2_Chinaz_UZ by month", ggtheme = theme_bw())
+plot_boxplot(Chirchik_2_Chinaz_UZ, by = "year", title = "Chirchik_2_Chinaz_UZ by year", ggtheme = theme_test())
+plot_boxplot(Chirchik_2_Chinaz_UZ, by = "month", title = "Chirchik_2_Chinaz_UZ by month", ggtheme = theme_test())
 ggplot(data=Chirchik_2_Chinaz_UZ, mapping = aes(x = month, y = `NO3-N_ppm`)) +
   geom_boxplot()
 plot_correlation(Chirchik_2_Chinaz_UZ, title = "Chirchik_2_Chinaz_UZ correlations")
 create_report(Chirchik_2_Chinaz_UZ)
+
+pairs.panels(Chirchik_2_Chinaz_UZ [c(5, 8:13)],
+             method="kendall",
+             hist.col="#00AFBB",
+             density=TRUE, main="Chirchik 2 Chinaz UZ correlations"
+)
+
 
 #load Tajik GW data monthly
 TJ_GWP <- read_csv("WQCA/TJ-GWP.csv", col_types = cols(X10 = col_skip(), 
