@@ -226,4 +226,45 @@ install.packages("DataExplorer", dependencies = TRUE)
 library(DataExplorer)
 DataExplorer::create_report(df)
 
+# Zooming in on maps with sf and ggplot2
+# https://www.r-bloggers.com/zooming-in-on-maps-with-sf-and-ggplot2/ 
 
+library(ggplot2)
+library(sf)
+library(rnaturalearth)
+
+worldmap <- ne_countries(scale = 'medium', type = 'map_units',
+                         returnclass = 'sf')
+# have a look at these two columns only
+head(worldmap[c('name', 'continent')])
+
+#plot worldmap
+ggplot() + geom_sf(data = worldmap) + theme_bw()
+
+# plot Kazakhstan
+kazakhstan <- worldmap[worldmap$name == 'Kazakhstan',]
+ggplot() + geom_sf(data = kazakhstan) + theme_bw()
+
+europe <- worldmap[worldmap$continent == 'Europe',]
+ggplot() + geom_sf(data = europe) + theme_bw()
+
+# add-ins to make life easier
+#https://www.r-bloggers.com/rstudio-addins-or-how-to-make-your-coding-life-easier/
+#1 Esquisse add-in to construct ggplot plots easy
+install.packages("esquisse") 
+
+library(ggplot2)
+
+ggplot(ICP_samples_2019) +
+ aes(x = month, y = `TDS [mg/L]`) +
+ geom_boxplot(fill = "#6dcd59") +
+ theme_classic()
+
+#2 questionr - you can easily reorder and recode factor variables 
+install.packages("questionr")
+
+#3 Remedy - to produce R markdown
+install.packages("remedy") 
+
+#4 Styler - to tidy up code before publishing or sharing
+install.packages("styler")

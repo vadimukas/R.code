@@ -1,5 +1,13 @@
+# Before we start install the required packages
+packrat::restore()
+install.packages(tidyverse)
+install.packages(DataExplorer)
+install.packages(psych)
+install.packages(DescTools)
+install.packages(pastecs)
+
 # exploring new WQ data, first load the required packages
-library(readr)
+library(readr) 
 library(ggplot2)
 library(tidyverse)
 #https://boxuancui.github.io/DataExplorer/ - package DataExplorer to explore the dataset
@@ -73,7 +81,7 @@ plot_prcomp(na.omit(ICP_samples_2019), maxcat = 5L, ggtheme = theme_bw())
 # load a cropped dataset for four study catchments only
 ICP_samples_2019s <- read_csv("ICP_samples__2019s.csv", 
                              col_types = cols(Date = col_date(format = "%d-%m-%Y"), 
-                                              Time = col_time(format = "%H:%M")))
+                                              Time = col_time(format = "%H:%M"), month = col_character()))
 View(ICP_samples_2019s)
 
 # and explore it in the same way
@@ -121,8 +129,8 @@ pairs.panels(ICP_samples_2019s [c(31:36)],
 )
 
 corPlot(ICP_samples_2019s [c(12:36)], numbers = TRUE, xlas = 2)
-plot_boxplot(ICP_samples_2019s [c(9, 12:36)], by = "Country", title = "ICP_samples_2019s", ggtheme = theme_bw())
-plot_boxplot(ICP_samples_2019s [c(8, 12:36)], by = "Sample type", title = "ICP_samples_2019s", ggtheme = theme_bw())
+plot_boxplot(ICP_samples_2019s [c(9, 12:36)], by = "Country", title = "ICP samples 2019s", ggtheme = theme_test(),geom_boxplot_args = list("outlier.color" = "red"))
+plot_boxplot(ICP_samples_2019s [c(8, 12:36)], by = "Sample type", title = "ICP samples 2019s", ggtheme = theme_text(), geom_boxplot_args = list("outlier.color" = "red"))
 plot_prcomp(na.omit(ICP_samples_2019s), maxcat = 5L, ggtheme = theme_bw())
 
 # load a cryosphere samples dataset for Kazakhstan only
@@ -206,7 +214,7 @@ View(KG_WQ)
 par(mfrow=c(1,1))
 summary(KG_WQ)
 describe(KG_WQ)
-plot_histogram(KG_WQ [c(10:16)], title="KG_WQ", ggtheme = theme_bw())
+plot_histogram(KG_WQ [c(10:16)], title="KG WQ", ggtheme = theme_bw(), geom_boxplot_args = list("outlier.color" = "red"))
 plot_correlation(KG_WQ [c(10:16)])
 pairs(KG_WQ [c(10:16)])
 
@@ -352,14 +360,14 @@ boxplot(TJ_WQ$`Fe [mg/L]`, main = "TJ Fe")
 
 # now put boxplots across countries
 # for pH
-par(mfrow=c(1,4))
+par(mfrow=c(1,4), cex = 0.8)
 boxplot(KZ_WQ$pH, main = "KZ pH", ylim=c(7,8.8), col = "light blue")
 boxplot(KG_WQ$pH, main = "KG pH", ylim=c(7,8.8), col = 'green')
 boxplot(UZ_WQ$pH, main = "UZ pH", ylim=c(7,8.8), col = 'red')
 boxplot(TJ_WQ$pH, main = "TJ pH", ylim=c(7,8.8), col = 'yellow')
 
 # for EC
-par(mfrow=c(1,4))
+par(mfrow=c(1,4) ,cex = 0.9)
 boxplot(KZ_WQ$`EC [microS/cm]`, main = "KZ EC", ylim=c(0,1000), col = "light blue")
 boxplot(KG_WQ$`EC [microS/cm]`, main = "KG EC", ylim=c(0,1000), col = 'green')
 boxplot(UZ_WQ$`EC [microS/cm]`, main = "UZ EC", ylim=c(0,1000), col = 'red')
@@ -443,7 +451,7 @@ plot_boxplot(local_WQ_GW [c(4, 11:17)], by = "Month", title = "local GW WQ by Mo
 local_WQ_WG_group<-local_WQ_GW %>% group_by(Month) 
 plot_boxplot(local_WQ_GW_group [c(4, 11:17)], by = "Month", title = "local_WQ by Month", ggtheme = theme_bw())
 
-pairs.panels(local_WQ_GW[c(11:17)],
+ pairs.panels(local_WQ_GW[c(11:17)],
              method="pearson",
              hist.col="green",
              density=TRUE,
@@ -455,4 +463,11 @@ pairs.panels(local_WQ_GW [c(11:17)],
              hist.col="#00AFBB",
              density=TRUE,
              main = "local WQ WG correlations, Kendall"
-)         
+)
+
+# make summary statistics for bubble maps using describeBy function from psych package
+summary_by_location <-describeBy(local_WQ, group = "Location", mat = TRUE)
+# write output in txt file
+write.table(summary_by_location, file = 'summary_by_location.txt', sep = ',')
+
+

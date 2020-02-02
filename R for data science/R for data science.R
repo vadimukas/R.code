@@ -770,3 +770,419 @@ diamonds %>%
 
 # more about ggplot2 book "ggplot2: Elegant Graphics for Data Analysis"
 
+#10 Tibbles
+library(tidyverse)
+as_tibble(iris)
+
+tibble(
+  x = 1:5, 
+  y = 1, 
+  z = x ^ 2 + y
+)
+# tribble - transposed tibble
+tribble(
+  ~x, ~y, ~z,
+  #--|--|----
+  "a", 2, 3.6,
+  "b", 1, 8.5
+)
+# 10.3 Tibbles vs. data.frame
+
+nycflights13::flights %>% 
+  print(n = 10, width = Inf)
+
+nycflights13::flights %>% 
+  View()
+
+# subsetting
+# either
+df$x
+# or with . with pipe
+df%>% .$x
+
+# use as.data.frame if you want ot force tibble to dataframe
+class(as.data.frame(tb))
+
+# 11 Data import with readr
+#read_csv() reads comma delimited files, 
+#read_csv2() reads semicolon separated files
+#read_tsv() reads tab delimited files
+#read_delim() reads in files with any delimiter.
+# read_table() reads a common variation of fixed width files where columns are separated by white space.
+
+heights <- read_csv("data/heights.csv")
+
+read_csv("a,b,c
+1,2,3
+4,5,6")
+
+# skip=2 - skip the first tow lines of data
+read_csv("The first line of metadata
+  The second line of metadata
+  x,y,z
+  1,2,3", skip = 2)
+
+read_csv("# A comment I want to skip
+  x,y,z
+  1,2,3", comment = "#")
+
+#You can use col_names = FALSE to tell read_csv() not to treat the first row as headings,
+#and instead label them sequentially from X1 to Xn 
+
+read_csv("1,2,3\n4,5,6", col_names = FALSE)
+
+# alternatively col_names add a character vector
+read_csv("1,2,3\n4,5,6", col_names = c("x", "y", "z"))
+
+# na
+read_csv("a,b,c\n1,2,.", na = ".")
+
+# 11.3 Parsing a vector. parse_*() function. 
+#These functions take a character vector and 
+#return a more specialised vector like a logical, integer, or date:
+str(parse_logical(c("TRUE", "FALSE", "NA")))
+str(parse_integer(c("1", "2", "3")))
+str(parse_date(c("2010-01-01", "1979-10-14"))) 
+parse_integer(c("1", "231", ".", "456"), na = ".")
+# problems () allows to see parsing problems in readr
+x <- parse_integer(c("123", "345", "abc", "123.45"))
+problems(x)
+
+# 11.3.1 Numbers
+parse_double("1.23")
+parse_double("1,23", locale = locale(decimal_mark = ","))
+# parse_number() ignores non-numeric characters before and after the number
+parse_number("$100")
+parse_number("20%")
+parse_number("it costs $123.45")
+# Used in America
+parse_number("$123,456,789")
+# Used in many parts of Europe
+parse_number("123.456.789", locale = locale(grouping_mark = "."))
+# Used in Switzerland
+parse_number("123'456'789", locale = locale(grouping_mark = "'"))
+
+#11.3.2 Strings
+# charToRaw shows how strings are coded in R
+charToRaw("Hadley")
+
+x1 <- "El Ni\xf1o was particularly bad this year"
+x2 <- "\x82\xb1\x82\xf1\x82\xc9\x82\xbf\x82\xcd"
+parse_character(x1, locale = locale(encoding = "Latin1"))
+parse_character(x2, locale = locale(encoding = "Shift-JIS"))
+
+#How do you find the correct encoding? -> guess_encoding()
+guess_encoding(charToRaw(x1))
+guess_encoding(charToRaw(x2))
+
+# more on encoding http://kunststube.net/encoding/. 
+
+# 11.3.3 Factors                                    
+fruit <- c("apple", "banana")
+parse_factor(c("apple", "banana", "bananana"), levels = fruit)
+
+# 11.3.4 Dates, date-times, and times
+
+# parse_datetime() expects an ISO8601 date-time
+
+parse_datetime("2010-10-01T2010")
+# If time is omitted, it will be set to midnight
+
+parse_datetime("20101010")
+parse_date("2010-10-01")
+
+# parse_time() expects the hour, :, minutes, 
+# optionally : and seconds, and an optional am/pm specifier:
+
+library(hms)
+parse_time("01:10 am")
+parse_time("20:10:01")
+
+parse_date("01/02/15", "%m/%d/%y")
+parse_date("01/02/15", "%d/%m/%y")
+parse_date("01/02/15", "%y/%m/%d")
+
+# 11.4 Parsing a file
+# 11.4.3 Other strategies 
+
+# Sometimes it’s easier to diagnose problems if you just read in all the columns 
+#as character vectors:
+
+challenge2 <- read_csv(readr_example("challenge.csv"), 
+                       col_types = cols(.default = col_character())
+) 
+
+df <- tribble(
+  ~x,  ~y,
+  "1", "1.21",
+  "2", "2.32",
+  "3", "4.56"
+)
+df
+type_convert(df)
+
+# 11.5 Writing to a file
+
+challenge <- read_csv(readr_example("challenge.csv"))
+write_csv(challenge, "challenge.csv")
+
+# use RDS format - R's custom binary format
+write_rds(challenge, "challenge.rds")
+read_rds("challenge.rds")
+
+# 12 Tidy data
+
+table1
+table2
+table3
+table4a
+table4b
+
+# Compute rate per 10,000
+table1 %>% 
+  mutate(rate = cases / population * 10000)
+
+# Compute cases per year      
+table1 %>% 
+  count(year, wt = cases)
+
+# Visualise changes over time
+library(ggplot2)
+ggplot(table1, aes(year, cases)) + 
+  geom_line(aes(group = country), colour = "grey50") + 
+  geom_point(aes(colour = country))
+
+# 12.3 Spreading and gathering
+# 12.3.1 Gathering
+
+table4a
+table4a %>% 
+  gather(`1999`, `2000`, key = "year", value = "cases")
+
+table4b
+table4b %>% 
+  gather(`1999`, `2000`, key = "year", value = "population")
+
+# combining two tables with dplyr::left_join()
+
+tidy4a <- table4a %>% 
+  gather(`1999`, `2000`, key = "year", value = "cases")
+tidy4b <- table4b %>% 
+  gather(`1999`, `2000`, key = "year", value = "population")
+left_join(tidy4a, tidy4b)
+
+# 12.3.2 Spreading
+# Spreading is the opposite of gathering
+
+table2
+
+table2 %>%
+  spread(key = type, value = count)
+
+#12.3.3 Exercises
+preg <- tribble(
+  ~pregnant, ~male, ~female,
+  "yes",     NA,    10,
+  "no",      20,    12
+)
+
+View(preg)
+preg %>%
+  gather("male", "female", key = "sex", value = "cases")
+
+# 12.4 Separating and uniting
+# 12.4.1 Separate
+# separate() pulls apart one column into multiple columns,
+# by splitting wherever a separator character appears.
+
+table3
+
+table3 %>% 
+  separate(rate, into = c("cases", "population"))
+
+# or the same code explicitly 
+table3 %>% 
+  separate(rate, into = c("cases", "population"), sep = "/")
+
+# but you need to convert column type characters into vectors
+
+table3 %>% 
+  separate(rate, into = c("cases", "population"), convert = TRUE)
+# separate year into century and year
+table3 %>% 
+  separate(year, into = c("century", "year"), sep = 2)
+
+# 12.4.2 Unite
+# unite() is the inverse of separate():
+# it combines multiple columns into a single column.
+
+
+table5 %>% 
+  unite(new, century, year, sep = "")
+
+#  12.5 Missing values
+
+# Explicitly, i.e. flagged with NA.
+# Implicitly, i.e. simply not present in the data.
+
+stocks <- tibble(
+  year   = c(2015, 2015, 2015, 2015, 2016, 2016, 2016),
+  qtr    = c(   1,    2,    3,    4,    2,    3,    4),
+  return = c(1.88, 0.59, 0.35,   NA, 0.92, 0.17, 2.66)
+)
+
+# remove NA
+stocks %>% 
+  spread(year, return) %>% 
+  gather(year, return, `2015`:`2016`, na.rm = TRUE)
+
+# use 'complete'
+# complete() takes a set of columns, and finds all unique combinations. 
+# It then ensures the original dataset contains all those values, 
+# filling in explicit NAs where necessary.
+
+stocks %>% 
+  complete(year, qtr)
+
+# 12.6 Case Study 
+
+# The tidyr::who dataset contains tuberculosis (TB) cases
+# broken down by year, country, age, gender, and diagnosis method.
+
+who
+
+who1 <- who %>% 
+  gather(new_sp_m014:newrel_f65, key = "key", value = "cases", na.rm = TRUE)
+
+who1
+
+who1 %>% 
+  count(key)
+
+# replace strings newrel with new_rel in the whole dataset
+who2 <- who1 %>% 
+  mutate(key = stringr::str_replace(key, "newrel", "new_rel"))
+who2
+
+# use separate to 'key'
+who3 <- who2 %>% 
+  separate(key, c("new", "type", "sexage"), sep = "_")
+who3
+
+who3 %>% 
+  count(new)
+# remove redundant columns
+who4 <- who3 %>% 
+  select(-new, -iso2, -iso3)
+# separate sexage col
+who5 <- who4 %>% 
+  separate(sexage, c("sex", "age"), sep = 1)
+who5
+
+# a complete pipe with a chunk of code
+who %>%
+  gather(key, value, new_sp_m014:newrel_f65, na.rm = TRUE) %>% 
+  mutate(key = stringr::str_replace(key, "newrel", "new_rel")) %>%
+  separate(key, c("new", "var", "sexage")) %>% 
+  select(-new, -iso2, -iso3) %>% 
+  separate(sexage, c("sex", "age"), sep = 1)
+
+# 13 Relational data
+
+library(nycflights13)
+airlines
+airports
+planes
+weather
+View(flights)
+
+planes %>% 
+  count(tailnum) %>% 
+  filter(n > 1)
+
+weather %>% 
+  count(year, month, day, hour, origin) %>% 
+  filter(n > 1)
+
+flights %>% 
+  count(year, month, day, flight) %>% 
+  filter(n > 1)
+
+flights %>% 
+  count(year, month, day, tailnum) %>% 
+  filter(n > 1)
+
+# 13.4 Mutating joins
+
+flights2 <- flights %>% 
+  select(year:day, hour, origin, dest, tailnum, carrier)
+View (flights2)
+
+# imagine you want to add the full airline name to the flights2 data.
+# You can combine the airlines and flights2 data frames with left_join():
+
+flights2 %>%
+  select(-origin, -dest) %>% 
+  left_join(airlines, by = "carrier")
+
+# or 
+flights2 %>%
+  select(-origin, -dest) %>% 
+  mutate(name = airlines$name[match(carrier, airlines$carrier)])
+
+# 13.4.1 Understanding joins
+
+x <- tribble(
+  ~key, ~val_x,
+  1, "x1",
+  2, "x2",
+  3, "x3"
+)
+y <- tribble(
+  ~key, ~val_y,
+  1, "y1",
+  2, "y2",
+  4, "y3"
+)
+# 13.4.2 Inner join
+x %>% 
+  inner_join(y, by = "key")
+
+# 13.4.4 Duplicate keys
+# load data
+x <- tribble(
+  ~key, ~val_x,
+  1, "x1",
+  2, "x2",
+  2, "x3",
+  1, "x4"
+)
+y <- tribble(
+  ~key, ~val_y,
+  1, "y1",
+  2, "y2"
+)
+
+left_join(x,y, by = "key")
+
+#13.4.5 Defining the key columns
+
+# by default, natural join flights2 with weather
+flights2 %>% 
+  left_join(weather)
+
+#by a character vector
+flights2 %>% 
+  left_join(planes, by = "tailnum")
+
+#by A named character vector: by = c("a" = "b"). 
+
+flights2 %>% 
+  left_join(airports, c("dest" = "faa"))
+
+flights2 %>% 
+  left_join(airports, c("origin" = "faa"))
+
+# 13.4.7 Other implementations
+# base::merge() can perform all four types of mutating join:p187
+

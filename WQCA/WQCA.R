@@ -19,7 +19,7 @@ library(psych)
 summary(KA_1_monthly_KZ)
 plot_histogram(KA_1_monthly_KZ, title="KA_1_monthly_KZ", ggtheme = theme_light())
 plot(KA_1_monthly_KZ$TDS_ppm,KA_1_monthly_KZ$Mg_ppm)
-plot_scatterplot(KA_1_monthly_KZ, by="Q", title = "KA_1_monthly_KZ by Q", c)
+plot_scatterplot(KA_1_monthly_KZ, by="Q", title = "KA 1 monthly KZ by Q")
 pairs(KA_1_monthly_KZ [c(3:8)], col=KA_1_monthly_KZ$year)
 # library(psych)
 install.packages("psych")
@@ -29,9 +29,14 @@ pairs.panels(KA_1_monthly_KZ [c(3:8)],
              hist.col="#00AFBB",
              density=TRUE, main="KA 1 monthly correlations, major ions and flow"
              )
+pairs.panels(KA_1_monthly_KZ [c(3:8)],
+             method="pearson",
+             hist.col="#00AFBB",
+             density=TRUE, main="KA 1 monthly correlations, major ions and flow"
+)
 
-plot_boxplot(KA_1_monthly_KZ, by = "year", title = "KA_1_monthly_KZ by year", ggtheme = theme_test())
-plot_boxplot(KA_1_monthly_KZ, by = "month", title = "KA_1_monthly_KZ by month", ggtheme = theme_test())
+plot_boxplot(KA_1_monthly_KZ, by = "year", title = "KA 1 monthly KZ by year", ggtheme = theme_test())
+plot_boxplot(KA_1_monthly_KZ, by = "month", title = "KA 1 monthly KZ by month", ggtheme = theme_test())
 plot_correlation(KA_1_monthly_KZ, title = "KA_1_monthly_KZ corrlations")
 create_report(KA_1_monthly_KZ)
 plot.ts(KA_1_monthly_KZ$Fe_total_ppm)
@@ -58,8 +63,8 @@ pairs.panels(KA_2_monthly_KZ [c(3:9)],
              hist.col="#00AFBB",
              density=TRUE, main="KA 2 monthly correlations"
 )
-plot_boxplot(KA_2_monthly_KZ, by = "year", title = "KA 2 monthly by year", ggtheme = theme_test())
-plot_boxplot(KA_2_monthly_KZ, by = "month", title = "KA_2_monthly_KZ by month", ggtheme = theme_test())
+plot_boxplot(KA_2_monthly_KZ, by = "year", title = "KA 2 monthly by year", ggtheme = theme_test(), geom_boxplot_args = list("outlier.color" = "red"))
+plot_boxplot(KA_2_monthly_KZ, by = "month", title = "KA 2 monthly_KZ by month", ggtheme = theme_test(), geom_boxplot_args = list("outlier.color" = "red"))
 plot_correlation(KA_2_monthly_KZ, title="KA_2_monthly_KZ")
 create_report(KA_2_monthly_KZ)
 plot.ts(KA_2_monthly_KZ$Fe_total, title(main = "KA_2_monthly_KZ$Fe_total"))
@@ -125,7 +130,7 @@ View(Chirchik_1_Mulala_UZ)
 summary(Chirchik_1_Mulala_UZ)
 plot_histogram(Chirchik_1_Mulala_UZ, title = "Chirchik_1_Mulala_UZ")
 # do some 1:1 plots with flow
-plot_scatterplot(Chirchik_1_Mulala_UZ, by = "Q", title="Chirchik_1_Mulala_UZ by Q", ggtheme = theme_test())
+plot_scatterplot(Chirchik_1_Mulala_UZ, by = "Q", title="Chirchik_1_Mulala_UZ by Q", ggtheme = theme_test(), )
 plot.ts(Chirchik_1_Mulala_UZ$`Q`, x=Chirchik_1_Mulala_UZ$month)
 plot.ts(Chirchik_1_Mulala_UZ$`NO3-N_ppm`)
 plot.ts(y=Chirchik_1_Mulala_UZ$PO4_ppm, x=Chirchik_1_Mulala_UZ$year)
@@ -141,8 +146,8 @@ plot(Chirchik_1_Mulala_UZ$`Q`,Chirchik_1_Mulala_UZ$SO4_ppm)
 plot(Chirchik_1_Mulala_UZ$`Q`,Chirchik_1_Mulala_UZ$HCO3_ppm)
 plot(Chirchik_1_Mulala_UZ$`Q`,Chirchik_1_Mulala_UZ$Fe_total_ppm)
 plot(Chirchik_1_Mulala_UZ$HCO3_ppm,Chirchik_1_Mulala_UZ$Ca_ppm, title(main ="HCO3_ppm - Ca_ppm" ))
-plot_boxplot(Chirchik_1_Mulala_UZ, by = "year", title = "Chirchik_1_Mulala_UZ by year",  ggtheme = theme_test())
-plot_boxplot(Chirchik_1_Mulala_UZ, by = "month", title = "Chirchik_1_Mulala_UZ by month", ggtheme = theme_test())
+plot_boxplot(Chirchik_1_Mulala_UZ, by = "year", title = "Chirchik_1_Mulala_UZ by year",  ggtheme = theme_test(), geom_boxplot_args = list("outlier.color" = "red"))
+plot_boxplot(Chirchik_1_Mulala_UZ, by = "month", title = "Chirchik_1_Mulala_UZ by month", ggtheme = theme_test(), geom_boxplot_args = list("outlier.color" = "red"))
 plot_correlation(Chirchik_1_Mulala_UZ, title = "Chirchik_1_Mulala_UZ correlations")
 create_report(Chirchik_1_Mulala_UZ)
 
@@ -179,8 +184,8 @@ plot(Chirchik_2_Chinaz_UZ$`Q`,Chirchik_2_Chinaz_UZ$SO4_ppm)
 plot(Chirchik_2_Chinaz_UZ$`Q`,Chirchik_2_Chinaz_UZ$HCO3_ppm, title(main = "Q - HCO3_ppm"))
 plot(Chirchik_2_Chinaz_UZ$`Q`,Chirchik_2_Chinaz_UZ$Cd_ppb)
 plot(Chirchik_2_Chinaz_UZ$HCO3_ppm,Chirchik_2_Chinaz_UZ$Ca_ppm, title(main = "Chirchik_2_Chinaz_UZ$HCO3_ppm,Chirchik_2_Chinaz_UZ$Ca_ppm"))
-plot_boxplot(Chirchik_2_Chinaz_UZ, by = "year", title = "Chirchik_2_Chinaz_UZ by year", ggtheme = theme_test())
-plot_boxplot(Chirchik_2_Chinaz_UZ, by = "month", title = "Chirchik_2_Chinaz_UZ by month", ggtheme = theme_test())
+plot_boxplot(Chirchik_2_Chinaz_UZ, by = "year", title = "Chirchik_2_Chinaz_UZ by year", ggtheme = theme_test(), geom_boxplot_args = list("outlier.color" = "red"))
+plot_boxplot(Chirchik_2_Chinaz_UZ, by = "month", title = "Chirchik_2_Chinaz_UZ by month", ggtheme = theme_test(), geom_boxplot_args = list("outlier.color" = "red"))
 ggplot(data=Chirchik_2_Chinaz_UZ, mapping = aes(x = month, y = `NO3-N_ppm`)) +
   geom_boxplot()
 plot_correlation(Chirchik_2_Chinaz_UZ, title = "Chirchik_2_Chinaz_UZ correlations")

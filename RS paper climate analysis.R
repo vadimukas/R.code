@@ -2,6 +2,7 @@
 library(zyp)
 # load T air time-series
 library(readr)
+setwd("D:/R/R.code")
 Shuchinsk_Ta <- read_delim("Shuchinsk_Ta.csv", ";", escape_double = FALSE, na = "NaN", trim_ws = TRUE)
 cols(
   Years = col_integer(),
