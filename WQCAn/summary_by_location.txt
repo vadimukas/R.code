@@ -1,0 +1,613 @@
+"item","group1","vars","n","mean","sd","median","trimmed","mad","min","max","range","skew","kurtosis","se"
+"Sample Nr1","1","AgroBioCenter",1,12,66.3333333333333,40.1889476740996,65,66,49.6671,9,127,118,0.075329646471364,-1.56088119931899,11.6015498790446
+"Sample Nr2","2","Alplager",1,9,23.4444444444444,16.047672036086,22,23.4444444444444,20.7564,1,47,46,0.059477809827587,-1.66614337550242,5.34922401202868
+"Sample Nr3","3","Arna village",1,12,65.25,40.3194629293235,64,65,49.6671,7,126,119,0.06752683474242,-1.55449018456958,11.639226387913
+"Sample Nr4","4","Baityk",1,9,24.8888888888889,16.0502682566713,23,24.8888888888889,20.7564,2,48,46,0.042941841918433,-1.66890227255944,5.35008941889044
+"Sample Nr5","5","BAL",1,12,59.25,40.3194629293235,58,59,49.6671,1,120,119,0.06752683474242,-1.55449018456958,11.639226387913
+"Sample Nr6","6","Bore hole near Yangiyul",1,2,49.5,6.36396103067893,49.5,49.5,6.6717,45,54,9,0,-2.75,4.5
+"Sample Nr7","7","Bridge",1,9,26.8888888888889,16.0502682566713,25,26.8888888888889,20.7564,4,50,46,0.042941841918433,-1.66890227255944,5.35008941889044
+"Sample Nr8","8","Chirchik river near inflow to Syrdarya river",1,7,33.8571428571429,19.633547577455,32,33.8571428571429,23.7216,8,62,54,0.11133415650754,-1.72697514434502,7.42078346341438
+"Sample Nr9","9","Chirchik river near Tashkent",1,7,31.8571428571429,19.633547577455,30,31.8571428571429,23.7216,6,60,54,0.111334156507539,-1.72697514434502,7.42078346341438
+"Sample Nr10","10","Chircik river, downstream Charvak reserv. Dam",1,7,27.8571428571429,19.633547577455,26,27.8571428571429,23.7216,2,56,54,0.111334156507539,-1.72697514434502,7.42078346341438
+"Sample Nr11","11","Chircik river, downstream Gazalkent town",1,7,29.8571428571429,19.633547577455,28,29.8571428571429,23.7216,4,58,54,0.111334156507539,-1.72697514434502,7.42078346341438
+"Sample Nr12","12","Chirhik river, downstream Tashkent town",1,7,32.8571428571429,19.633547577455,31,32.8571428571429,23.7216,7,61,54,0.11133415650754,-1.72697514434502,7.42078346341438
+"Sample Nr13","13","Chirhik river, near Chirchik town",1,7,30.8571428571429,19.633547577455,29,30.8571428571429,23.7216,5,59,54,0.111334156507539,-1.72697514434502,7.42078346341438
+"Sample Nr14","14","city, Makataeva-Kopernika str. Crossing",1,10,76.9,32.4292392071654,78.5,76.5,36.3237,28,129,101,0.001655153506748,-1.4383898308235,10.2550258681076
+"Sample Nr15","15","Corn field",1,1,60,NA,60,60,0,60,60,0,NA,NA,NA
+"Sample Nr16","16","Darhan",1,12,61.25,40.3194629293235,60,61,49.6671,3,122,119,0.06752683474242,-1.55449018456958,11.639226387913
+"Sample Nr17","17","FPP",1,12,60.25,40.3194629293235,59,60,49.6671,2,121,119,0.06752683474242,-1.55449018456958,11.639226387913
+"Sample Nr18","18","Groundwater (springwater)",1,1,8,NA,8,8,0,8,8,0,NA,NA,NA
+"Sample Nr19","19","Kafarnigan river",1,7,22,12.9614813968157,22,22,17.7912,4,40,36,0,-1.71428571428571,4.89897948556636
+"Sample Nr20","20","Kapshagay",1,2,57.5,55.8614357137373,57.5,57.5,58.5627,18,97,79,0,-2.75,39.5
+"Sample Nr21","21","Kaskelen (Kas)",1,12,64.25,40.3194629293235,63,64,49.6671,6,125,119,0.06752683474242,-1.55449018456958,11.639226387913
+"Sample Nr22","22","Kazcik",1,12,62.25,40.3194629293235,61,62,49.6671,4,123,119,0.06752683474242,-1.55449018456958,11.639226387913
+"Sample Nr23","23","Kosozen (UA)",1,12,63.25,40.3194629293235,62,63,49.6671,5,124,119,0.06752683474242,-1.55449018456958,11.639226387913
+"Sample Nr24","24","Lake",1,5,23.6,16.9056203672033,21,23.6,20.7564,5,46,41,0.176675915484759,-1.98730863875897,7.56042326857432
+"Sample Nr25","25","Luchob river",1,7,21,12.9614813968157,21,21,17.7912,3,39,36,0,-1.71428571428571,4.89897948556636
+"Sample Nr26","26","Maykhura river",1,7,19,12.9614813968157,19,19,17.7912,1,37,36,0,-1.71428571428571,4.89897948556636
+"Sample Nr27","27","Otegen Batyr village",1,10,77.9,32.4292392071654,79.5,77.5,36.3237,29,130,101,0.001655153506748,-1.4383898308235,10.2550258681076
+"Sample Nr28","28","Potable water well",1,7,24,12.9614813968157,24,24,17.7912,6,42,36,0,-1.71428571428571,4.89897948556636
+"Sample Nr29","29","Pskem river, Mulala gaging station",1,7,26.7142857142857,19.474036439272,25,26.7142857142857,23.7216,1,55,54,0.112782600699228,-1.70748052889156,7.36049392013194
+"Sample Nr30","30","Radnik",1,4,24.25,15.3920975395385,24,24.25,17.7912,7,42,35,0.026454114606548,-2.14195496890933,7.69604876976924
+"Sample Nr31","31","South-East water uptake,  drinking water facility",1,7,23,12.9614813968157,23,23,17.7912,5,41,36,0,-1.71428571428571,4.89897948556636
+"Sample Nr32","32","Spring on left bank of Chirhik, Hodjakent vil.",1,7,28.8571428571429,19.633547577455,27,28.8571428571429,23.7216,3,57,54,0.111334156507539,-1.72697514434502,7.42078346341438
+"Sample Nr33","33","upstream of Almaty city",1,10,75.9,32.4292392071654,77.5,75.5,36.3237,27,128,101,0.001655153506748,-1.4383898308235,10.2550258681076
+"Sample Nr34","34","Varzob river, Gauging station",1,7,20,12.9614813968157,20,20,17.7912,2,38,36,0,-1.71428571428571,4.89897948556636
+"Sample Nr35","35","well",1,2,33,9.89949493661167,33,33,10.3782,26,40,14,0,-2.75,7
+"Sample Nr36","36","Zarechnoe",1,9,25.8888888888889,16.0502682566713,24,25.8888888888889,20.7564,3,49,46,0.042941841918433,-1.66890227255944,5.35008941889044
+"Date sampled1","37","AgroBioCenter",2,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled2","38","Alplager",2,9,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled3","39","Arna village",2,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled4","40","Baityk",2,9,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled5","41","BAL",2,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled6","42","Bore hole near Yangiyul",2,2,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled7","43","Bridge",2,9,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled8","44","Chirchik river near inflow to Syrdarya river",2,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled9","45","Chirchik river near Tashkent",2,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled10","46","Chircik river, downstream Charvak reserv. Dam",2,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled11","47","Chircik river, downstream Gazalkent town",2,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled12","48","Chirhik river, downstream Tashkent town",2,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled13","49","Chirhik river, near Chirchik town",2,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled14","50","city, Makataeva-Kopernika str. Crossing",2,10,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled15","51","Corn field",2,1,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled16","52","Darhan",2,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled17","53","FPP",2,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled18","54","Groundwater (springwater)",2,1,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled19","55","Kafarnigan river",2,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled20","56","Kapshagay",2,2,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled21","57","Kaskelen (Kas)",2,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled22","58","Kazcik",2,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled23","59","Kosozen (UA)",2,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled24","60","Lake",2,5,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled25","61","Luchob river",2,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled26","62","Maykhura river",2,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled27","63","Otegen Batyr village",2,10,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled28","64","Potable water well",2,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled29","65","Pskem river, Mulala gaging station",2,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled30","66","Radnik",2,4,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled31","67","South-East water uptake,  drinking water facility",2,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled32","68","Spring on left bank of Chirhik, Hodjakent vil.",2,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled33","69","upstream of Almaty city",2,10,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled34","70","Varzob river, Gauging station",2,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled35","71","well",2,2,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Date sampled36","72","Zarechnoe",2,9,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time1","73","AgroBioCenter",3,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time2","74","Alplager",3,9,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time3","75","Arna village",3,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time4","76","Baityk",3,9,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time5","77","BAL",3,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time6","78","Bore hole near Yangiyul",3,1,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time7","79","Bridge",3,9,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time8","80","Chirchik river near inflow to Syrdarya river",3,6,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time9","81","Chirchik river near Tashkent",3,6,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time10","82","Chircik river, downstream Charvak reserv. Dam",3,6,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time11","83","Chircik river, downstream Gazalkent town",3,6,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time12","84","Chirhik river, downstream Tashkent town",3,6,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time13","85","Chirhik river, near Chirchik town",3,6,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time14","86","city, Makataeva-Kopernika str. Crossing",3,10,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time15","87","Corn field",3,1,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time16","88","Darhan",3,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time17","89","FPP",3,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time18","90","Groundwater (springwater)",3,1,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time19","91","Kafarnigan river",3,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time20","92","Kapshagay",3,2,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time21","93","Kaskelen (Kas)",3,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time22","94","Kazcik",3,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time23","95","Kosozen (UA)",3,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time24","96","Lake",3,5,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time25","97","Luchob river",3,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time26","98","Maykhura river",3,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time27","99","Otegen Batyr village",3,10,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time28","100","Potable water well",3,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time29","101","Pskem river, Mulala gaging station",3,6,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time30","102","Radnik",3,4,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time31","103","South-East water uptake,  drinking water facility",3,6,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time32","104","Spring on left bank of Chirhik, Hodjakent vil.",3,6,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time33","105","upstream of Almaty city",3,10,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time34","106","Varzob river, Gauging station",3,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time35","107","well",3,2,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Time36","108","Zarechnoe",3,9,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Month*1","109","AgroBioCenter",4,12,7,1.85864075456917,7,7,2.2239,4,10,6,0,-1.39392890120037,0.53654336998866
+"Month*2","110","Alplager",4,9,8.22222222222222,1.39443337755679,8,8.22222222222222,1.4826,6,10,4,-0.101183374335185,-1.54343159486017,0.464811125852264
+"Month*3","111","Arna village",4,12,7,1.85864075456917,7,7,2.2239,4,10,6,0,-1.39392890120037,0.53654336998866
+"Month*4","112","Baityk",4,9,8.22222222222222,1.39443337755679,8,8.22222222222222,1.4826,6,10,4,-0.101183374335185,-1.54343159486017,0.464811125852264
+"Month*5","113","BAL",4,12,7,1.85864075456917,7,7,2.2239,4,10,6,0,-1.39392890120037,0.53654336998866
+"Month*6","114","Bore hole near Yangiyul",4,2,8.5,0.707106781186548,8.5,8.5,0.7413,8,9,1,0,-2.75,0.5
+"Month*7","115","Bridge",4,9,8.22222222222222,1.39443337755679,8,8.22222222222222,1.4826,6,10,4,-0.101183374335185,-1.54343159486017,0.464811125852264
+"Month*8","116","Chirchik river near inflow to Syrdarya river",4,7,7.42857142857143,1.2724180205607,7,7.42857142857143,1.4826,6,9,3,0.135858770361399,-1.87190170185721,0.48092880658867
+"Month*9","117","Chirchik river near Tashkent",4,7,7.42857142857143,1.2724180205607,7,7.42857142857143,1.4826,6,9,3,0.135858770361399,-1.87190170185721,0.48092880658867
+"Month*10","118","Chircik river, downstream Charvak reserv. Dam",4,7,7.42857142857143,1.2724180205607,7,7.42857142857143,1.4826,6,9,3,0.135858770361399,-1.87190170185721,0.48092880658867
+"Month*11","119","Chircik river, downstream Gazalkent town",4,7,7.42857142857143,1.2724180205607,7,7.42857142857143,1.4826,6,9,3,0.135858770361399,-1.87190170185721,0.48092880658867
+"Month*12","120","Chirhik river, downstream Tashkent town",4,7,7.42857142857143,1.2724180205607,7,7.42857142857143,1.4826,6,9,3,0.135858770361399,-1.87190170185721,0.48092880658867
+"Month*13","121","Chirhik river, near Chirchik town",4,7,7.42857142857143,1.2724180205607,7,7.42857142857143,1.4826,6,9,3,0.135858770361399,-1.87190170185721,0.48092880658867
+"Month*14","122","city, Makataeva-Kopernika str. Crossing",4,10,7.5,1.58113883008419,7.5,7.5,2.2239,5,10,5,0,-1.422,0.5
+"Month*15","123","Corn field",4,1,7,NA,7,7,0,7,7,0,NA,NA,NA
+"Month*16","124","Darhan",4,12,7,1.85864075456917,7,7,2.2239,4,10,6,0,-1.39392890120037,0.53654336998866
+"Month*17","125","FPP",4,12,7,1.85864075456917,7,7,2.2239,4,10,6,0,-1.39392890120037,0.53654336998866
+"Month*18","126","Groundwater (springwater)",4,1,4,NA,4,4,0,4,4,0,NA,NA,NA
+"Month*19","127","Kafarnigan river",4,7,8.71428571428571,1.11269728052837,9,8.71428571428571,1.4826,7,10,3,-0.152372746784103,-1.63603429537496,0.420560041253707
+"Month*20","128","Kapshagay",4,2,6.5,2.12132034355964,6.5,6.5,2.2239,5,8,3,0,-2.75,1.5
+"Month*21","129","Kaskelen (Kas)",4,12,7,1.85864075456917,7,7,2.2239,4,10,6,0,-1.39392890120037,0.53654336998866
+"Month*22","130","Kazcik",4,12,7,1.85864075456917,7,7,2.2239,4,10,6,0,-1.39392890120037,0.53654336998866
+"Month*23","131","Kosozen (UA)",4,12,7,1.85864075456917,7,7,2.2239,4,10,6,0,-1.39392890120037,0.53654336998866
+"Month*24","132","Lake",4,5,8,1.58113883008419,8,8,1.4826,6,10,4,0,-1.912,0.707106781186548
+"Month*25","133","Luchob river",4,7,8.71428571428571,1.11269728052837,9,8.71428571428571,1.4826,7,10,3,-0.152372746784103,-1.63603429537496,0.420560041253707
+"Month*26","134","Maykhura river",4,7,8.71428571428571,1.11269728052837,9,8.71428571428571,1.4826,7,10,3,-0.152372746784103,-1.63603429537496,0.420560041253707
+"Month*27","135","Otegen Batyr village",4,10,7.5,1.58113883008419,7.5,7.5,2.2239,5,10,5,0,-1.422,0.5
+"Month*28","136","Potable water well",4,7,8.71428571428571,1.11269728052837,9,8.71428571428571,1.4826,7,10,3,-0.152372746784103,-1.63603429537496,0.420560041253707
+"Month*29","137","Pskem river, Mulala gaging station",4,7,7.42857142857143,1.2724180205607,7,7.42857142857143,1.4826,6,9,3,0.135858770361399,-1.87190170185721,0.48092880658867
+"Month*30","138","Radnik",4,4,8.5,1.29099444873581,8.5,8.5,1.4826,7,10,3,0,-2.0775,0.645497224367903
+"Month*31","139","South-East water uptake,  drinking water facility",4,7,8.71428571428571,1.11269728052837,9,8.71428571428571,1.4826,7,10,3,-0.152372746784103,-1.63603429537496,0.420560041253707
+"Month*32","140","Spring on left bank of Chirhik, Hodjakent vil.",4,7,7.42857142857143,1.2724180205607,7,7.42857142857143,1.4826,6,9,3,0.135858770361399,-1.87190170185721,0.48092880658867
+"Month*33","141","upstream of Almaty city",4,10,7.5,1.58113883008419,7.5,7.5,2.2239,5,10,5,0,-1.422,0.5
+"Month*34","142","Varzob river, Gauging station",4,7,8.71428571428571,1.11269728052837,9,8.71428571428571,1.4826,7,10,3,-0.152372746784103,-1.63603429537496,0.420560041253707
+"Month*35","143","well",4,2,8.5,0.707106781186548,8.5,8.5,0.7413,8,9,1,0,-2.75,0.5
+"Month*36","144","Zarechnoe",4,9,8.22222222222222,1.39443337755679,8,8.22222222222222,1.4826,6,10,4,-0.101183374335185,-1.54343159486017,0.464811125852264
+"Location*1","145","AgroBioCenter",5,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*2","146","Alplager",5,9,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*3","147","Arna village",5,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*4","148","Baityk",5,9,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*5","149","BAL",5,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*6","150","Bore hole near Yangiyul",5,2,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*7","151","Bridge",5,9,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*8","152","Chirchik river near inflow to Syrdarya river",5,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*9","153","Chirchik river near Tashkent",5,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*10","154","Chircik river, downstream Charvak reserv. Dam",5,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*11","155","Chircik river, downstream Gazalkent town",5,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*12","156","Chirhik river, downstream Tashkent town",5,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*13","157","Chirhik river, near Chirchik town",5,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*14","158","city, Makataeva-Kopernika str. Crossing",5,10,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*15","159","Corn field",5,1,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*16","160","Darhan",5,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*17","161","FPP",5,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*18","162","Groundwater (springwater)",5,1,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*19","163","Kafarnigan river",5,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*20","164","Kapshagay",5,2,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*21","165","Kaskelen (Kas)",5,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*22","166","Kazcik",5,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*23","167","Kosozen (UA)",5,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*24","168","Lake",5,5,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*25","169","Luchob river",5,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*26","170","Maykhura river",5,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*27","171","Otegen Batyr village",5,10,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*28","172","Potable water well",5,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*29","173","Pskem river, Mulala gaging station",5,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*30","174","Radnik",5,4,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*31","175","South-East water uptake,  drinking water facility",5,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*32","176","Spring on left bank of Chirhik, Hodjakent vil.",5,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*33","177","upstream of Almaty city",5,10,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*34","178","Varzob river, Gauging station",5,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*35","179","well",5,2,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Location*36","180","Zarechnoe",5,9,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*1","181","AgroBioCenter",6,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*2","182","Alplager",6,9,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*3","183","Arna village",6,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*4","184","Baityk",6,9,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*5","185","BAL",6,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*6","186","Bore hole near Yangiyul",6,2,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*7","187","Bridge",6,9,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*8","188","Chirchik river near inflow to Syrdarya river",6,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*9","189","Chirchik river near Tashkent",6,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*10","190","Chircik river, downstream Charvak reserv. Dam",6,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*11","191","Chircik river, downstream Gazalkent town",6,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*12","192","Chirhik river, downstream Tashkent town",6,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*13","193","Chirhik river, near Chirchik town",6,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*14","194","city, Makataeva-Kopernika str. Crossing",6,10,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*15","195","Corn field",6,1,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*16","196","Darhan",6,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*17","197","FPP",6,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*18","198","Groundwater (springwater)",6,1,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*19","199","Kafarnigan river",6,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*20","200","Kapshagay",6,2,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*21","201","Kaskelen (Kas)",6,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*22","202","Kazcik",6,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*23","203","Kosozen (UA)",6,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*24","204","Lake",6,5,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*25","205","Luchob river",6,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*26","206","Maykhura river",6,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*27","207","Otegen Batyr village",6,10,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*28","208","Potable water well",6,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*29","209","Pskem river, Mulala gaging station",6,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*30","210","Radnik",6,4,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*31","211","South-East water uptake,  drinking water facility",6,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*32","212","Spring on left bank of Chirhik, Hodjakent vil.",6,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*33","213","upstream of Almaty city",6,10,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*34","214","Varzob river, Gauging station",6,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*35","215","well",6,2,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Country*36","216","Zarechnoe",6,9,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*1","217","AgroBioCenter",7,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*2","218","Alplager",7,9,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*3","219","Arna village",7,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*4","220","Baityk",7,9,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*5","221","BAL",7,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*6","222","Bore hole near Yangiyul",7,2,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*7","223","Bridge",7,9,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*8","224","Chirchik river near inflow to Syrdarya river",7,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*9","225","Chirchik river near Tashkent",7,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*10","226","Chircik river, downstream Charvak reserv. Dam",7,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*11","227","Chircik river, downstream Gazalkent town",7,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*12","228","Chirhik river, downstream Tashkent town",7,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*13","229","Chirhik river, near Chirchik town",7,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*14","230","city, Makataeva-Kopernika str. Crossing",7,10,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*15","231","Corn field",7,1,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*16","232","Darhan",7,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*17","233","FPP",7,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*18","234","Groundwater (springwater)",7,1,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*19","235","Kafarnigan river",7,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*20","236","Kapshagay",7,2,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*21","237","Kaskelen (Kas)",7,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*22","238","Kazcik",7,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*23","239","Kosozen (UA)",7,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*24","240","Lake",7,5,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*25","241","Luchob river",7,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*26","242","Maykhura river",7,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*27","243","Otegen Batyr village",7,10,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*28","244","Potable water well",7,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*29","245","Pskem river, Mulala gaging station",7,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*30","246","Radnik",7,4,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*31","247","South-East water uptake,  drinking water facility",7,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*32","248","Spring on left bank of Chirhik, Hodjakent vil.",7,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*33","249","upstream of Almaty city",7,10,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*34","250","Varzob river, Gauging station",7,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*35","251","well",7,2,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample description*36","252","Zarechnoe",7,9,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*1","253","AgroBioCenter",8,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*2","254","Alplager",8,9,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*3","255","Arna village",8,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*4","256","Baityk",8,9,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*5","257","BAL",8,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*6","258","Bore hole near Yangiyul",8,2,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*7","259","Bridge",8,9,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*8","260","Chirchik river near inflow to Syrdarya river",8,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*9","261","Chirchik river near Tashkent",8,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*10","262","Chircik river, downstream Charvak reserv. Dam",8,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*11","263","Chircik river, downstream Gazalkent town",8,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*12","264","Chirhik river, downstream Tashkent town",8,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*13","265","Chirhik river, near Chirchik town",8,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*14","266","city, Makataeva-Kopernika str. Crossing",8,10,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*15","267","Corn field",8,1,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*16","268","Darhan",8,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*17","269","FPP",8,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*18","270","Groundwater (springwater)",8,1,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*19","271","Kafarnigan river",8,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*20","272","Kapshagay",8,2,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*21","273","Kaskelen (Kas)",8,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*22","274","Kazcik",8,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*23","275","Kosozen (UA)",8,12,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*24","276","Lake",8,5,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*25","277","Luchob river",8,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*26","278","Maykhura river",8,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*27","279","Otegen Batyr village",8,10,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*28","280","Potable water well",8,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*29","281","Pskem river, Mulala gaging station",8,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*30","282","Radnik",8,4,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*31","283","South-East water uptake,  drinking water facility",8,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*32","284","Spring on left bank of Chirhik, Hodjakent vil.",8,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*33","285","upstream of Almaty city",8,10,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*34","286","Varzob river, Gauging station",8,7,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*35","287","well",8,2,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Sample type*36","288","Zarechnoe",8,9,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Coordinate 1*1","289","AgroBioCenter",9,12,43.4668575,0.001894998800672,43.46581,43.466648,0,43.46581,43.47,0.004190000000001,1.01341313038895,-1.03935185184805,0.000547039033841
+"Coordinate 1*2","290","Alplager",9,9,42.565388,0,42.565388,42.565388,0,42.565388,42.565388,0,NA,NA,0
+"Coordinate 1*3","291","Arna village",9,12,43.7784,0,43.7784,43.7784,0,43.7784,43.7784,0,NA,NA,0
+"Coordinate 1*4","292","Baityk",9,9,42.638941,0.009266481779588,42.638941,42.638941,0.0128511768,42.630273,42.647609,0.017336,0,-2.234375,0.003088827259863
+"Coordinate 1*5","293","BAL",9,12,43.05687,0,43.05687,43.05687,0,43.05687,43.05687,0,NA,NA,0
+"Coordinate 1*6","294","Bore hole near Yangiyul",9,2,41.09439,0,41.09439,41.09439,0,41.09439,41.09439,0,NA,NA,0
+"Coordinate 1*7","295","Bridge",9,9,42.8543695,0.10234876163533,42.8543695,42.8543695,0.141941900099999,42.758631,42.950108,0.191476999999999,-9.1e-14,-2.234375,0.034116253878443
+"Coordinate 1*8","296","Chirchik river near inflow to Syrdarya river",9,7,40.900364,0,40.900364,40.900364,0,40.900364,40.900364,0,NA,NA,0
+"Coordinate 1*9","297","Chirchik river near Tashkent",9,7,41.262264,0,41.262264,41.262264,0,41.262264,41.262264,0,NA,NA,0
+"Coordinate 1*10","298","Chircik river, downstream Charvak reserv. Dam",9,7,41.630271,0,41.630271,41.630271,0,41.630271,41.630271,0,NA,NA,0
+"Coordinate 1*11","299","Chircik river, downstream Gazalkent town",9,7,41.52991,0,41.52991,41.52991,0,41.52991,41.52991,0,NA,NA,0
+"Coordinate 1*12","300","Chirhik river, downstream Tashkent town",9,7,41.168056,0,41.168056,41.168056,0,41.168056,41.168056,0,NA,NA,0
+"Coordinate 1*13","301","Chirhik river, near Chirchik town",9,7,41.430512,0,41.430512,41.430512,0,41.430512,41.430512,0,NA,NA,0
+"Coordinate 1*14","302","city, Makataeva-Kopernika str. Crossing",9,10,43.25161,0,43.25161,43.25161,0,43.25161,43.25161,0,NA,NA,0
+"Coordinate 1*15","303","Corn field",9,1,657818,NA,657818,657818,0,657818,657818,0,NA,NA,NA
+"Coordinate 1*16","304","Darhan",9,12,43.31162,0,43.31162,43.31162,0,43.31162,43.31162,0,NA,NA,0
+"Coordinate 1*17","305","FPP",9,12,43.19164,0,43.19164,43.19164,0,43.19164,43.19164,0,NA,NA,0
+"Coordinate 1*18","306","Groundwater (springwater)",9,0,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Coordinate 1*19","307","Kafarnigan river",9,7,38.493434,0,38.493434,38.493434,0,38.493434,38.493434,0,NA,NA,0
+"Coordinate 1*20","308","Kapshagay",9,2,43.79377,0,43.79377,43.79377,0,43.79377,43.79377,0,NA,NA,0
+"Coordinate 1*21","309","Kaskelen (Kas)",9,12,43.56196,0,43.56196,43.56196,0,43.56196,43.56196,0,NA,NA,0
+"Coordinate 1*22","310","Kazcik",9,12,43.39003,0,43.39003,43.39003,0,43.39003,43.39003,0,NA,NA,0
+"Coordinate 1*23","311","Kosozen (UA)",9,12,43.56118,0,43.56118,43.56118,0,43.56118,43.56118,0,NA,NA,0
+"Coordinate 1*24","312","Lake",9,5,42.971494,0,42.971494,42.971494,0,42.971494,42.971494,0,NA,NA,0
+"Coordinate 1*25","313","Luchob river",9,7,38.587298,0,38.587298,38.587298,0,38.587298,38.587298,0,NA,NA,0
+"Coordinate 1*26","314","Maykhura river",9,7,39.026767,0,39.026767,39.026767,0,39.026767,39.026767,0,NA,NA,0
+"Coordinate 1*27","315","Otegen Batyr village",9,10,43.4063,0,43.4063,43.4063,0,43.4063,43.4063,0,NA,NA,0
+"Coordinate 1*28","316","Potable water well",9,7,38.489616,0,38.489616,38.489616,0,38.489616,38.489616,0,NA,NA,0
+"Coordinate 1*29","317","Pskem river, Mulala gaging station",9,7,41.771928,0,41.771928,41.771928,0,41.771928,41.771928,0,NA,NA,0
+"Coordinate 1*30","318","Radnik",9,4,42.630273,0,42.630273,42.630273,0,42.630273,42.630273,0,NA,NA,0
+"Coordinate 1*31","319","South-East water uptake,  drinking water facility",9,7,38.522381,0,38.522381,38.522381,0,38.522381,38.522381,0,NA,NA,0
+"Coordinate 1*32","320","Spring on left bank of Chirhik, Hodjakent vil.",9,7,41.622935,0,41.622935,41.622935,0,41.622935,41.622935,0,NA,NA,0
+"Coordinate 1*33","321","upstream of Almaty city",9,10,43.17401,0,43.17401,43.17401,0,43.17401,43.17401,0,NA,NA,0
+"Coordinate 1*34","322","Varzob river, Gauging station",9,7,38.872408,0,38.872408,38.872408,0,38.872408,38.872408,0,NA,NA,0
+"Coordinate 1*35","323","well",9,0,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Coordinate 1*36","324","Zarechnoe",9,9,42.70312,0.059343755199202,42.70312,42.70312,0.082300608599999,42.647609,42.758631,0.111021999999998,1.57e-13,-2.234375,0.019781251733067
+"Coordinate 2*1","325","AgroBioCenter",10,12,76.97755,0,76.97755,76.97755,0,76.97755,76.97755,0,NA,NA,0
+"Coordinate 2*2","326","Alplager",10,9,74.479548,0,74.479548,74.479548,0,74.479548,74.479548,0,NA,NA,0
+"Coordinate 2*3","327","Arna village",10,12,77.13354,0,77.13354,77.13354,0,77.13354,77.13354,0,NA,NA,0
+"Coordinate 2*4","328","Baityk",10,9,74.4933835,0.002161074402109,74.4933835,74.4933835,0.002997075900007,74.491362,74.495405,0.00404300000001,8.631e-12,-2.234375,0.000720358134036
+"Coordinate 2*5","329","BAL",10,12,76.98622,0,76.98622,76.98622,0,76.98622,76.98622,0,NA,NA,0
+"Coordinate 2*6","330","Bore hole near Yangiyul",10,2,69.05308,0,69.05308,69.05308,0,69.05308,69.05308,0,NA,NA,0
+"Coordinate 2*7","331","Bridge",10,9,74.581659,0.011334014747021,74.581659,74.581659,0.015718525199998,74.571057,74.592261,0.021203999999997,-1.646e-12,-2.234375,0.003778004915674
+"Coordinate 2*8","332","Chirchik river near inflow to Syrdarya river",10,7,68.709182,0,68.709182,68.709182,0,68.709182,68.709182,0,NA,NA,0
+"Coordinate 2*9","333","Chirchik river near Tashkent",10,7,69.375302,0,69.375302,69.375302,0,69.375302,69.375302,0,NA,NA,0
+"Coordinate 2*10","334","Chircik river, downstream Charvak reserv. Dam",10,7,69.953152,0,69.953152,69.953152,0,69.953152,69.953152,0,NA,NA,0
+"Coordinate 2*11","335","Chircik river, downstream Gazalkent town",10,7,69.68849,0,69.68849,69.68849,0,69.68849,69.68849,0,NA,NA,0
+"Coordinate 2*12","336","Chirhik river, downstream Tashkent town",10,7,69.231661,0,69.231661,69.231661,0,69.231661,69.231661,0,NA,NA,0
+"Coordinate 2*13","337","Chirhik river, near Chirchik town",10,7,69.582846,0,69.582846,69.582846,0,69.582846,69.582846,0,NA,NA,0
+"Coordinate 2*14","338","city, Makataeva-Kopernika str. Crossing",10,10,76.95948,0,76.95948,76.95948,0,76.95948,76.95948,0,NA,NA,0
+"Coordinate 2*15","339","Corn field",10,1,4818421,NA,4818421,4818421,0,4818421,4818421,0,NA,NA,NA
+"Coordinate 2*16","340","Darhan",10,12,76.86975,0,76.86975,76.86975,0,76.86975,76.86975,0,NA,NA,0
+"Coordinate 2*17","341","FPP",10,12,76.89008,0,76.89008,76.89008,0,76.89008,76.89008,0,NA,NA,0
+"Coordinate 2*18","342","Groundwater (springwater)",10,0,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Coordinate 2*19","343","Kafarnigan river",10,7,68.783604,0,68.783604,68.783604,0,68.783604,68.783604,0,NA,NA,0
+"Coordinate 2*20","344","Kapshagay",10,2,77.14736,0,77.14736,77.14736,0,77.14736,77.14736,0,NA,NA,0
+"Coordinate 2*21","345","Kaskelen (Kas)",10,12,76.89783,0,76.89783,76.89783,0,76.89783,76.89783,0,NA,NA,0
+"Coordinate 2*22","346","Kazcik",10,12,76.88078,0,76.88078,76.88078,0,76.88078,76.88078,0,NA,NA,0
+"Coordinate 2*23","347","Kosozen (UA)",10,12,76.90803,0,76.90803,76.90803,0,76.90803,76.90803,0,NA,NA,0
+"Coordinate 2*24","348","Lake",10,5,74.602249,0,74.602249,74.602249,0,74.602249,74.602249,0,NA,NA,0
+"Coordinate 2*25","349","Luchob river",10,7,68.771622,0,68.771622,68.771622,0,68.771622,68.771622,0,NA,NA,0
+"Coordinate 2*26","350","Maykhura river",10,7,68.784795,0,68.784795,68.784795,0,68.784795,68.784795,0,NA,NA,0
+"Coordinate 2*27","351","Otegen Batyr village",10,10,77.01521,0,77.01521,77.01521,0,77.01521,77.01521,0,NA,NA,0
+"Coordinate 2*28","352","Potable water well",10,7,68.785221,0,68.785221,68.785221,0,68.785221,68.785221,0,NA,NA,0
+"Coordinate 2*29","353","Pskem river, Mulala gaging station",10,7,70.190761,0,70.190761,70.190761,0,70.190761,70.190761,0,NA,NA,0
+"Coordinate 2*30","354","Radnik",10,4,74.491362,0,74.491362,74.491362,0,74.491362,74.491362,0,NA,NA,0
+"Coordinate 2*31","355","South-East water uptake,  drinking water facility",10,7,68.720056,0,68.720056,68.720056,0,68.720056,68.720056,0,NA,NA,0
+"Coordinate 2*32","356","Spring on left bank of Chirhik, Hodjakent vil.",10,7,69.940481,0,69.940481,69.940481,0,69.940481,69.940481,0,NA,NA,0
+"Coordinate 2*33","357","upstream of Almaty city",10,10,77.01527,0,77.01527,77.01527,0,77.01527,77.01527,0,NA,NA,0
+"Coordinate 2*34","358","Varzob river, Gauging station",10,7,68.832686,0,68.832686,68.832686,0,68.832686,68.832686,0,NA,NA,0
+"Coordinate 2*35","359","well",10,0,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Coordinate 2*36","360","Zarechnoe",10,9,74.533231,0.040437694946313,74.533231,74.533231,0.056080827599993,74.495405,74.571057,0.075651999999991,0,-2.234375,0.013479231648771
+"T [C]1","361","AgroBioCenter",11,12,13.5833333333333,0.668557923421521,14,13.7,0,12,14,2,-1.11160638737237,-0.133013741262085,0.192996048528136
+"T [C]2","362","Alplager",11,9,8.88888888888889,2.42097317438899,10,8.88888888888889,1.4826,5,11,6,-0.402157220406179,-1.72984118189752,0.806991058129664
+"T [C]3","363","Arna village",11,12,21.25,4.18058282148228,21.5,21.6,5.1891,13,26,13,-0.592364877070104,-0.90361023835976,1.20683030867616
+"T [C]4","364","Baityk",11,9,10.3333333333333,2.69258240356725,10,10.3333333333333,2.9652,6,14,8,-0.246645149047426,-1.46531906460563,0.897527467855751
+"T [C]5","365","BAL",11,12,7.5,1.73205080756888,7,7.5,2.2239,5,10,5,0.048112522432469,-1.40972222222222,0.5
+"T [C]6","366","Bore hole near Yangiyul",11,2,22.5,0.707106781186548,22.5,22.5,0.7413,22,23,1,0,-2.75,0.5
+"T [C]7","367","Bridge",11,9,20.6666666666667,4.60977222864644,20,20.6666666666667,7.413,14,27,13,-0.08242412166356,-1.66914776368064,1.53659074288215
+"T [C]8","368","Chirchik river near inflow to Syrdarya river",11,7,25.1428571428571,2.19306265517513,25,25.1428571428571,2.9652,23,28,5,0.089556635938924,-2.05086136013076,0.828899770739486
+"T [C]9","369","Chirchik river near Tashkent",11,7,23,2.51661147842358,23,23,1.4826,19,27,8,-0.053778005474821,-1.11238622872972,0.951189731211342
+"T [C]10","370","Chircik river, downstream Charvak reserv. Dam",11,7,15.4285714285714,1.90237946242268,15,15.4285714285714,2.9652,13,18,5,0.094008561681849,-1.9194555938719,0.719031850978167
+"T [C]11","371","Chircik river, downstream Gazalkent town",11,7,18.7142857142857,1.25356634105602,19,18.7142857142857,1.4826,17,21,4,0.452882290865572,-0.890032045876202,0.473803541479343
+"T [C]12","372","Chirhik river, downstream Tashkent town",11,7,23.8571428571429,2.79455252402309,24,23.8571428571429,2.9652,20,28,8,0.007213778611132,-1.58079192414622,1.05624157203899
+"T [C]13","373","Chirhik river, near Chirchik town",11,7,18.2857142857143,1.88982236504614,18,18.2857142857143,2.9652,15,20,5,-0.476883175088212,-1.37368163265306,0.714285714285714
+"T [C]14","374","city, Makataeva-Kopernika str. Crossing",11,10,12.7,2.71006354989038,13,12.75,2.9652,8,17,9,-0.136857523877774,-1.22298545961398,0.856997342145496
+"T [C]15","375","Corn field",11,1,26,NA,26,26,0,26,26,0,NA,NA,NA
+"T [C]16","376","Darhan",11,12,13.0833333333333,2.39158879611378,13,13.2,2.9652,9,16,7,-0.27253196759972,-1.4938327631829,0.690392217613593
+"T [C]17","377","FPP",11,12,9.08333333333333,2.90636709604442,8,8.6,2.2239,6,17,11,1.49274943055475,1.82418225113448,0.83899591263256
+"T [C]18","378","Groundwater (springwater)",11,1,14,NA,14,14,0,14,14,0,NA,NA,NA
+"T [C]19","379","Kafarnigan river",11,7,18.1428571428571,1.57359158493889,18,18.1428571428571,1.4826,15,20,5,-0.85746109504753,-0.424495833836495,0.594761714133181
+"T [C]20","380","Kapshagay",11,2,23.5,0.707106781186548,23.5,23.5,0.7413,23,24,1,0,-2.75,0.5
+"T [C]21","381","Kaskelen (Kas)",11,12,18.3333333333333,2.93360880249235,18.5,18.5,2.9652,13,22,9,-0.399757059777238,-1.17475864577134,0.846859915908007
+"T [C]22","382","Kazcik",11,12,15.9166666666667,2.81096338494744,16.5,16.1,2.2239,11,19,8,-0.59754484512683,-1.10160695173074,0.811455233490792
+"T [C]23","383","Kosozen (UA)",11,12,18.9166666666667,3.50216383328243,19,19.2,4.4478,12,23,11,-0.541781484851752,-0.959076539301986,1.01098761594589
+"T [C]24","384","Lake",11,5,22.6,6.308724118235,26,22.6,4.4478,14,29,15,-0.312751879723214,-2.00724527158405,2.82134719593318
+"T [C]25","385","Luchob river",11,7,19.2857142857143,3.03942350423485,20,19.2857142857143,2.9652,14,23,9,-0.446063307045442,-1.23734765454699,1.14879410302998
+"T [C]26","386","Maykhura river",11,7,7.57142857142857,0.534522483824849,8,7.57142857142857,0,7,8,1,-0.229081064496362,-2.20408163265306,0.202030508910442
+"T [C]27","387","Otegen Batyr village",11,10,18.9,3.72528895225294,19,19.125,2.9652,12,24,12,-0.231185552967176,-0.982427851007788,1.17803980313815
+"T [C]28","388","Potable water well",11,7,20.1428571428571,1.0690449676497,20,20.1428571428571,1.4826,19,22,3,0.472479695523751,-1.26658163265306,0.404061017820884
+"T [C]29","389","Pskem river, Mulala gaging station",11,7,12.2857142857143,1.11269728052837,12,12.2857142857143,1.4826,11,14,3,0.152372746784103,-1.63603429537496,0.420560041253707
+"T [C]30","390","Radnik",11,4,12,3.55902608401044,11.5,12,3.7065,9,16,7,0.099820329918575,-2.32375346260388,1.77951304200522
+"T [C]31","391","South-East water uptake,  drinking water facility",11,7,19.4285714285714,1.71824938596845,19,19.4285714285714,1.4826,17,22,5,0.103447450768134,-1.54227101870925,0.649437223665993
+"T [C]32","392","Spring on left bank of Chirhik, Hodjakent vil.",11,7,15.8571428571429,0.377964473009227,16,15.8571428571429,0,15,16,1,-1.61984774146812,0.795918367346948,0.142857142857143
+"T [C]33","393","upstream of Almaty city",11,10,10.5,2.67706306736817,9.5,10.375,2.2239,7,15,8,0.422191233339404,-1.43534342888048,0.84656167328002
+"T [C]34","394","Varzob river, Gauging station",11,7,9.57142857142857,0.975900072948533,10,9.57142857142857,1.4826,8,11,3,-0.169388369804638,-1.33408163265306,0.368855556781659
+"T [C]35","395","well",11,2,13,0,13,13,0,13,13,0,NA,NA,0
+"T [C]36","396","Zarechnoe",11,9,15.8888888888889,3.8873012632302,18,15.8888888888889,4.4478,10,21,11,-0.186677517651037,-1.79316448801743,1.2957670877434
+"pH1","397","AgroBioCenter",12,12,8.29166666666667,0.099620491989563,8.3,8.3,0.148259999999999,8.1,8.4,0.300000000000001,-0.359400424988452,-1.21275105374591,0.028757958933488
+"pH2","398","Alplager",12,9,7.31111111111111,0.208832734769028,7.3,7.31111111111111,0.148259999999999,7.1,7.7,0.6,0.748571232046065,-1.0070290583496,0.069610911589676
+"pH3","399","Arna village",12,12,8.325,0.135680105059994,8.4,8.34,0.07413,8,8.5,0.5,-1.01341313038635,0.140956028044469,0.039167472590032
+"pH4","400","Baityk",12,9,7.57777777777778,0.227913238852956,7.6,7.57777777777778,0.296519999999999,7.2,7.9,0.7,-0.095707034633231,-1.43271130090885,0.075971079617652
+"pH5","401","BAL",12,12,8.20833333333333,0.137895436890245,8.2,8.2,0.148260000000001,8,8.5,0.5,0.437431673913791,-0.705878015163804,0.039806983804302
+"pH6","402","Bore hole near Yangiyul",12,2,7.4,0,7.4,7.4,0,7.4,7.4,0,NA,NA,0
+"pH7","403","Bridge",12,9,8.05555555555556,0.133333333333333,8.1,8.05555555555556,0.148259999999999,7.8,8.2,0.399999999999999,-0.667824074074079,-0.979745370370363,0.044444444444444
+"pH8","404","Chirchik river near inflow to Syrdarya river",12,7,7.97142857142857,0.095118973121134,8,7.97142857142857,0,7.8,8.1,0.3,-0.528480562968241,-0.965854485838648,0.035951592548908
+"pH9","405","Chirchik river near Tashkent",12,7,8.28571428571429,0.307834216359885,8.3,8.28571428571429,0.296519999999999,7.9,8.7,0.799999999999999,-0.120532042277806,-1.75916862540577,0.116350397360672
+"pH10","406","Chircik river, downstream Charvak reserv. Dam",12,7,8.44285714285714,0.181265393434993,8.4,8.44285714285714,0.148259999999999,8.3,8.8,0.5,0.889928396610371,-0.678561783881782,0.068511878904467
+"pH11","407","Chircik river, downstream Gazalkent town",12,7,7.98571428571429,0.211570094204981,8,7.98571428571429,0.148259999999999,7.6,8.2,0.6,-0.565217654504812,-1.10132020214151,0.079965979160698
+"pH12","408","Chirhik river, downstream Tashkent town",12,7,7.94285714285714,0.151185789203691,8,7.94285714285714,0.148259999999999,7.7,8.1,0.399999999999999,-0.379651814406596,-1.59470663265306,0.057142857142857
+"pH13","409","Chirhik river, near Chirchik town",12,7,8.37142857142857,0.048795003647426,8.4,8.37142857142857,0,8.3,8.4,0.1,-0.752837199131726,-1.60408163265306,0.018442777839083
+"pH14","410","city, Makataeva-Kopernika str. Crossing",12,10,8.31,0.099442892601176,8.3,8.3,0.148259999999999,8.2,8.5,0.300000000000001,0.439301312700434,-1.08395783360689,0.031446603773522
+"pH15","411","Corn field",12,1,7.9,NA,7.9,7.9,0,7.9,7.9,0,NA,NA,NA
+"pH16","412","Darhan",12,12,8.14166666666667,0.116450015288132,8.2,8.14,0.148260000000001,8,8.3,0.300000000000001,-0.132661890745444,-1.67267004254965,0.033616223836869
+"pH17","413","FPP",12,12,8.2,0.185864075456917,8.2,8.19,0.148259999999999,7.9,8.6,0.699999999999999,0.778724138860362,-0.053208679593713,0.053654336998866
+"pH18","414","Groundwater (springwater)",12,1,8.3,NA,8.3,8.3,0,8.3,8.3,0,NA,NA,NA
+"pH19","415","Kafarnigan river",12,7,7.67142857142857,0.26903708365382,7.8,7.67142857142857,0.29652,7.3,8,0.7,-0.18055800516785,-1.90231570467522,0.101686459543155
+"pH20","416","Kapshagay",12,2,8.25,0.353553390593274,8.25,8.25,0.37065,8,8.5,0.5,0,-2.75,0.25
+"pH21","417","Kaskelen (Kas)",12,12,8.35,0.079772403521747,8.35,8.35,0.074130000000001,8.2,8.5,0.300000000000001,1.1e-14,-0.787840136054406,0.023028309323592
+"pH22","418","Kazcik",12,12,8.14166666666667,0.188092498199125,8.2,8.18,0,7.6,8.3,0.700000000000001,-1.90991361668611,2.8475071148323,0.054297627233907
+"pH23","419","Kosozen (UA)",12,12,8.30833333333333,0.124011240937215,8.3,8.31,0.148260000000001,8.1,8.5,0.4,0.120769195666276,-1.18986194358838,0.03579896166882
+"pH24","420","Lake",12,5,7.92,0.465832587954084,8,7.92,0.7413,7.4,8.5,1.1,0.005698136946242,-2.05037015014122,0.208326666559996
+"pH25","421","Luchob river",12,7,8.37142857142857,0.138013111868471,8.3,8.37142857142857,0.148259999999999,8.2,8.6,0.4,0.432523234516356,-1.44658163265306,0.05216405309573
+"pH26","422","Maykhura river",12,7,8.25714285714286,0.053452248382486,8.3,8.25714285714286,0,8.2,8.3,0.100000000000001,-0.2290810644964,-2.20408163265305,0.020203050891044
+"pH27","423","Otegen Batyr village",12,10,8.29,0.128668393770792,8.3,8.2875,0.148260000000002,8.1,8.5,0.4,0.445033494926887,-1.03357641547678,0.040688518719112
+"pH28","424","Potable water well",12,7,6.9,0.081649658092773,6.9,6.9,0.148259999999999,6.8,7,0.2,-1.4e-14,-1.71428571428571,0.030860669992418
+"pH29","425","Pskem river, Mulala gaging station",12,7,8.21428571428571,0.069006555934236,8.2,8.21428571428571,0,8.1,8.3,0.200000000000001,-0.106467257727069,-1.24408163265308,0.026082026547865
+"pH30","426","Radnik",12,4,8.05,0.1,8.1,8.05,0,7.9,8.1,0.199999999999999,-0.75000000000002,-1.68749999999997,0.05
+"pH31","427","South-East water uptake,  drinking water facility",12,7,7.25714285714286,0.078679579246944,7.2,7.25714285714286,0,7.2,7.4,0.2,0.682377415954065,-1.26325323028618,0.029738085706659
+"pH32","428","Spring on left bank of Chirhik, Hodjakent vil.",12,7,8.17142857142857,0.095118973121134,8.2,8.17142857142857,0,8,8.3,0.300000000000001,-0.528480562968211,-0.965854485838665,0.035951592548908
+"pH33","429","upstream of Almaty city",12,10,8.16,0.09660917830793,8.1,8.1375,0,8.1,8.4,0.300000000000001,1.41069116488415,0.906734693877542,0.030550504633039
+"pH34","430","Varzob river, Gauging station",12,7,8.17142857142857,0.197604704011871,8.1,8.17142857142857,0,8,8.6,0.6,1.33757242071433,0.251599509524224,0.074687557815991
+"pH35","431","well",12,2,7.3,0,7.3,7.3,0,7.3,7.3,0,NA,NA,0
+"pH36","432","Zarechnoe",12,9,7.74444444444444,0.2185812841434,7.7,7.74444444444444,0.148260000000001,7.5,8.1,0.6,0.704829740228039,-1.20595717404804,0.0728604280478
+"EC [microS/cm]1","433","AgroBioCenter",13,12,206.666666666667,28.7096225026109,200,201,14.826,180,290,110,1.89147429810186,3.054034205594,8.28775414010748
+"EC [microS/cm]2","434","Alplager",13,9,51.1111111111111,13.6422546197874,50,51.1111111111111,14.826,30,70,40,0.088604925923422,-1.42828972880209,4.54741820659581
+"EC [microS/cm]3","435","Arna village",13,12,570,121.355975243384,555,567,126.021,370,800,430,0.264093981790128,-0.982641746684957,35.0324524872685
+"EC [microS/cm]4","436","Baityk",13,9,75.5555555555556,27.4367960552572,70,75.5555555555556,29.652,50,120,70,0.285588517555543,-1.75168326099005,9.14559868508574
+"EC [microS/cm]5","437","BAL",13,12,126.666666666667,8.87625364598595,130,127,0,110,140,30,-0.820878388217291,-0.464250493096646,2.56235371595269
+"EC [microS/cm]6","438","Bore hole near Yangiyul",13,2,840,42.4264068711929,840,840,44.478,810,870,60,0,-2.75,30
+"EC [microS/cm]7","439","Bridge",13,9,556.666666666667,190.722311227606,550,556.666666666667,281.694,320,790,470,-0.143417587138301,-1.89067024961216,63.5741037425355
+"EC [microS/cm]8","440","Chirchik river near inflow to Syrdarya river",13,6,808.333333333333,165.579789426931,840,808.333333333333,59.304,500,990,490,-0.833969436114884,-0.745424777425682,67.5976659689108
+"EC [microS/cm]9","441","Chirchik river near Tashkent",13,7,418.571428571429,87.0686647477287,450,418.571428571429,44.478,240,510,270,-1.03454148857444,-0.280015636844875,32.9088619869924
+"EC [microS/cm]10","442","Chircik river, downstream Charvak reserv. Dam",13,7,174.285714285714,9.75900072948533,170,174.285714285714,14.826,160,190,30,0.16938836980464,-1.33408163265306,3.68855556781659
+"EC [microS/cm]11","443","Chircik river, downstream Gazalkent town",13,7,411.428571428571,191.174315868055,490,411.428571428571,222.39,150,640,490,-0.161133014362375,-1.95460381113771,72.2570995499691
+"EC [microS/cm]12","444","Chirhik river, downstream Tashkent town",13,7,505.714285714286,106.90449676497,530,505.714285714286,44.478,280,610,330,-1.17333889478384,-0.012262882653062,40.4061017820884
+"EC [microS/cm]13","445","Chirhik river, near Chirchik town",13,7,217.142857142857,30.3942350423485,210,217.142857142857,14.826,190,280,90,1.11765024139599,-0.261686053951818,11.4879410302998
+"EC [microS/cm]14","446","city, Makataeva-Kopernika str. Crossing",13,10,196,25.0333111406914,195,195,29.652,160,240,80,0.142278506732178,-1.28038478949751,7.91622805802528
+"EC [microS/cm]15","447","Corn field",13,1,950,NA,950,950,0,950,950,0,NA,NA,NA
+"EC [microS/cm]16","448","Darhan",13,12,217.5,49.5663008688179,200,210,14.826,170,340,170,1.26180052500508,0.495370927006235,14.308558574673
+"EC [microS/cm]17","449","FPP",13,12,174.166666666667,46.7990546395065,165,165,22.239,130,310,180,1.90492213120327,3.02467084410112,13.5097233969695
+"EC [microS/cm]18","450","Groundwater (springwater)",13,1,210,NA,210,210,0,210,210,0,NA,NA,NA
+"EC [microS/cm]19","451","Kafarnigan river",13,7,294.285714285714,91.0781976942786,290,294.285714285714,74.13,110,390,280,-0.946462662128364,-0.383410195174729,34.4243229941482
+"EC [microS/cm]20","452","Kapshagay",13,2,715,346.482322781408,715,715,363.237,470,960,490,0,-2.75,245
+"EC [microS/cm]21","453","Kaskelen (Kas)",13,12,587.5,103.583519222632,600,581,111.195,460,780,320,0.430114716628187,-1.00695498145528,29.9019863533978
+"EC [microS/cm]22","454","Kazcik",13,12,277.5,88.0211751383,250,267,59.304,200,460,260,1.07854840747268,-0.32438677407135,25.4095245802423
+"EC [microS/cm]23","455","Kosozen (UA)",13,12,439.166666666667,114.689964158979,425,434,88.956,280,650,370,0.654286398894347,-0.81527493034007,33.1081408402675
+"EC [microS/cm]24","456","Lake",13,5,544,161.338154197945,540,544,222.39,360,720,360,-0.00341744216505,-2.14914471599527,72.1526160301898
+"EC [microS/cm]25","457","Luchob river",13,7,201.428571428571,62.5642526870234,220,201.428571428571,59.304,110,260,150,-0.359148134663944,-1.83133934483805,23.6470647960669
+"EC [microS/cm]26","458","Maykhura river",13,7,180,20,180,180,14.826,150,210,60,0.107142857142857,-1.39285714285714,7.55928946018454
+"EC [microS/cm]27","459","Otegen Batyr village",13,10,634,59.2921205182911,645,631.25,59.304,540,750,210,0.274259734202576,-0.752324794903474,18.7498148139003
+"EC [microS/cm]28","460","Potable water well",13,7,864.285714285714,73.9047005399843,900,864.285714285714,0,700,900,200,-1.49874837629753,0.521551135137375,27.9333511924999
+"EC [microS/cm]29","461","Pskem river, Mulala gaging station",13,7,157.142857142857,12.5356634105602,160,157.142857142857,14.826,140,180,40,0.452882290865575,-0.8900320458762,4.73803541479343
+"EC [microS/cm]30","462","Radnik",13,4,197.5,12.5830573921179,200,197.5,7.413,180,210,30,-0.423501793114218,-1.82046398891967,6.29152869605896
+"EC [microS/cm]31","463","South-East water uptake,  drinking water facility",13,7,574.285714285714,59.1205386920493,570,574.285714285714,14.826,460,650,190,-0.665879929132767,-0.569738813269145,22.345463250762
+"EC [microS/cm]32","464","Spring on left bank of Chirhik, Hodjakent vil.",13,7,252.857142857143,24.2997158517582,260,252.857142857143,14.826,200,270,70,-1.35934098728479,0.272245110323005,9.18442929618377
+"EC [microS/cm]33","465","upstream of Almaty city",13,10,171,25.1440295541948,175,170,37.065,140,210,70,0.087565816151253,-1.64896090017019,7.95124029458437
+"EC [microS/cm]34","466","Varzob river, Gauging station",13,7,137.142857142857,25.6347977784662,140,137.142857142857,29.652,110,180,70,0.321906048257813,-1.47818371204815,9.6890428330361
+"EC [microS/cm]35","467","well",13,2,655,35.3553390593274,655,655,37.065,630,680,50,0,-2.75,25
+"EC [microS/cm]36","468","Zarechnoe",13,9,96.2222222222222,35.755341481301,100,96.2222222222222,14.826,16,140,124,-0.956017385111738,0.163624317790124,11.9184471604337
+"TDS    [mg/L]1","469","AgroBioCenter",14,12,101.666666666667,13.3711584684304,100,99,0,90,140,50,1.81652751107191,2.78683687637652,3.85992097056273
+"TDS    [mg/L]2","470","Alplager",14,9,22.2222222222222,6.66666666666667,20,22.2222222222222,0,10,30,20,-0.175925925925926,-1.12037037037037,2.22222222222222
+"TDS    [mg/L]3","471","Arna village",14,12,280,60.1513243260846,275,279,66.717,180,390,210,0.21135973283439,-1.07874064627998,17.3641916458887
+"TDS    [mg/L]4","472","Baityk",14,9,33.3333333333333,14.142135623731,30,33.3333333333333,14.826,20,50,30,0.183323980307623,-2,4.71404520791032
+"TDS    [mg/L]5","473","BAL",14,12,58.3333333333333,3.89249472080762,60,59,0,50,60,10,-1.56997287072574,0.529166666666669,1.12366643743874
+"TDS    [mg/L]6","474","Bore hole near Yangiyul",14,2,425,7.07106781186548,425,425,7.413,420,430,10,0,-2.75,5
+"TDS    [mg/L]7","475","Bridge",14,9,274.444444444444,94.7511360236793,270,274.444444444444,148.26,160,390,230,-0.108206826289174,-1.9024444317369,31.5837120078931
+"TDS    [mg/L]8","476","Chirchik river near inflow to Syrdarya river",14,7,412.857142857143,81.9988385515888,430,412.857142857143,59.304,250,500,250,-0.866442655686188,-0.527832324818155,30.99264780052
+"TDS    [mg/L]9","477","Chirchik river near Tashkent",14,7,207.142857142857,42.7060829836866,220,207.142857142857,14.826,120,250,130,-1.03086215719131,-0.350098034700931,16.1413821492174
+"TDS    [mg/L]10","478","Chircik river, downstream Charvak reserv. Dam",14,7,84.2857142857143,5.34522483824849,80,84.2857142857143,0,80,90,10,0.229081064496361,-2.20408163265306,2.02030508910442
+"TDS    [mg/L]11","479","Chircik river, downstream Gazalkent town",14,7,202.857142857143,95.5186344322903,240,202.857142857143,118.608,70,320,250,-0.143495444004777,-1.90222298489612,36.1026503257616
+"TDS    [mg/L]12","480","Chirhik river, downstream Tashkent town",14,7,248.571428571429,51.7779140266618,260,248.571428571429,29.652,140,300,160,-1.13413822879289,-0.075169972522258,19.5702119886043
+"TDS    [mg/L]13","481","Chirhik river, near Chirchik town",14,7,111.428571428571,20.3540097839643,100,111.428571428571,14.826,90,140,50,0.547660123964658,-1.6725715256376,7.69309258162072
+"TDS    [mg/L]14","482","city, Makataeva-Kopernika str. Crossing",14,10,94,11.7378779077727,95,93.75,14.826,80,110,30,0.029680586176782,-1.67921956295526,3.71184290855335
+"TDS    [mg/L]15","483","Corn field",14,1,470,NA,470,470,0,470,470,0,NA,NA,NA
+"TDS    [mg/L]16","484","Darhan",14,12,105.833333333333,26.0971378902095,100,102,14.826,80,170,90,1.2355024855637,0.481400021982981,7.53359479299561
+"TDS    [mg/L]17","485","FPP",14,12,83.3333333333333,23.094010767585,80,79,14.826,60,150,90,1.85984969528012,2.91276041666667,6.66666666666667
+"TDS    [mg/L]18","486","Groundwater (springwater)",14,1,100,NA,100,100,0,100,100,0,NA,NA,NA
+"TDS    [mg/L]19","487","Kafarnigan river",14,7,147.142857142857,45.7217255850672,140,147.142857142857,29.652,60,200,140,-0.649158100133843,-0.748282835428057,17.2811879158324
+"TDS    [mg/L]20","488","Kapshagay",14,2,350,169.705627484771,350,350,177.912,230,470,240,0,-2.75,120
+"TDS    [mg/L]21","489","Kaskelen (Kas)",14,12,291.666666666667,52.8863847976934,300,289,59.304,220,390,170,0.353853575480122,-1.05382845381873,15.2669842497072
+"TDS    [mg/L]22","490","Kazcik",14,12,137.5,43.9265916563698,125,132,29.652,100,230,130,1.14479864194531,-0.174044136315016,12.6805147586939
+"TDS    [mg/L]23","491","Kosozen (UA)",14,12,215,58.6979943903925,205,213,37.065,130,320,190,0.618073645515338,-0.799375555493673,16.9446514310921
+"TDS    [mg/L]24","492","Lake",14,5,268,77.9102047231298,270,268,103.782,180,350,170,-0.030144955707111,-2.16711968277835,34.8425027803687
+"TDS    [mg/L]25","493","Luchob river",14,7,98.5714285714286,32.8778402720188,110,98.5714285714286,29.652,50,130,80,-0.398687211777585,-1.78181455974266,12.4266555720951
+"TDS    [mg/L]26","494","Maykhura river",14,7,88.5714285714286,8.99735410842437,90,88.5714285714286,14.826,80,100,20,0.216149980063977,-1.90304357036932,3.40068020406802
+"TDS    [mg/L]27","495","Otegen Batyr village",14,10,312,31.1982905514602,320,311.25,29.652,260,370,110,0.109858495439698,-0.829512103584162,9.86576572463249
+"TDS    [mg/L]28","496","Potable water well",14,7,432.857142857143,37.7334006393477,450,432.857142857143,14.826,350,460,110,-1.41829692412995,0.378070692265001,14.2618848874971
+"TDS    [mg/L]29","497","Pskem river, Mulala gaging station",14,7,75.7142857142857,7.86795792469443,70,75.7142857142857,0,70,90,20,0.682377415954058,-1.26325323028619,2.9738085706659
+"TDS    [mg/L]30","498","Radnik",14,4,97.5,5,100,97.5,0,90,100,10,-0.75,-1.6875,2.5
+"TDS    [mg/L]31","499","South-East water uptake,  drinking water facility",14,7,288.571428571429,32.8778402720188,300,288.571428571429,14.826,220,320,100,-1.12223067018876,-0.147006975663794,12.4266555720951
+"TDS    [mg/L]32","500","Spring on left bank of Chirhik, Hodjakent vil.",14,7,127.142857142857,7.55928946018454,130,127.142857142857,14.826,120,140,20,0.364465741830328,-1.45408163265306,2.85714285714286
+"TDS    [mg/L]33","501","upstream of Almaty city",14,10,83,11.5950180872841,80,82.5,14.826,70,100,30,0.246329787983664,-1.57391093504542,3.66666666666667
+"TDS    [mg/L]34","502","Varzob river, Gauging station",14,7,68.5714285714286,10.690449676497,70,68.5714285714286,14.826,60,90,30,0.930641824516478,-0.51658163265306,4.04061017820884
+"TDS    [mg/L]35","503","well",14,2,320,14.142135623731,320,320,14.826,310,330,20,0,-2.75,10
+"TDS    [mg/L]36","504","Zarechnoe",14,9,53.3333333333333,12.2474487139159,50,53.3333333333333,14.826,40,70,30,0.161283275244982,-1.74897119341564,4.08248290463863
+"NO+3-N [mg/L]1","505","AgroBioCenter",15,12,0.776666666666667,0.332984666131622,0.67,0.703,0.14826,0.55,1.74,1.19,1.93990456462392,2.91007153133899,0.096124393313555
+"NO+3-N [mg/L]2","506","Alplager",15,9,0.603555555555556,0.150578145086788,0.56,0.603555555555556,0.192738,0.38,0.8,0.42,0.013934531755364,-1.56092501936339,0.050192715028929
+"NO+3-N [mg/L]3","507","Arna village",15,12,1.89416666666667,0.603963549973812,1.89,1.97,0.348411,0.36,2.67,2.31,-1.02305108437118,0.913891498972163,0.174349259079051
+"NO+3-N [mg/L]4","508","Baityk",15,9,0.645555555555556,0.178963062607282,0.71,0.645555555555556,0.177912,0.38,0.86,0.48,-0.367442248060557,-1.52453607859109,0.059654354202427
+"NO+3-N [mg/L]5","509","BAL",15,12,0.655833333333333,0.114689964158979,0.605,0.638,0.081543,0.54,0.95,0.41,1.26267183972194,0.828580246990468,0.033108140840268
+"NO+3-N [mg/L]6","510","Bore hole near Yangiyul",15,2,5.57,0.098994949366116,5.57,5.57,0.103782,5.5,5.64,0.14,-7e-15,-2.75,0.07
+"NO+3-N [mg/L]7","511","Bridge",15,9,2.53,1.0415013202104,2.67,2.53,1.275036,0.87,4.01,3.14,-0.068330613978934,-1.53852976689142,0.347167106736799
+"NO+3-N [mg/L]8","512","Chirchik river near inflow to Syrdarya river",15,7,1.94857142857143,0.809535434090206,2.03,1.94857142857143,0.800604,0.84,3.06,2.22,-0.184410441939696,-1.61965606785326,0.305975633728201
+"NO+3-N [mg/L]9","513","Chirchik river near Tashkent",15,7,4.63428571428571,1.51319592411621,5.16,4.63428571428571,1.022994,1.48,6.19,4.71,-1.10269476233827,-0.126413746464596,0.571934300018293
+"NO+3-N [mg/L]10","514","Chircik river, downstream Charvak reserv. Dam",15,7,0.497714285714286,0.135437210895817,0.41,0.497714285714286,0.0681996,0.364,0.7,0.336,0.354177347091498,-1.89647061492382,0.051190454042077
+"NO+3-N [mg/L]11","515","Chircik river, downstream Gazalkent town",15,7,2.16714285714286,0.952132943898667,2.37,2.16714285714286,0.548562,0.81,3.58,2.77,-0.091809004221306,-1.49442990902472,0.359872426375384
+"NO+3-N [mg/L]12","516","Chirhik river, downstream Tashkent town",15,7,4.05428571428571,1.09296015698739,4.17,4.05428571428571,0.800604,1.75,4.98,3.23,-1.18337737479906,-0.060422577219556,0.413100109755822
+"NO+3-N [mg/L]13","517","Chirhik river, near Chirchik town",15,7,0.762857142857143,0.179509914834277,0.74,0.762857142857143,0.14826,0.56,1.09,0.53,0.606809841335916,-1.10253008103702,0.067848370360269
+"NO+3-N [mg/L]14","518","city, Makataeva-Kopernika str. Crossing",15,10,1.19,1,0.91,0.91125,0.044478,0.59,4.02,3.43,2.2268196,3.432458808,0.316227766016838
+"NO+3-N [mg/L]15","519","Corn field",15,1,0.86,NA,0.86,0.86,0,0.86,0.86,0,NA,NA,NA
+"NO+3-N [mg/L]16","520","Darhan",15,12,1.27416666666667,0.621002976619031,1.02,1.183,0.289107,0.74,2.72,1.98,1.20785719914381,0.042320753038806,0.179268117859278
+"NO+3-N [mg/L]17","521","FPP",15,12,0.684166666666667,0.184709025882398,0.705,0.704,0.081543,0.2,0.97,0.77,-1.1742817855254,1.46441748444038,0.053320902907478
+"NO+3-N [mg/L]18","522","Groundwater (springwater)",15,1,2.56,NA,2.56,2.56,0,2.56,2.56,0,NA,NA,NA
+"NO+3-N [mg/L]19","523","Kafarnigan river",15,7,1.86428571428571,1.05444862594718,2.07,1.86428571428571,0.770952,0.21,3.09,2.88,-0.487177397521012,-1.56212649946567,0.398544119221431
+"NO+3-N [mg/L]20","524","Kapshagay",15,2,0.66,0.707106781186548,0.66,0.66,0.7413,0.16,1.16,1,0,-2.75,0.5
+"NO+3-N [mg/L]21","525","Kaskelen (Kas)",15,12,1.48333333333333,0.377535870260474,1.435,1.519,0.185325,0.54,2.07,1.53,-0.87382448751372,0.850910681819442,0.108985218161812
+"NO+3-N [mg/L]22","526","Kazcik",15,12,1.03083333333333,0.221501419381183,0.98,1.016,0.252042,0.77,1.44,0.67,0.439075056861288,-1.36637585685325,0.063941952052805
+"NO+3-N [mg/L]23","527","Kosozen (UA)",15,12,2.21833333333333,0.737807973703596,2.085,2.136,0.778365,1.45,3.81,2.36,0.76873505444515,-0.605192518640405,0.212986816114012
+"NO+3-N [mg/L]24","528","Lake",15,4,1.705,1.13379892397197,1.655,1.705,1.119363,0.39,3.12,2.73,0.092789116725884,-1.93977309633934,0.566899461985986
+"NO+3-N [mg/L]25","529","Luchob river",15,7,0.534428571428572,0.131987192740883,0.52,0.534428571428572,0.118608,0.34,0.711,0.371,0.061600202442064,-1.55469492070683,0.049886469748275
+"NO+3-N [mg/L]26","530","Maykhura river",15,7,0.464714285714286,0.061092046088162,0.46,0.464714285714286,0.059304,0.37,0.56,0.19,-0.003091009825497,-1.26154104624915,0.023090623004768
+"NO+3-N [mg/L]27","531","Otegen Batyr village",15,10,3.068,1.15873302456702,3.495,3.20625,0.429954,0.93,4.1,3.17,-1.07894972365434,-0.601675339604655,0.366423555768761
+"NO+3-N [mg/L]28","532","Potable water well",15,7,13.2285714285714,2.52831583319429,13.9,13.2285714285714,4.15128,10,16.7,6.7,-0.017692989502555,-1.89201858243152,0.955613561494166
+"NO+3-N [mg/L]29","533","Pskem river, Mulala gaging station",15,7,0.542857142857143,0.060474315681476,0.55,0.542857142857143,0.044478,0.45,0.64,0.19,0.042473546736739,-1.20414266780931,0.022857142857143
+"NO+3-N [mg/L]30","534","Radnik",15,4,0.605,0.099498743710662,0.625,0.605,0.088956,0.48,0.69,0.21,-0.24364553097193,-2.15956917661463,0.049749371855331
+"NO+3-N [mg/L]31","535","South-East water uptake,  drinking water facility",15,7,6.03,0.211581347634111,6.1,6.03,0.192738000000001,5.67,6.23,0.56,-0.581787651689468,-1.4271185801672,0.079970232557109
+"NO+3-N [mg/L]32","536","Spring on left bank of Chirhik, Hodjakent vil.",15,7,2.00142857142857,2.10086036797172,1.07,2.00142857142857,0.014826,1.06,6.73,5.67,1.57172538795712,0.691147993211254,0.794050581846404
+"NO+3-N [mg/L]33","537","upstream of Almaty city",15,10,0.858,0.078429019572548,0.865,0.8675,0.051891,0.68,0.96,0.28,-0.86184478636727,0.099228027164288,0.024801433650318
+"NO+3-N [mg/L]34","538","Varzob river, Gauging station",15,7,0.467714285714286,0.094639164348442,0.47,0.467714285714286,0.103782,0.32,0.594,0.274,-0.170016680084049,-1.57714205026064,0.035770241878993
+"NO+3-N [mg/L]35","539","well",15,2,11.2,0,11.2,11.2,0,11.2,11.2,0,NA,NA,0
+"NO+3-N [mg/L]36","540","Zarechnoe",15,9,0.887888888888889,0.606259112188107,0.69,0.887888888888889,0.177912,0.511,2.46,1.949,1.86754552891682,2.0611930320547,0.202086370729369
+"PO3-4-P [mg/L]1","541","AgroBioCenter",16,12,0.017916666666667,0.006316764611058,0.018,0.0183,0.0051891,0.004,0.028,0.024,-0.473871764506053,-0.261376968490301,0.001823492874301
+"PO3-4-P [mg/L]2","542","Alplager",16,9,0.053111111111111,0.109887947979344,0.013,0.053111111111111,0.014826,0.003,0.342,0.339,1.97026402970121,2.32742489071586,0.036629315993115
+"PO3-4-P [mg/L]3","543","Arna village",16,12,0.02525,0.008203380677834,0.0215,0.0245,0.0066717,0.017,0.041,0.024,0.546995060877453,-1.32431358732987,0.002368112021306
+"PO3-4-P [mg/L]4","544","Baityk",16,9,0.149333333333333,0.278037767218772,0.008,0.149333333333333,0.0044478,0,0.741,0.741,1.23111840190449,-0.332711520043905,0.092679255739591
+"PO3-4-P [mg/L]5","545","BAL",16,11,0.008636363636364,0.009168126605504,0.008,0.006888888888889,0.0059304,0,0.033,0.033,1.52975312979639,1.70436990218537,0.002764294180085
+"PO3-4-P [mg/L]6","546","Bore hole near Yangiyul",16,2,1.05,0.381837661840736,1.05,1.05,0.400302,0.78,1.32,0.54,0,-2.75,0.27
+"PO3-4-P [mg/L]7","547","Bridge",16,9,0.147888888888889,0.085973025485388,0.122,0.147888888888889,0.044478,0.029,0.304,0.275,0.497960133638988,-1.15423676386343,0.028657675161796
+"PO3-4-P [mg/L]8","548","Chirchik river near inflow to Syrdarya river",16,7,0.89,1.43195670325607,0.07,0.89,0.088956,0.01,3.27,3.26,0.789103877898561,-1.48609234653406,0.541228760718212
+"PO3-4-P [mg/L]9","549","Chirchik river near Tashkent",16,4,0.775,1.39009591995181,0.09,0.775,0.029652,0.06,2.86,2.8,0.749689515991251,-1.68770697505649,0.695047959975904
+"PO3-4-P [mg/L]10","550","Chircik river, downstream Charvak reserv. Dam",16,3,0.796666666666667,1.36254663528752,0.01,0.796666666666667,0,0.01,2.37,2.36,0.38490017945975,-2.33333333333333,0.786666666666667
+"PO3-4-P [mg/L]11","551","Chircik river, downstream Gazalkent town",16,5,0.67,1.26299247820405,0.12,0.67,0.163086,0.01,2.92,2.91,1.05172814349604,-0.946887607030224,0.564827407267034
+"PO3-4-P [mg/L]12","552","Chirhik river, downstream Tashkent town",16,3,0.776666666666667,1.20034717200206,0.16,0.776666666666667,0.22239,0.01,2.16,2.15,0.378149278521843,-2.33333333333333,0.693020762876393
+"PO3-4-P [mg/L]13","553","Chirhik river, near Chirchik town",16,4,0.7475,1.44857113506149,0.035,0.7475,0.044478,0,2.92,2.92,0.749264232931757,-1.68799793543224,0.724285567530745
+"PO3-4-P [mg/L]14","554","city, Makataeva-Kopernika str. Crossing",16,10,0.0112,0.005308274463305,0.0105,0.01125,0.0051891,0.003,0.019,0.016,0.092100719816439,-1.50540253162038,0.001678623774935
+"PO3-4-P [mg/L]15","555","Corn field",16,1,1.99,NA,1.99,1.99,0,1.99,1.99,0,NA,NA,NA
+"PO3-4-P [mg/L]16","556","Darhan",16,12,0.009416666666667,0.008680786865605,0.01,0.0084,0.0111195,0,0.029,0.029,0.773521239857801,-0.410611781002027,0.002505927316817
+"PO3-4-P [mg/L]17","557","FPP",16,12,0.009833333333333,0.003713203305487,0.011,0.01,0.0029652,0.003,0.015,0.012,-0.582895046767176,-1.02917773618323,0.001071909463989
+"PO3-4-P [mg/L]18","558","Groundwater (springwater)",16,1,0.049,NA,0.049,0.049,0,0.049,0.049,0,NA,NA,NA
+"PO3-4-P [mg/L]19","559","Kafarnigan river",16,7,0.019142857142857,0.008649249898663,0.017,0.019142857142857,0.0059304,0.009,0.033,0.024,0.506170968104672,-1.50773217978741,0.003269109179873
+"PO3-4-P [mg/L]20","560","Kapshagay",16,2,0.0045,0.003535533905933,0.0045,0.0045,0.0037065,0.002,0.007,0.005,0,-2.75,0.0025
+"PO3-4-P [mg/L]21","561","Kaskelen (Kas)",16,12,0.018666666666667,0.009028574168447,0.02,0.0192,0.0096369,0,0.032,0.032,-0.40297274434731,-0.779353496128209,0.002606324863276
+"PO3-4-P [mg/L]22","562","Kazcik",16,12,0.006083333333333,0.004601547829181,0.0055,0.0057,0.0037065,0,0.016,0.016,0.664348501584775,-0.550943068005201,0.001328352438933
+"PO3-4-P [mg/L]23","563","Kosozen (UA)",16,12,0.008833333333333,0.006739750917077,0.006,0.0077,0.0029652,0.003,0.026,0.023,1.33483576975671,0.744939134057646,0.001945598503123
+"PO3-4-P [mg/L]24","564","Lake",16,4,0.14175,0.145474797359084,0.1125,0.14175,0.1326927,0.022,0.32,0.298,0.204773067165323,-2.20750891014117,0.072737398679542
+"PO3-4-P [mg/L]25","565","Luchob river",16,7,0.017714285714286,0.006102302453836,0.018,0.017714285714286,0.0029652,0.006,0.025,0.019,-0.676651140134644,-0.688157482497059,0.002306453531107
+"PO3-4-P [mg/L]26","566","Maykhura river",16,7,0.018857142857143,0.00777664390828,0.023,0.018857142857143,0.0044478,0.006,0.026,0.02,-0.550852785063989,-1.58718535886051,0.002939295116574
+"PO3-4-P [mg/L]27","567","Otegen Batyr village",16,10,0.0168,0.010850499220466,0.0165,0.016125,0.0103782,0,0.039,0.039,0.447905658647776,-0.555127454664616,0.003431229128655
+"PO3-4-P [mg/L]28","568","Potable water well",16,7,0.018714285714286,0.005936168397047,0.021,0.018714285714286,0.0029652,0.006,0.024,0.018,-1.26249349151401,0.115911062745039,0.002243660759884
+"PO3-4-P [mg/L]29","569","Pskem river, Mulala gaging station",16,3,1.47666666666667,2.54034118443435,0.01,1.47666666666667,0,0.01,4.41,4.4,0.384900179459751,-2.33333333333333,1.46666666666667
+"PO3-4-P [mg/L]30","570","Radnik",16,4,0.4735,0.924344272083369,0.014,0.4735,0.0081543,0.006,1.86,1.854,0.749946757062808,-1.68753552038248,0.462172136041685
+"PO3-4-P [mg/L]31","571","South-East water uptake,  drinking water facility",16,7,0.020285714285714,0.007994045402971,0.021,0.020285714285714,0.0029652,0.006,0.033,0.027,-0.237364546955593,-0.62567362449743,0.003021465157946
+"PO3-4-P [mg/L]32","572","Spring on left bank of Chirhik, Hodjakent vil.",16,3,0.683333333333333,1.1402777439437,0.03,0.683333333333333,0.014826,0.02,2,1.98,0.384866877034582,-2.33333333333333,0.658339662416834
+"PO3-4-P [mg/L]33","573","upstream of Almaty city",16,10,0.009,0.003091206165165,0.009,0.009125,0.0037065,0.004,0.013,0.009,-0.243752222218004,-1.53902109248242,0.000977525219908
+"PO3-4-P [mg/L]34","574","Varzob river, Gauging station",16,7,0.015714285714286,0.004608480795023,0.016,0.015714285714286,0.0059304,0.009,0.021,0.012,-0.219830979915014,-1.80616492409266,0.001741842015064
+"PO3-4-P [mg/L]35","575","well",16,2,0.0575,0.05727564927611,0.0575,0.0575,0.0600453,0.017,0.098,0.081,0,-2.75,0.0405
+"PO3-4-P [mg/L]36","576","Zarechnoe",16,9,0.076,0.123182791005887,0.013,0.076,0.0103782,0.004,0.323,0.319,1.13951087282008,-0.626682535080508,0.041060930335296
+"Fe [mg/L]1","577","AgroBioCenter",17,11,0.009090909090909,0.005393598899706,0.01,0.008888888888889,0,0,0.02,0.02,-0.114920431101689,-0.010588842975207,0.001626231256363
+"Fe [mg/L]2","578","Alplager",17,9,0.059,0.022671568097509,0.07,0.059,0,0.01,0.071,0.061,-1.26168643184724,-0.232414991563504,0.007557189365836
+"Fe [mg/L]3","579","Arna village",17,11,0.01,0.006324555320337,0.01,0.01,0,0,0.02,0.02,0,-0.727272727272728,0.001906925178491
+"Fe [mg/L]4","580","Baityk",17,9,0.059,0.022671568097509,0.07,0.059,0,0.01,0.071,0.061,-1.26168643184724,-0.232414991563504,0.007557189365836
+"Fe [mg/L]5","581","BAL",17,10,0.011,0.005676462121975,0.01,0.01125,0,0,0.02,0.02,0.065606672800953,-0.325362663495838,0.001795054935712
+"Fe [mg/L]6","582","Bore hole near Yangiyul",17,2,0.005,0.007071067811865,0.005,0.005,0.007413,0,0.01,0.01,0,-2.75,0.005
+"Fe [mg/L]7","583","Bridge",17,9,0.064555555555556,0.01137003860054,0.07,0.064555555555556,0,0.04,0.071,0.031,-1.25891576597443,-0.237887192843943,0.003790012866847
+"Fe [mg/L]8","584","Chirchik river near inflow to Syrdarya river",17,6,0.023333333333333,0.025819888974716,0.015,0.023333333333333,0.022239,0,0.06,0.06,0.391601649449861,-1.89833333333333,0.010540925533895
+"Fe [mg/L]9","585","Chirchik river near Tashkent",17,6,0.021666666666667,0.021369760566433,0.015,0.021666666666667,0.014826,0,0.06,0.06,0.743863653013094,-1.06473884241746,0.008724168218868
+"Fe [mg/L]10","586","Chircik river, downstream Charvak reserv. Dam",17,5,0.012,0.021679483388679,0,0.012,0,0,0.05,0.05,0.975135115210107,-1.05580805794477,0.009695359714833
+"Fe [mg/L]11","587","Chircik river, downstream Gazalkent town",17,5,0.014,0.016733200530682,0.01,0.014,0.014826,0,0.04,0.04,0.522485649223321,-1.63428571428572,0.007483314773548
+"Fe [mg/L]12","588","Chirhik river, downstream Tashkent town",17,7,0.018571428571429,0.021157009420498,0.01,0.018571428571429,0.014826,0,0.06,0.06,0.882921695599008,-0.710192995260577,0.00799659791607
+"Fe [mg/L]13","589","Chirhik river, near Chirchik town",17,6,0.01,0.02,0,0.01,0,0,0.05,0.05,1.25,-0.291666666666667,0.008164965809277
+"Fe [mg/L]14","590","city, Makataeva-Kopernika str. Crossing",17,10,0.016,0.006992058987801,0.015,0.015,0.007413,0.01,0.03,0.02,0.561676143482858,-1.07876033057851,0.00221108319357
+"Fe [mg/L]15","591","Corn field",17,1,0.1,NA,0.1,0.1,0,0.1,0.1,0,NA,NA,NA
+"Fe [mg/L]16","592","Darhan",17,11,0.016363636363636,0.010269106361049,0.01,0.016666666666667,0.014826,0,0.03,0.03,0.17067074943372,-1.4959856919645,0.003096252066532
+"Fe [mg/L]17","593","FPP",17,10,0.017,0.004830458915396,0.02,0.0175,0,0.01,0.02,0.01,-0.745270804089743,-1.57285714285714,0.001527525231652
+"Fe [mg/L]18","594","Groundwater (springwater)",17,0,NA,NA,NA,NA,NA,Inf,-Inf,-Inf,NA,NA,NA
+"Fe [mg/L]19","595","Kafarnigan river",17,7,0.081428571428571,0.038913824205361,0.1,0.081428571428571,0.014826,0.02,0.11,0.09,-0.732046156413717,-1.57182816166694,0.014708043058553
+"Fe [mg/L]20","596","Kapshagay",17,2,0.02,0.014142135623731,0.02,0.02,0.014826,0.01,0.03,0.02,0,-2.75,0.01
+"Fe [mg/L]21","597","Kaskelen (Kas)",17,11,0.01,0.006324555320337,0.01,0.01,0,0,0.02,0.02,0,-0.727272727272728,0.001906925178491
+"Fe [mg/L]22","598","Kazcik",17,11,0.013636363636364,0.005045249791095,0.01,0.013333333333333,0,0.01,0.02,0.01,0.491420434197577,-1.90791027154663,0.001521200048244
+"Fe [mg/L]23","599","Kosozen (UA)",17,11,0.023636363636364,0.032946237197206,0.01,0.015555555555556,0.014826,0,0.12,0.12,2.20921783088669,3.69088413119211,0.009933664276107
+"Fe [mg/L]24","600","Lake",17,4,0.0725,0.005,0.07,0.0725,0,0.07,0.08,0.01,0.749999999999998,-1.6875,0.0025
+"Fe [mg/L]25","601","Luchob river",17,7,0.067142857142857,0.050896720822428,0.1,0.067142857142857,0.029652,0.01,0.12,0.11,-0.195695006135805,-2.15327334978109,0.019237152263547
+"Fe [mg/L]26","602","Maykhura river",17,7,0.065714285714286,0.049617585208319,0.1,0.065714285714286,0.029652,0.01,0.12,0.11,-0.187738329632383,-2.14045387393497,0.018753684445253
+"Fe [mg/L]27","603","Otegen Batyr village",17,10,0.019,0.009944289260118,0.02,0.0175,0.014826,0.01,0.04,0.03,0.780980111467481,-0.593110718343643,0.003144660377352
+"Fe [mg/L]28","604","Potable water well",17,7,0.132857142857143,0.081386789614836,0.16,0.132857142857143,0.059304,0.02,0.22,0.2,-0.487279968276258,-1.68167896292815,0.030761315046684
+"Fe [mg/L]29","605","Pskem river, Mulala gaging station",17,7,0.008571428571429,0.018644544714716,0,0.008571428571429,0,0,0.05,0.05,1.49794119802708,0.514439665902015,0.007046975517595
+"Fe [mg/L]30","606","Radnik",17,4,0.055,0.03,0.07,0.055,0,0.01,0.07,0.06,-0.75,-1.6875,0.015
+"Fe [mg/L]31","607","South-East water uptake,  drinking water facility",17,7,0.078571428571429,0.043752550946039,0.1,0.078571428571429,0.014826,0.01,0.11,0.1,-0.736426318154214,-1.57855256159046,0.016536909861129
+"Fe [mg/L]32","608","Spring on left bank of Chirhik, Hodjakent vil.",17,5,0.012,0.021679483388679,0,0.012,0,0,0.05,0.05,0.975135115210107,-1.05580805794477,0.009695359714833
+"Fe [mg/L]33","609","upstream of Almaty city",17,10,0.013,0.004830458915396,0.01,0.0125,0,0.01,0.02,0.01,0.745270804089742,-1.57285714285714,0.001527525231652
+"Fe [mg/L]34","610","Varzob river, Gauging station",17,7,0.065714285714286,0.053184315625675,0.1,0.065714285714286,0.044478,0.01,0.13,0.12,-0.125582799588371,-2.10490807893405,0.020101781827815
+"Fe [mg/L]35","611","well",17,2,0.07,0,0.07,0.07,0,0.07,0.07,0,NA,NA,0
+"Fe [mg/L]36","612","Zarechnoe",17,9,0.055777777777778,0.026654163735605,0.07,0.055777777777778,0,0,0.072,0.072,-1.17706226320664,-0.448150221260843,0.008884721245202
