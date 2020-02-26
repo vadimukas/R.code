@@ -25,6 +25,7 @@ lines(TaSh$X2, xlab = "date", ylab = "Ta", col="red")
 
 #To download data in R, use the following syntax:
 url = "https://sites.google.com/site/statsr4us/intro/software/rcmdr-1/TeachingRatings.rda"
+setwd("D:/R/R.code")
 download.file(url,"TeachingRatings.rda")
 load("TeachingRatings.rda")
 #For equal variances, the following syntax is used for T-test and the OLS regression model

@@ -164,8 +164,6 @@ ggplot( data = diamonds, mapping = aes(x = cut, fill = clarity))
 + geom_bar(alpha = 1/5, position = "identity")
 ggplot( data = diamonds, mapping = aes(x = cut, color = clarity)) 
 + geom_bar(fill = NA, position = "identity")
-
-# position = "fill"
 ggplot(data = diamonds) + geom_bar( mapping = aes(x = cut, fill = clarity), 
                                     position = "fill")
 # position = "dodge" places
@@ -1185,4 +1183,47 @@ flights2 %>%
 
 # 13.4.7 Other implementations
 # base::merge() can perform all four types of mutating join:p187
+
+# semi_join(x, y) keeps all observations in x that have a match in y.
+# anti_join(x, y) drops all observations in x that have a match in y.
+
+top_dest <- flights %>%
+  count(dest, sort = TRUE) %>%
+  head(10)
+top_dest
+
+flights %>% 
+  semi_join(top_dest)
+
+flights_semi<-flights %>% 
+  semi_join(top_dest)
+
+# Anti-joins are useful for diagnosing join mismatches.  
+
+flights %>%
+  anti_join(planes, by = "tailnum") %>%
+  count(tailnum, sort = TRUE)
+
+#13.7 Set operations
+
+df1 <- tribble(
+  ~x, ~y,
+  1,  1,
+  2,  1
+)
+
+df2 <- tribble(
+  ~x, ~y,
+  1,  1,
+  1,  2
+)
+
+intersect(df1, df2)
+union (df1, df2)
+setdiff(df1, df2)
+
+# 14 Strings
+
+library(tidyverse)
+library(stringr)
 
