@@ -269,3 +269,111 @@ install.packages("remedy")
 
 #4 Styler - to tidy up code before publishing or sharing
 install.packages("styler")
+
+# Displaying time series, spatial and space-time data with R
+# https://www.r-bloggers.com/displaying-time-series-with-r/ 
+
+library(lattice)
+library(ggplot2)
+# latticeExtra must be loaded after ggplot2 to prevent masking of `layer`
+library(latticeExtra)
+library(RColorBrewer)
+# lattice and latticeExtra configuration
+myTheme <- custom.theme.2(
+  pch=19, cex=0.7, region=rev(brewer.pal(9, 'YlOrRd')),
+  symbol=brewer.pal(n=8, name="Dark2"))
+myTheme$strip.background$col = myTheme$strip.shingle$col =
+  myTheme$strip.border$col = 'transparent'
+
+myArgs <- list(
+  as.table=TRUE, between=list(x=0.5, y=0.2),
+  xscale.components = function(...)
+    modifyList(xscale.components.default(...), list(top=FALSE)),
+  yscale.components = function(...)
+    modifyList(yscale.components.default(...), list(right=FALSE)))
+
+lattice.options(default.theme=myTheme, default.args=modifyList(
+  lattice.options()$default.args, myArgs))
+
+library(zoo)
+
+setwd ('D:/R/R.code')
+# load data
+load('aranjuez.RData')
+load('navarra.RData')
+load('CO2.RData')
+
+# Time graph of variables with different scales
+## The layout argument arranges panels in rows
+xyplot(aranjuez, layout = c(1, ncol(aranjuez)))
+
+## facet_free allows each panel to have its own range
+autoplot(aranjuez) + facet_free ()
+
+#Time series of variables with the same scale 
+
+avRad <- zoo(rowMeans(navarra, na.rm = 1), index(navarra))
+pNavarra <- xyplot(navarra - avRad,
+                   superpose = TRUE, auto.key = FALSE,
+                   lwd = 0.5, alpha = 0.3, col = 'midnightblue') 
+pNavarra 
+
+horizonplot(navarra - avRad,
+            layout = c(1, ncol(navarra)),
+            origin = 0, ## Deviations in each panel are calculated
+            ## from this value
+            colorkey = TRUE,
+            col.regions = brewer.pal(6, "RdBu")) 
+
+Ta <- aranjuez$TempAvg
+timeIndex <- index(aranjuez)
+longTa <- ave(Ta, format(timeIndex, '%j'))
+diffTa <- (Ta - longTa) 
+
+years <- unique(format(timeIndex, '%Y'))
+
+horizonplot(diffTa, cut = list(n = 8, overlap = 0),
+            colorkey = TRUE, layout = c(1, 8),
+            scales = list(draw = FALSE, y = list(relation = 'same')),
+            origin = 0, strip.left = FALSE) +
+  layer(grid.text(years[panel.number()], x  =  0, y  =  0.1, 
+                  gp = gpar(cex = 0.8),
+                  just = "left")) 
+
+year <- function(x)as.numeric(format(x, '%Y'))
+day <- function(x)as.numeric(format(x, '%d'))
+month <- function(x)as.numeric(format(x, '%m')) 
+myTheme <- modifyList(custom.theme(region = brewer.pal(9, 'RdBu')),
+                      list(
+                        strip.background = list(col = 'gray'),
+                        panel.background = list(col = 'gray')))
+
+maxZ <- max(abs(diffTa))
+
+levelplot(diffTa ~ day(timeIndex) * year(timeIndex) | factor(month(timeIndex)),
+          at = pretty(c(-maxZ, maxZ), n = 8),
+          colorkey = list(height = 0.3),
+          layout = c(1, 12), strip = FALSE, strip.left = TRUE,
+          xlab = 'Day', ylab = 'Month', 
+          par.settings = myTheme)
+
+df <- data.frame(Vals = diffTa,
+                 Day = day(timeIndex),
+                 Year = year(timeIndex),
+                 Month = month(timeIndex)) 
+
+library(scales) 
+## The packages scales is needed for the pretty_breaks function.
+
+ggplot(data = df,
+       aes(fill = Vals,
+           x = Day,
+           y = Year)) +
+  facet_wrap(~ Month, ncol = 1, strip.position = 'left') +
+  scale_y_continuous(breaks = pretty_breaks()) + 
+  scale_fill_distiller(palette = 'RdBu', direction = 1) + 
+  geom_raster() +
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+
+# Interactive graphics

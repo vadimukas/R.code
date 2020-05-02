@@ -321,5 +321,6 @@ d11<-ggstatsplot::ggbetweenstats(
 
 
 grid.arrange(d7, d8, d9, d10, d11, nrow = 3, ncol = 2)
+
 plot(x=WQ_samples_2019_HL$`Fe-Dis [mg/L]`, y=WQ_samples_2019_HL$`Fe-Tot [mg/L]`)
 

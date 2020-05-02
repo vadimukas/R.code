@@ -449,9 +449,10 @@ stat_local_WQ_GW<-stat.desc(local_WQ [c(11:17)])
 plot_boxplot(local_WQ_GW [c(8, 11:17)], by = "GW type", title = "local WQ by sample type", ggtheme = theme_test(), geom_boxplot_args = list("outlier.color" = "red"))
 plot_boxplot(local_WQ_GW [c(4, 11:17)], by = "Month", title = "local GW WQ by Month", ggtheme = theme_test(),geom_boxplot_args = list("outlier.color" = "red"))
 local_WQ_WG_group<-local_WQ_GW %>% group_by(Month) 
-plot_boxplot(local_WQ_GW_group [c(4, 11:17)], by = "Month", title = "local_WQ by Month", ggtheme = theme_bw())
 
- pairs.panels(local_WQ_GW[c(11:17)],
+plot_boxplot(local_WQ_GW [c(8, 11, 13,15,16)], by = "GW type", ggtheme = theme_test(), geom_boxplot_args = list("outlier.color" = "red"))
+ 
+pairs.panels(local_WQ_GW[c(11:17)],
              method="pearson",
              hist.col="green",
              density=TRUE,

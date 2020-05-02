@@ -19,9 +19,9 @@ WQ_samples_2019_HL <- read_csv("WQ_samples__2019_HL.csv",
 
 
 plot_boxplot(WQ_samples_2019_HL [c(7, 10:34)], by = "Sample type", title = "WQ_samples__2019_HL sample type", ggtheme = theme_test(), geom_boxplot_args = list("outlier.color" = "red"))
-plot_boxplot(WQ_samples_2019_HL [c(3, 10:34)], by = "month", title = "WQ_samples__2019_HL by Month", ggtheme = theme_test(),geom_boxplot_args = list("outlier.color" = "blue"))
+plot_boxplot(WQ_samples_2019_HL [c(3, 10:34)], by = "month", title = "WQ_samples__2019_HL by Month", ggtheme = theme_test(), geom_boxplot_args = list("outlier.color" = "blue"))
 plot_boxplot(WQ_samples_2019_HL [c(8, 10:34)], by = "Country", title = "WQ_samples__2019_HL by Country", ggtheme = theme_test(),geom_boxplot_args = list("outlier.color" = "blue"))
-WQ_samples_2019_HL_sorted<-WQ_samples_2019_HL %>% arrange(month)
+
 
 plot_boxplot(WQ_samples_2019_HL [c(3, 10:34)], by = "month", title = "WQ_samples_2019_HL by Month", ggtheme = theme_bw())
 
@@ -72,7 +72,7 @@ WQ_samples_2019_HL %>%
   labs(title = "TDS") +
   ggthemes::theme_base()+  
   theme(plot.title = element_text(color="blue", size=13, face="plain", vjust = -10, hjust = 0.5))+
-  theme(axis.title = element_text(size=11))+
+  theme(axis.title = element_text(size=11))
   
 
 # experiment with significance tests

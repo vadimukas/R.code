@@ -1227,3 +1227,200 @@ setdiff(df1, df2)
 library(tidyverse)
 library(stringr)
 
+string1 <- "This is a string"
+string2 <- 'If I want to include a "quote" inside a string, I use single quotes'
+
+
+double_quote <- "\"" # or '"'
+single_quote <- '\'' # or "'"
+double_quote
+single_quote
+
+# special characters
+x <- "\u00b5"
+x
+print(x)
+
+# combining strings
+str_c("x", "y")
+str_c("x", "y", sep = ", ")
+
+x <- c("abc", NA)
+str_c("|-", x, "-|")
+str_c("|-", str_replace_na(x), "-|") 
+
+# 14.2.3 Subsetting strings
+
+x <- c("Apple", "Banana", "Pear")
+str_sub(x, 1, 3)
+
+#You can also use the assignment form of str_sub() to modify strings:
+  
+str_sub(x, 1, 1) <- str_to_lower(str_sub(x, 1, 1))
+x
+
+# 14.2.4 Locales
+
+x <- c("apple", "eggplant", "banana")
+
+str_sort(x, locale = "en")
+str_sort(x, locale = "de")
+
+#14.3 Matching patterns with regular expressions
+# Regexps are a very terse language that allow you to describe patterns in strings.
+
+#14.3.1 Basic matches
+
+x <- c("apple", "banana", "pear")
+str_view(x, "an")
+
+str_view(x, ".a.")
+
+# And this tells R to look for an explicit .
+str_view(c("abc", "a.c", "bef"), "a\\.c")
+
+# 14.3.2 Anchors - are needed to anchor regular expression
+
+# ^ to match the start of the string.
+
+x <- c("apple", "banana", "pear")
+str_view(x, "^a")
+
+# $ to match the end of the string
+str_view(x, "a$")
+
+# 14.4.5 Splitting- Use str_split() to split a string up into pieces.  
+sentences %>%
+  head(5) %>% 
+  str_split(" ")
+# to return a matrix:
+sentences %>%
+  head(5) %>% 
+  str_split(" ", simplify = TRUE)
+
+x <- "This is a sentence.  This is another sentence."
+str_view_all(x, boundary("word"))
+
+# 15 Factors with forcats (not part of tidyverse)
+library(tidyverse)
+library(forcats)
+
+# 15.2 Creating factors
+
+# if you create a string 
+x1 <- c("Dec", "Apr", "Jan", "Mar")
+
+# and create levels
+month_levels <- c(
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+  
+# then you can make a factor
+
+y1 <-factor(x1, levels = month_levels)
+y1
+# which you can sort
+sort(y1)
+
+# making the order of levels matching the first appearance in data with unique()
+f1 <- factor(x1, levels = unique(x1))
+x1
+#or with fct_inorder
+f2 <- x1 %>% factor() %>% fct_inorder() 
+levels(f2)
+
+#15.3 General Social Survey
+forcats::gss_cat
+
+gss_cat %>%
+  count(race)
+
+ggplot(gss_cat, aes(race))+
+  geom_bar()
+
+# 15.4 Modifying factor order
+# you want to explore the average number of hours 
+# spent watching TV per day across religions:
+
+relig_summary <- gss_cat %>%
+  group_by(relig) %>%
+  summarise(
+    age = mean(age, na.rm = TRUE),
+    tvhours = mean(tvhours, na.rm = TRUE),
+    n = n()
+  )
+ggplot(relig_summary, aes(tvhours, relig)) +geom_point()
+
+# reordering using fct_reorder()  
+
+ggplot(relig_summary, aes(tvhours, fct_reorder(relig, tvhours))) +
+  geom_point()
+
+# the same only for age
+rincome_summary <- gss_cat %>%
+  group_by(rincome) %>%
+  summarise(
+    age = mean(age, na.rm = TRUE),
+    tvhours = mean(tvhours, na.rm = TRUE),
+    n = n()
+  )
+
+# coloring lines on the plot
+ggplot(rincome_summary, aes(age, fct_relevel(rincome, "Not applicable"))) +
+  geom_point()
+by_age <- gss_cat %>%
+  filter(!is.na(age)) %>%
+  count(age, marital) %>%
+  group_by(age) %>%
+  mutate(prop = n / sum(n))
+
+ggplot(by_age, aes(age, prop, colour = marital)) +
+  geom_line(na.rm = TRUE)
+
+ggplot(by_age, aes(age, prop, colour = fct_reorder2(marital, age, prop))) +
+  geom_line() +
+  labs(colour = "marital")
+
+gss_cat %>%
+  mutate(marital = marital %>% fct_infreq() %>% fct_rev()) %>%
+  ggplot(aes(marital)) +
+  geom_bar()
+
+# 15.5 Modifying factor levels
+gss_cat %>% count(partyid)
+
+gss_cat %>%
+  mutate(partyid = fct_recode(partyid,
+                              "Republican, strong"    = "Strong republican",
+                              "Republican, weak"      = "Not str republican",
+                              "Independent, near rep" = "Ind,near rep",
+                              "Independent, near dem" = "Ind,near dem",
+                              "Democrat, weak"        = "Not str democrat",
+                              "Democrat, strong"      = "Strong democrat"
+  )) %>%
+  count(partyid)
+
+gss_cat %>%
+  mutate(partyid = fct_recode(partyid,
+                              "Republican, strong"    = "Strong republican",
+                              "Republican, weak"      = "Not str republican",
+                              "Independent, near rep" = "Ind,near rep",
+                              "Independent, near dem" = "Ind,near dem",
+                              "Democrat, weak"        = "Not str democrat",
+                              "Democrat, strong"      = "Strong democrat",
+                              "Other"                 = "No answer",
+                              "Other"                 = "Don't know",
+                              "Other"                 = "Other party"
+  )) %>%
+  count(partyid)
+
+# lump together small groups with fct_lump()
+gss_cat %>%
+  mutate(relig = fct_lump(relig)) %>%
+  count(relig)
+
+# using parameter n
+gss_cat %>%
+  mutate(relig = fct_lump(relig, n = 10)) %>%
+  count(relig, sort = TRUE) %>%
+  print(n = Inf)

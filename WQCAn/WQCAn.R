@@ -1,10 +1,4 @@
 # Before we start install the required packages
-packrat::restore()
-install.packages(tidyverse)
-install.packages(DataExplorer)
-install.packages(psych)
-install.packages(DescTools)
-install.packages(pastecs)
 
 # exploring new WQ data, first load the required packages
 library(readr) 
@@ -17,7 +11,7 @@ library(DescTools)
 library(pastecs)
 
 #set working directory to subfolder WQCAn
-setwd("D:/R/R.code/WQCAn")
+setwd("D:/R/R.code/PCA")
 
 # first load ICP data
 ICP_samples_2019 <- read_csv("ICP_samples__2019.csv", 
