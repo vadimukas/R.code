@@ -377,3 +377,204 @@ ggplot(data = df,
         panel.grid.minor = element_blank())
 
 # Interactive graphics
+# Dygraphs
+install.packages("dygraphs")
+library(dygraphs)
+
+
+dyTemp <- dygraph(aranjuez[, c("TempMin", "TempAvg", "TempMax")],
+                  main = "Temperature in Aranjuez",
+                  ylab = "ºC")
+widgetframe::frameWidget(dyTemp)
+
+
+
+dygraph(aranjuez[, c("TempMin", "TempAvg", "TempMax")],
+        main = "Temperature in Aranjuez",
+        ylab = "ºC") %>%
+  dySeries(c("TempMin", "TempAvg", "TempMax"),
+           label = "Temperature") %>%
+  widgetframe::frameWidget()
+
+# use highcharter package
+# http://jkunst.com/highcharter/ 
+# https://www.datacamp.com/community/tutorials/data-visualization-highcharter-r 
+# https://www.highcharts.com/demo 
+# https://www.htmlwidgets.org/showcase_highcharts.html
+
+
+install.packages ("highcharter")
+library (highcharter)
+library(xts)
+
+aranjuezXTS <- as.xts(aranjuez)
+
+highchart() %>%
+  hc_add_series(name = 'TempMax',
+                aranjuezXTS[, "TempMax"]) %>%
+  hc_add_series(name = 'TempMin',
+                aranjuezXTS[, "TempMin"]) %>%
+  hc_add_series(name = 'TempAvg',
+                aranjuezXTS[, "TempAvg"]) %>%
+  widgetframe::frameWidget()
+
+# next is plotly
+library(plotly)
+
+aranjuezDF <- fortify(aranjuez[,
+                               c("TempMax",
+                                 "TempAvg",
+                                 "TempMin")],
+                      melt = TRUE)
+summary(aranjuezDF) 
+
+plot_ly(aranjuezDF) %>%
+  add_lines(x = ~ Index,
+            y = ~ Value,
+            color = ~ Series) %>%
+  widgetframe::frameWidget()
+
+# scatter plot matrix 
+aranjuezDF <- as.data.frame(aranjuez)
+aranjuezDF$Month <- format(index(aranjuez), '%m') 
+
+## Red-Blue palette with black added (12 colors)
+colors <- c(brewer.pal(n = 11, 'RdBu'), '#000000')
+
+## Rearrange according to months (darkest for summer)
+colors <- colors[c(6:1, 12:7)] 
+splom(~ aranjuezDF[1:10], ## Do not include "Month"
+      groups = aranjuezDF$Month,
+      auto.key = list(space = 'right', 
+                      title = 'Month', cex.title = 1),
+      pscale = 0, varname.cex = 0.7, xlab = '',
+      par.settings = custom.theme(symbol = colors,
+                                  pch = 19),
+      cex = 0.3, alpha = 0.1)
+
+library(GGally)
+
+ggpairs(aranjuezDF,
+        columns = 1:10, ## Do not include "Month"
+        upper = list(continuous = "points"),
+        mapping = aes(colour = Month, alpha = 0.1)) 
+
+# Scatterplot with time as a conditioning variable
+library(reshape2)
+
+aranjuezRshp <- melt(aranjuezDF,
+                     measure.vars = c('TempMax',
+                                      'TempAvg',
+                                      'TempMin'),
+                     variable.name = 'Statistic',
+                     value.name = 'Temperature')
+
+ggplot(data = aranjuezRshp, aes(Radiation, Temperature)) +
+  facet_grid(Statistic ~ Month) +
+  geom_point(col = 'skyblue4', pch = 19, cex = 0.5, alpha = 0.3) +
+  geom_rug() +
+  stat_smooth(se = FALSE, method = 'loess',
+              col = 'indianred1', lwd = 1.2) +
+  theme_bw()
+
+library(latticeExtra)
+
+useOuterStrips(
+  xyplot(Temperature ~ Radiation | Month * Statistic,
+         data = aranjuezRshp,
+         between = list(x = 0),
+         col = 'skyblue4', pch = 19,
+         cex = 0.5, alpha = 0.3)) +
+  layer({
+    panel.rug(..., col.line = 'indianred1',
+              end = 0.05, alpha = 0.6)
+    panel.loess(..., col = 'indianred1',
+                lwd = 1.5, alpha = 1)
+  })
+
+# Time as a complementary variable
+# Polylines
+
+
+## lattice version
+xyplot(GNI.capita  ~ CO2.capita, data = CO2data,
+       xlab = "Carbon dioxide emissions (metric tons per capita)",
+       ylab = "GNI per capita, PPP (current international $)",
+       groups = Country.Name, type = 'b')
+
+nCountries <- nlevels(CO2data$Country.Name)
+pal <- brewer.pal(n = 5, 'Set1')
+pal <- rep(pal, length = nCountries) 
+
+## Rank of average values of CO2 per capita
+CO2mean <- aggregate(CO2.capita ~ Country.Name,
+                     data = CO2data, FUN = mean)
+palOrdered <- pal[rank(CO2mean$CO2.capita)]  
+
+## simpleTheme encapsulates the palette in a new theme for xyplot
+myTheme <- simpleTheme(pch = 19, cex = 0.6, col = palOrdered) 
+
+## lattice version
+pCO2.capita <- xyplot(GNI.capita  ~ CO2.capita,
+                      data = CO2data,
+                      xlab = "Carbon dioxide emissions (metric tons per capita)",
+                      ylab = "GNI per capita, PPP (current international $)",
+                      groups = Country.Name,
+                      par.settings = myTheme,
+                      type = 'b')
+
+## lattice version
+pCO2.capita <- pCO2.capita +
+  glayer_(panel.text(...,
+                     labels = CO2data$Year[subscripts],
+                     pos = 2, cex = 0.5, col = 'gray'))
+pCO2.capita
+
+install.packages('directlabels')
+library(directlabels)
+
+## lattice version
+direct.label(pCO2.capita,
+             method = 'extreme.grid')
+
+## ggplot2 version
+gCO2.capita <- ggplot(data = CO2data,
+                      aes(x = CO2.capita,
+                          y = GNI.capita,
+                          color = Country.Name)) +
+  geom_point() + geom_path() +
+  scale_color_manual(values = palOrdered, guide = FALSE) +
+  xlab('CO2 emissions (metric tons per capita)') +
+  ylab('GNI per capita, PPP (current international $)') +
+  theme_bw() 
+
+## ggplot2 version
+direct.label(gCO2.capita, method = 'extreme.grid')
+
+# Interactive graphics: animation
+
+p <- plot_ly(CO2data,
+             x = ~CO2.capita,
+             y = ~GNI.capita,
+             sizes = c(10, 100),
+             marker = list(opacity = 0.7,
+                           sizemode = 'diameter')) 
+
+p <- add_markers(p,
+                 size = ~CO2.PPP,
+                 color = ~Country.Name,
+                 text = ~Country.Name, hoverinfo = "text",
+                 ids = ~Country.Name,
+                 frame = ~Year,
+                 showlegend = FALSE) 
+
+p <- animation_opts(p,
+                    frame = 1000,
+                    transition = 800,
+                    redraw = FALSE)
+
+p <- animation_slider(p,
+                      currentvalue = list(prefix = "Year "))
+
+widgetframe::frameWidget(p)
+
