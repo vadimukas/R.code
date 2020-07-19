@@ -1424,3 +1424,220 @@ gss_cat %>%
   mutate(relig = fct_lump(relig, n = 10)) %>%
   count(relig, sort = TRUE) %>%
   print(n = Inf)
+
+# 16 Dates and times 
+# https://r4ds.had.co.nz/dates-and-times.html 
+
+# 16.1.1 Prerequisites with lubridate
+
+library(tidyverse)
+library(lubridate)
+library(nycflights13)
+
+today()
+now()
+
+ymd_hms("2017-01-31 20:11:59")
+
+mdy_hm("01/31/2017 08:01")
+
+ymd(20170131, tz = "UTC")
+
+# 16.2.2 From individual components
+flights %>% 
+  select(year, month, day, hour, minute)
+
+# 
+flights %>% 
+  select(year, month, day, hour, minute) %>% 
+  mutate(departure = make_datetime(year, month, day, hour, minute))
+
+make_datetime_100 <- function(year, month, day, time) {
+  make_datetime(year, month, day, time %/% 100, time %% 100)
+}
+
+flights_dt <- flights %>% 
+  filter(!is.na(dep_time), !is.na(arr_time)) %>% 
+  mutate(
+    dep_time = make_datetime_100(year, month, day, dep_time),
+    arr_time = make_datetime_100(year, month, day, arr_time),
+    sched_dep_time = make_datetime_100(year, month, day, sched_dep_time),
+    sched_arr_time = make_datetime_100(year, month, day, sched_arr_time)
+  ) %>% 
+  select(origin, dest, ends_with("delay"), ends_with("time"))
+
+flights_dt
+
+flights_dt %>% 
+  ggplot(aes(dep_time)) + 
+  geom_freqpoly(binwidth = 86400) # 86400 seconds = 1 day
+
+flights_dt %>% 
+  filter(dep_time < ymd(20130102)) %>% 
+  ggplot(aes(dep_time)) + 
+  geom_freqpoly(binwidth = 600) # 600 s = 10 minutes
+
+# 16.2.3 From other types
+
+as_datetime(today())
+as_date(now())
+
+# We can use wday() to see that more flights depart during the week than on the weekend:
+  
+  flights_dt %>% 
+  mutate(wday = wday(dep_time, label = TRUE)) %>% 
+  ggplot(aes(x = wday)) +
+  geom_bar()
+
+  flights_dt %>% 
+    mutate(minute = minute(dep_time)) %>% 
+    group_by(minute) %>% 
+    summarise(
+      avg_delay = mean(arr_delay, na.rm = TRUE),
+      n = n()) %>% 
+    ggplot(aes(minute, avg_delay)) +
+    geom_line()
+  
+ # Interestingly, if we look at the scheduled departure time we don’t see such a strong pattern:
+    
+    sched_dep <- flights_dt %>% 
+    mutate(minute = minute(sched_dep_time)) %>% 
+    group_by(minute) %>% 
+    summarise(
+      avg_delay = mean(arr_delay, na.rm = TRUE),
+      n = n())
+  
+  ggplot(sched_dep, aes(minute, avg_delay)) +
+    geom_line()
+  
+  #16.3.2 Rounding
+#  An alternative approach to plotting individual components is to round the date 
+  # to a nearby unit of time, with floor_date(), round_date(), and ceiling_date().
+  
+  flights_dt %>% 
+    count(week = floor_date(dep_time, "week")) %>% 
+    ggplot(aes(week, n)) +
+    geom_line()
+  
+# 16.4 Time spans
+  
+#  durations, which represent an exact number of seconds.
+# periods, which represent human units like weeks and months.
+# intervals, which represent a starting and ending point.
+  
+  
+  # How old is Hadley?
+  h_age <- today() - ymd(19791014)
+  h_age
+  
+  # 16.4.1 Durations
+  as.duration(h_age)
+
+  # 16.4.2 Periods + Intervals 
+# To solve this problem, lubridate provides periods. 
+# Periods are time spans but don’t have a fixed length in seconds, instead they work with “human” times, like days and months. 
+  
+
+#  An interval is a duration with a starting point: that makes it precise 
+  # so you can determine exactly how long it is:
+    
+    next_year <- today() + years(1)
+  (today() %--% next_year) / ddays(1)
+  
+     # 16.5 Time zones
+    Sys.timezone()
+head(OlsonNames())    
+
+# Unless otherwise specified, lubridate always uses UTC. UTC (Coordinated Universal Time)
+# is the standard time zone used by the scientific community and roughly equivalent to its predecessor GMT (Greenwich Mean Time).
+# It does not have DST
+
+
+# 17 Introduction 
+# Chapter 14: Pipes with magrittr
+
+install.packages("magrittr")
+library (magrittr)
+
+# you can use the “tee” pipe. %T>% works like %>% except that it returns
+# the left-hand side instead of the right-hand side.
+
+rnorm(100) %>%
+  matrix(ncol = 2) %>%
+  plot() %>%
+  str()
+
+
+rnorm(100) %>%
+  matrix(ncol = 2) %T>%
+  plot() %>%
+  str()
+
+# if you work with vectors not dataframes, %$% might be usefull
+
+mtcars %$%
+   cor(disp, mpg)
+
+# For assignment magrittr provides the %<>% operator which allows you 
+# to replace code like:
+
+mtcars <- mtcars %>% 
+  transform(cyl = cyl * 2)
+
+#to
+
+mtcars %<>% transform(cyl = cyl * 2)
+
+# 19 Functions - Chapter 15 RDS
+
+# 19.2 When should you write a function?
+
+# You should consider writing a function whenever you’ve copied and pasted a block of code 
+# more than twice (i.e. you now have three copies of the same code)
+
+df <- tibble::tibble(
+  a = rnorm(10),
+  b = rnorm(10),
+  c = rnorm(10),
+  d = rnorm(10)
+)
+
+df$a <- (df$a - min(df$a, na.rm = TRUE)) / 
+  (max(df$a, na.rm = TRUE) - min(df$a, na.rm = TRUE))
+df$b <- (df$b - min(df$b, na.rm = TRUE)) / 
+  (max(df$b, na.rm = TRUE) - min(df$a, na.rm = TRUE))
+df$c <- (df$c - min(df$c, na.rm = TRUE)) / 
+  (max(df$c, na.rm = TRUE) - min(df$c, na.rm = TRUE))
+df$d <- (df$d - min(df$d, na.rm = TRUE)) / 
+  (max(df$d, na.rm = TRUE) - min(df$d, na.rm = TRUE))
+
+# this way
+x <- df$a
+(x - min(x, na.rm = TRUE)) / (max(x, na.rm = TRUE) - min(x, na.rm = TRUE))
+
+rng <- range(x, na.rm = TRUE)
+(x - rng[1]) / (rng[2] - rng[1])
+
+
+# then write a function - rescale
+rescale01 <- function(x) {
+  rng <- range(x, na.rm = TRUE)
+  (x - rng[1]) / (rng[2] - rng[1])
+}
+rescale01(c(0, 5, 10))
+
+# test the function with different inputs
+
+rescale01(c(-10, 0, 10))
+
+# automated tests 
+# http://r-pkgs.had.co.nz/tests.html 
+
+# now apply  the function 
+
+df$a <- rescale01(df$a)
+df$b <- rescale01(df$b)
+df$c <- rescale01(df$c)
+df$d <- rescale01(df$d)
+
+df
