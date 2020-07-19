@@ -1641,3 +1641,36 @@ df$c <- rescale01(df$c)
 df$d <- rescale01(df$d)
 
 df
+
+# 21 Iteration 
+
+# 21.2 For loops
+
+df <- tibble(
+  a = rnorm(10),
+  b = rnorm(10),
+  c = rnorm(10),
+  d = rnorm(10)
+)
+
+# if we want to compute medians for each column we can use loop
+
+output <- vector("double", ncol(df))  # 1. output
+for (i in seq_along(df)) {            # 2. sequence
+  output[[i]] <- median(df[[i]])      # 3. body
+}
+
+# compute medians for every column in mtcars dataset
+
+output <-vector("double", ncol(mtcars))
+for (i in seq_along(mtcars)) {
+  output[[i]] <-median(mtcars[[i]])
+}
+  
+# load the required packages
+library(nycflights13)
+
+#explore nycflights 
+nycflights13::flights
+
+
