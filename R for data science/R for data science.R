@@ -1641,7 +1641,6 @@ df$c <- rescale01(df$c)
 df$d <- rescale01(df$d)
 
 df
-<<<<<<< HEAD
 
 # 21 Iteration 
 
@@ -1677,3 +1676,55 @@ nycflights13::flights
 
 # a commit to resolve the conflict
 
+# use while
+# while (condition) {
+# body
+# }
+
+
+
+# 21.5 The map functions
+
+# map() makes a list.
+# map_lgl() makes a logical vector.
+# map_int() makes an integer vector.
+# map_dbl() makes a double vector.
+# map_chr() makes a character vector
+
+# Each function takes a vector as input, applies a function to each piece, and then returns a new vector that’s the same length 
+# (and has the same names) as the input
+
+map_dbl(df, median)
+
+map_dbl(df, mean)
+
+# or using the pipe
+
+df %>% map_dbl(mean)
+
+df %>% map_dbl(median)
+
+# Shortcuts
+
+# e.g. fitting a linear model to a dataset
+
+models <- mtcars %>% 
+  split(.$cyl) %>% 
+  map(function(df) lm(mpg ~ wt, data = df))
+
+# with purr shortcut
+
+models <- mtcars %>% 
+  split(.$cyl) %>% 
+  map(~lm(mpg ~ wt, data = .))
+
+# adding R2
+models %>% 
+  map(summary) %>% 
+  map_dbl(~.$r.squared)
+
+# using  a sting as a shortcut
+
+models %>% 
+  map(summary) %>% 
+  map_dbl("r.squared")
