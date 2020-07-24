@@ -1641,7 +1641,7 @@ df$c <- rescale01(df$c)
 df$d <- rescale01(df$d)
 
 df
-<<<<<<< HEAD
+
 
 # 21 Iteration 
 
