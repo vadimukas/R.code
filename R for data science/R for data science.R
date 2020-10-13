@@ -1819,3 +1819,330 @@ ggplot(sim1, aes(x, y)) +
   )+
   theme_light()
 
+# a numerical minimisation tool called Newton-Raphson search
+
+best <- optim(c(0, 0), measure_distance, data = sim1)
+best$par
+
+ggplot(sim1, aes(x, y)) + 
+  geom_point(size = 2, colour = "grey30") + 
+  geom_abline(intercept = best$par[1], slope = best$par[2])+
+  theme_test()
+
+# linear models using lm () function of R
+
+sim1_mod <- lm(y ~ x, data = sim1)
+coef(sim1_mod)
+
+# exercise 
+sim1a <- tibble(
+  x = rep(1:10, each = 3),
+  y = x * 1.5 + 6 + rt(length(x), df = 2)
+)
+
+ggplot(sim1a, aes(x, y)) + 
+  geom_point(size = 2, colour = "red") + 
+  geom_abline(intercept = best$par[1], slope = best$par[2])+
+  theme_test()
+
+best1 <- optim(c(0, 0), measure_distance, data = sim1a)
+
+ggplot(sim1a, aes(x, y)) + 
+  geom_point(size = 2, colour = "blue") + 
+  geom_abline(intercept = best1$par[1], slope = best1$par[2])+
+  theme_test()
+
+#instead of root-mean-squared distance, you could use mean-absolute distance:
+
+measure_distance <- function(mod, data) {
+  diff <- data$y - model1(mod, data)
+  mean(abs(diff))
+}
+
+best2 <- optim(c(0, 0), measure_distance, data = sim1a)
+best$par
+
+ggplot(sim1a, aes(x, y)) + 
+  geom_point(size = 2, colour = "yellow") + 
+  geom_abline(intercept = best2$par[1], slope = best2$par[2])+
+  theme_test()
+
+model1 <- function(a, data) {
+  a[1] + data$x * a[2] + a[3]
+}
+
+# 23.3 Visualising models 
+
+# It’s also useful to see what the model doesn’t capture, the so-called residuals 
+#which are left after subtracting the predictions from the data. #
+#Residuals are powerful because they allow us to use models to remove striking patterns so
+# we can study the subtler trends that remain.
+
+# Predictions
+
+# The easiest way to do generate a grid of values  is to use modelr::data_grid()
+
+grid <- sim1 %>% 
+  data_grid(x) 
+grid
+
+# add predictions  and plot them
+
+grid <- grid %>% 
+  add_predictions(sim1_mod) 
+grid
+
+ggplot(sim1, aes(x)) +
+  geom_point(aes(y = y)) +
+  geom_line(aes(y = pred), data = grid, colour = "red", size = 1)+
+  theme_test()
+
+# how to visualise more complex models
+# http://vita.had.co.nz/papers/model-vis.html
+# the paper http://vita.had.co.nz/papers/model-vis.pdf 
+
+sim1 <-sim1 %>% 
+  add_residuals(sim1_mod)
+sim1
+
+# add frequency polygon to understand the spread of the residuals
+
+ggplot(sim1, aes(resid)) + 
+  geom_freqpoly(binwidth = 0.5)
+
+# recreating the plot with residuals
+ggplot(sim1, aes(x, resid)) + 
+  geom_ref_line(h = 0) +
+  geom_point()
+
+# Exercises
+# using loess() to fit the smooth curve
+
+sim2_mod <- loess(y ~ x, data = sim1)
+ggplot(sim1, aes(x, y)) + 
+  geom_point(size = 2, colour = "blue") + 
+  geom_smooth() +
+    theme_test()
+
+# adding horizontal line with geom_ref_line ()
+
+sim2_mod <- loess(y ~ x, data = sim1)
+ggplot(sim1, aes(x, y)) + 
+  geom_point(size = 2, colour = "blue") + 
+  geom_smooth() +
+  geom_ref_line(h=15,  v=5, colour = "black", size = 1)+
+  theme_test()
+
+# 23.4 Formulas and model families
+
+df <- tribble(
+  ~y, ~x1, ~x2,
+  4, 2, 5,
+  5, 1, 6
+)
+
+# using model matrix () the model_matrix() function. 
+# it takes a data frame and a formula and returns a tibble that defines the model equation: 
+
+model_matrix(df, y ~ x1)
+model_matrix(df, y ~ x1 - 1)
+model_matrix(df, y ~ x1 + x2)
+
+#“Wilkinson-Rogers notation”, and was initially described in 
+# Symbolic Description of Factorial Models for Analysis of Variance, by
+# G. N. Wilkinson and C. E. Rogers
+# https://www.jstor.org/stable/2346786?seq=1 
+
+# 23.4.1 Categorical variables 
+
+#coding categorical into a number
+df <- tribble(
+  ~ sex, ~ response,
+  "male", 1,
+  "female", 2,
+  "male", 1
+)
+df
+
+model_matrix(df, response ~ sex)
+
+# the sim2 dataset from modelr:
+  
+  ggplot(sim2) + 
+  geom_point(aes(x, y))
+
+  # fitting the model
+  
+  mod2 <- lm(y ~ x, data = sim2)
+  
+  grid <- sim2 %>% 
+    data_grid(x) %>% 
+    add_predictions(mod2)
+  grid
+  
+  ggplot(sim2, aes(x)) + 
+    geom_point(aes(y = y)) +
+    geom_point(data = grid, aes(y = pred), colour = "red", size = 4)
+
+  # 23.4.2 Interactions (continuous and categorical) 
+  
+  head(sim3)
+  
+  ggplot(sim3, aes(x1, y)) + 
+    geom_point(aes(colour = x2))
+  
+  ggplot(sim3, aes(x1, y)) + 
+    geom_boxplot(aes(colour = x2))
+  
+  ggplot(sim3, aes(x1, y)) + 
+    geom_violin(aes(colour = x2))
+    
+# There are two possible models you could fit to this data:
+  
+# When you add variables with +, the model will estimate each effect independent of all the others.
+  mod1 <- lm(y ~ x1 + x2, data = sim3)
+  # It’s possible to fit the so-called interaction by using *
+  mod2 <- lm(y ~ x1 * x2, data = sim3)
+
+# use data_grid() for 2 variables + gather_prediction() & spread_predictions() to add rows, columns
+  grid <- sim3 %>% 
+    data_grid(x1, x2) %>% 
+    gather_predictions(mod1, mod2)
+  grid  
+
+  ggplot(sim3, aes(x1, y, colour = x2)) + 
+    geom_point() + 
+    geom_line(data = grid, aes(y = pred)) + 
+    facet_wrap(~ model)+
+    theme_test()
+
+  # which model is the best?
+  # gather the residuals
+  sim3 <- sim3 %>% 
+    gather_residuals(mod1, mod2)
+  # plot the residuals
+    ggplot(sim3, aes(x1, resid, colour = x2)) + 
+    geom_point() + 
+    facet_grid(model ~ x2)+
+      theme_minimal()
+    
+# 23.4.3 Interactions (two continuous) with sim4
+    library(modelr)
+    
+    head(sim4)
+    mod1 <- lm(y ~ x1 + x2, data = sim4)
+    mod2 <- lm(y ~ x1 * x2, data = sim4)
+
+    # Note my use of seq_range() inside data_grid(). Instead of using every unique value of x
+    grid <- sim4 %>% 
+      data_grid(
+        x1 = seq_range(x1, 5), 
+        x2 = seq_range(x2, 5) 
+      ) %>% 
+      gather_predictions(mod1, mod2)
+    grid
+
+    # on using seq_range()  
+    # pretty = TRUE will generate a “pretty” sequence
+    
+    seq_range(c(0.0123, 0.923423), n = 5)
+    seq_range(c(0.0123, 0.923423), n = 5, pretty = TRUE)
+    
+    # trim = 0.1 will trim off 10% of the tail values
+    
+    x1 <- rcauchy(100)
+    seq_range(x1, n = 5)
+    seq_range(x1, n = 5, trim = 0.10)
+    seq_range(x1, n = 5, trim = 0.25)
+    seq_range(x1, n = 5, trim = 0.50)
+    
+    # expand = 0.1 is in some sense the opposite of trim() it expands the range by 10%
+    
+# Next let’s try and visualise that model.
+    
+    ggplot(grid, aes(x1, x2)) + 
+      geom_tile(aes(fill = pred)) + 
+      facet_wrap(~ model)
+
+    ggplot(grid, aes(x1, pred, colour = x2, group = x2)) + 
+      geom_line() +
+      facet_wrap(~ model)
+    ggplot(grid, aes(x2, pred, colour = x1, group = x1)) + 
+      geom_line() +
+      facet_wrap(~ model)    
+
+#23.4.4 Transformations 
+    # You can also perform transformations inside the model formula.
+    # If your transformation involves +, *, ^, or -, you’ll need to wrap it in I() 
+    # so R doesn’t treat it like part of the model specification.
+    
+    df <- tribble(
+      ~y, ~x,
+      1,  1,
+      2,  2, 
+      3,  3
+    )
+  # use model_matrix () to see what the model is fitting
+        model_matrix(df, y ~ x^2 + x)
+        model_matrix(df, y ~ I(x^2) + x) 
+  # Transformations are useful because you can use them to approximate non-linear functions. 
+  # use poly() to fit a polynomial function 
+        
+        model_matrix(df, y ~ poly(x, 2))
+  # poly(): outside the range of the data
+  # polynomials rapidly shoot off to positive or negative infinity.    
+        # then use natural spline
+        
+        library(splines)
+        model_matrix(df, y ~ ns(x, 2))      
+    
+        # Let’s see what that looks like when we try and approximate a non-linear function: 
+        sim5 <- tibble(
+          x = seq(0, 3.5 * pi, length = 50),
+          y = 4 * sin(x) + rnorm(length(x))
+        )
+        
+        ggplot(sim5, aes(x, y)) +
+          geom_point()
+        
+    # I’m going to fit five models to this data.
+        
+        mod1 <- lm(y ~ ns(x, 1), data = sim5)
+        mod2 <- lm(y ~ ns(x, 2), data = sim5)
+        mod3 <- lm(y ~ ns(x, 3), data = sim5)
+        mod4 <- lm(y ~ ns(x, 4), data = sim5)
+        mod5 <- lm(y ~ ns(x, 5), data = sim5)
+        
+        grid <- sim5 %>% 
+          data_grid(x = seq_range(x, n = 50, expand = 0.1)) %>% 
+          gather_predictions(mod1, mod2, mod3, mod4, mod5, .pred = "y")
+        
+        ggplot(sim5, aes(x, y)) + 
+          geom_point() +
+          geom_line(data = grid, colour = "red") +
+          facet_wrap(~ model)
+#  23.5 Missing values
+        # R’s default behaviour is to silently drop them, but options(na.action = na.warn)
+        
+        df <- tribble(
+          ~x, ~y,
+          1, 2.2,
+          2, NA,
+          3, 3.5,
+          4, 8.3,
+          NA, 10
+        )
+        
+        mod <- lm(y ~ x, data = df)
+#  To suppress the warning, set na.action = na.exclude 
+        
+        mod <- lm(y ~ x, data = df, na.action = na.exclude) 
+        mod <- lm(y ~ x, data = df, na.action = na.warn) 
+        mod <- lm(y ~ x, data = df) 
+# You can always see exactly how many observations were used with nobs():
+          
+          nobs(mod)
+# 23.6 Other model families
+          
+# Generalised linear models, e.g. stats::glm() 
+          
