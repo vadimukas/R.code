@@ -11,7 +11,8 @@ library(DescTools)
 library(pastecs)
 
 #set working directory to subfolder WQCAn
-setwd("D:/R/R.code/PCA")
+setwd("D:/R/R.code/WQCAn")
+
 
 # first load ICP data
 ICP_samples_2019 <- read_csv("ICP_samples__2019.csv", 

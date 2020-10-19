@@ -2146,3 +2146,219 @@ model_matrix(df, response ~ sex)
           
 # Generalised linear models, e.g. stats::glm() 
           
+# Generalised additive models, e.g. mgcv::gam()
+          #extend generalised linear models to incorporate arbitrary smooth functions.
+          
+# Penalised linear models, e.g. glmnet::glmnet()
+          # add a penalty term to the distance that penalises complex models
+          
+# Robust linear models, e.g. MASS::rlm(), tweak the distance to downweight points that are very far away. 
+
+# Trees, e.g. rpart::rpart(), attack the problem in a completely different way than linear models.
+          
+          
+          # 24 Model building
+    # https://r4ds.had.co.nz/model-building.html 
+          
+  # Prerequisites
+          
+          library(tidyverse)
+          library(modelr)
+          options(na.action = na.warn)
+          
+          library(nycflights13)
+          library(lubridate)
+          
+# 24.2 Why are low quality diamonds more expensive?
+          
+          ggplot(diamonds, aes(cut, price)) + geom_boxplot()+theme_test()
+          ggplot(diamonds, aes(color, price)) + geom_boxplot()+theme_test()
+          ggplot(diamonds, aes(clarity, price)) + geom_boxplot()+theme_test()
+
+    # 24.2.1 Price and carat
+          ggplot(diamonds, aes(carat, price)) + 
+            geom_hex(bins = 50)+
+            theme_test()
+    # Focus on diamonds smaller than 2.5 carats (99.7% of the data)
+    #Log-transform the carat and price variables.
+  
+           diamonds2 <- diamonds %>% 
+            filter(carat <= 2.5) %>% 
+            mutate(lprice = log2(price), lcarat = log2(carat))            
+          
+           # and look at the dataset again
+           ggplot(diamonds2, aes(lcarat, lprice)) + 
+             geom_hex(bins = 50)+
+             theme_test()
+           
+ # first let's fit the model           
+           mod_diamond <- lm(lprice ~ lcarat, data = diamonds2)
+           
+           # undo the log transform and add prediction on the data
+
+           grid <- diamonds2 %>% 
+             data_grid(carat = seq_range(carat, 20)) %>% 
+             mutate(lcarat = log2(carat)) %>% 
+             add_predictions(mod_diamond, "lprice") %>% 
+             mutate(price = 2 ^ lprice)
+           
+           ggplot(diamonds2, aes(carat, price)) + 
+             geom_hex(bins = 50) + 
+             geom_line(data = grid, colour = "red", size = 1)+
+             theme_test()
+           
+      # Now we can look at the residuals
+           
+           diamonds2 <- diamonds2 %>% 
+             add_residuals(mod_diamond, "lresid")
+           
+           ggplot(diamonds2, aes(lcarat, lresid)) + 
+             geom_hex(bins = 50)+ 
+             theme_test()
+# redoing our boxplots using residuals instead of price
+           ggplot(diamonds2, aes(cut, lresid)) + geom_boxplot()+theme_test()
+           ggplot(diamonds2, aes(color, lresid)) + geom_boxplot()+theme_test()
+           ggplot(diamonds2, aes(clarity, lresid)) + geom_boxplot()+theme_test()
+           
+        #24.2.2 A more complicated model
+           
+# we could include color, cut, and clarity into the model (+ means predictors are independent)
+mod_diamond2 <- lm(lprice ~ lcarat + color + cut + clarity, data = diamonds2)
+
+# To make the process a little easier, we’re going to use the .model argument to data_grid:
+grid <- diamonds2 %>% 
+  data_grid(cut, .model = mod_diamond2) %>% 
+  add_predictions(mod_diamond2)
+grid
+
+ggplot(grid, aes(cut, pred)) + 
+  geom_point()
+   
+diamonds2 <- diamonds2 %>% 
+  add_residuals(mod_diamond2, "lresid2")
+
+ggplot(diamonds2, aes(lcarat, lresid2)) + 
+  geom_hex(bins = 50)+
+  theme_test()
+
+# look at the diamonds with large residuals 
+
+diamonds2 %>% 
+  filter(abs(lresid2) > 1) %>% 
+  add_predictions(mod_diamond2) %>% 
+  mutate(pred = round(2 ^ pred)) %>% 
+  select(price, pred, carat:table, x:z) %>% 
+  arrange(price)
+
+# 24.3 What affects the number of daily flights? 
+ #Let’s work through a similar process for a dataset that seems even simpler at first glance: 
+ # the number of flights that leave NYC per day.
+
+head(flights)
+
+daily <- flights %>% 
+  mutate(date = make_date(year, month, day)) %>% 
+  group_by(date) %>% 
+  summarise(n = n())
+
+ggplot(daily, aes(date, n)) + 
+  geom_line()
+
+# Day of the week
+# Note: wday() returns the day of the week as a decimal number or an ordered factor if label is TRUE. (lubridate)
+daily <- daily %>% 
+  mutate(wday = wday(date, label = TRUE))
+ggplot(daily, aes(wday, n)) + 
+  geom_boxplot()+
+  theme_test()
+
+is.Date(daily$date)
+
+# Sunday is least busiest day for flights
+# let' fit the model and adde predictions to the origianal data
+mod <- lm(n ~ wday, data = daily)
+
+grid <- daily %>% 
+  data_grid(wday) %>% 
+  add_predictions(mod, "n")
+
+ggplot(daily, aes(wday, n)) + 
+  geom_boxplot() +
+  geom_point(data = grid, colour = "red", size = 4)+
+  theme_linedraw()
+# next compute and visualize the residuals
+
+daily <- daily %>% 
+  add_residuals(mod)
+daily %>% 
+  ggplot(aes(date, resid)) + 
+  geom_ref_line(h = 0) + 
+  geom_line()
+
+# the residuals show that the model fail starting around June
+# let's draw the lines for each day of the week
+
+ggplot(daily, aes(date, resid, colour = wday)) + 
+  geom_ref_line(h = 0) + 
+  geom_line() 
+
+# There are some days with far fewer flights than expected: puplic holiday the other days
+  
+  daily %>% 
+  filter(resid < -100)
+
+# there is a smoother long-term trend:
+  
+  daily %>% 
+    ggplot(aes(date, resid)) + 
+    geom_ref_line(h = 0) + 
+    geom_line(colour = "grey50") + 
+    geom_smooth(se = FALSE, span = 0.20)
+  
+  # 24.3.2 Seasonal Saturday effect: filtering Sundays and making time-series 
+
+  daily %>% 
+    filter(wday == "Sat") %>% 
+    ggplot(aes(date, n)) + 
+    geom_point() + 
+    geom_line() +
+    scale_x_date(NULL, date_breaks = "1 month", date_labels = "%b")+
+    theme_bw()
+# Lets create a “term” variable that roughly captures the three school terms, and check our work with a plot:
+  
+  term <- function(date) {
+    cut(date, 
+        breaks = ymd(20130101, 20130605, 20130825, 20140101),
+        labels = c("spring", "summer", "fall") 
+    )
+  }
+  
+  daily <- daily %>% 
+    mutate(term = term(date)) 
+  
+  daily %>% 
+    filter(wday == "Sat") %>% 
+    ggplot(aes(date, n, colour = term)) +
+    geom_point(alpha = 1/3) + 
+    geom_line() +
+    scale_x_date(NULL, date_breaks = "1 month", date_labels = "%b")+
+    theme_classic()
+# using boxlots with terms varialbe 
+  
+  daily %>% 
+    ggplot(aes(wday, n, colour = term)) +
+    geom_boxplot()+
+    theme_test()
+  
+#  so fitting a separate day of week effect for each term is reasonable, but
+# it does not significantly improves the model
+  
+  mod1 <- lm(n ~ wday, data = daily)
+  mod2 <- lm(n ~ wday * term, data = daily)
+  
+  daily %>% 
+    gather_residuals(without_term = mod1, with_term = mod2) %>% 
+    ggplot(aes(date, resid, colour = model)) +
+    geom_line(alpha = 0.75)+
+    theme_test()
+  
