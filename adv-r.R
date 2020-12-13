@@ -1,3 +1,11 @@
+# the book is here
+# https://adv-r.hadley.nz/ 
+
+# the books on solutions are here 
+# https://advanced-r-solutions.rbind.io/ 
+# the repository on github here 
+# https://github.com/Tazinho/Advanced-R-Solutions 
+  
 ?# data structures
 #Atomic vectors are usually created with c(), short for combine:
 dbl_var <- c(1, 2.5, 4.5)

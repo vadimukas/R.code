@@ -2362,3 +2362,780 @@ ggplot(daily, aes(date, resid, colour = wday)) +
     geom_line(alpha = 0.75)+
     theme_test()
   
+  grid <- daily %>% 
+    data_grid(wday, term) %>% 
+    add_predictions(mod2, "n")
+  
+  ggplot(daily, aes(wday, n)) +
+    geom_boxplot() + 
+    geom_point(data = grid, colour = "red") + 
+    facet_wrap(~ term)+
+    theme_test()
+# Our model is finding the mean effect, but we have a lot of big outliers
+# We can alleviate this problem by using a model that is robust to the effect of outliers: MASS::rlm()
+  mod3 <- MASS::rlm(n ~ wday * term, data = daily)
+  
+  daily %>% 
+    add_residuals(mod3, "resid") %>% 
+    ggplot(aes(date, resid)) + 
+    geom_hline(yintercept = 0, size = 2, colour = "white") + 
+    geom_line()+ 
+    theme_bw()
+  
+#24.3.3 Computed variables
+  # Bundling the computed variables into a function
+  
+  compute_vars <- function(data) {
+    data %>% 
+      mutate(
+        term = term(date), 
+        wday = wday(date, label = TRUE)
+      )
+  }
+  
+  # another option is to put transformation directly into  the model formula
+  
+  wday2 <- function(x) wday(x, label = TRUE)
+  mod3 <- lm(n ~ wday2(date) * term(date), data = daily)
+  
+# 24.3.4 Time of year: an alternative approach
+#  simple linear trend isn’t adequate, so we could try using 
+# a natural spline to fit a smooth curve across the year: 
+  
+  library(splines)
+  mod <- MASS::rlm(n ~ wday * ns(date, 5), data = daily)
+  
+  daily %>% 
+    data_grid(wday, date = seq_range(date, n = 13)) %>% 
+    add_predictions(mod) %>% 
+    ggplot(aes(date, pred, colour = wday)) + 
+    geom_line() +
+    geom_point()+ 
+    theme_test()
+  
+# 24.4 Learning more about models
+  
+  
+  #25 Many models
+  
+  # 1. In list-columns, you’ll learn more about the list-column data structure
+  # 2. In creating list-columns, you’ll learn the three main ways in which you’ll create list-columns.
+  # 3. In simplifying list-columns you’ll learn how to convert list-columns back to regular atomic vectors
+  # 4. In making tidy data with broom, you’ll learn about the full set of tools provided by broom 
+  
+  library(modelr)
+  library(tidyverse)
+
+  # 25.2 gapminder
+  
+ # Hans Rosling's 200 Countries, 200 Years, 4 Minutes - The Joy of Stats - BBC Four 
+ # https://www.youtube.com/watch?v=jbkSRLYSojo
+  install.packages("gapminder")
+
+  library(gapminder)
+  
+  # How does life expectancy (lifeExp) change over time (year) for each country (country)?
+  
+  gapminder %>% 
+    ggplot(aes(year, lifeExp, group = country)) +
+    geom_line(alpha = 1/3)+
+    theme_test()
+
+  nz <- filter(gapminder, country == "New Zealand")
+  nz %>% 
+    ggplot(aes(year, lifeExp)) + 
+    geom_line() + 
+    ggtitle("Full data = ")
+  
+  nz_mod <- lm(lifeExp ~ year, data = nz)
+  nz %>% 
+    add_predictions(nz_mod) %>%
+    ggplot(aes(year, pred)) + 
+    geom_line() + 
+    ggtitle("Linear trend + ")
+  
+  nz %>% 
+    add_residuals(nz_mod) %>% 
+    ggplot(aes(year, resid)) + 
+    geom_hline(yintercept = 0, colour = "red", size = 0.1) + 
+    geom_line() + 
+    theme_test()+
+    ggtitle("Remaining pattern")
+  
+  
+  # 25.2.1 Nested data
+  # nested data frame  - that is important 
+  
+  by_country <- gapminder %>% 
+    group_by(country, continent) %>% 
+    nest()
+  
+  by_country
+  by_country$data[[1]]
+
+# a nested dataset is we now have a meta-observation: a row that represents 
+# the complete time course for a country, rather than a single point in time!
+  
+  # 25.2.2 List-columns 
+  # now fitting the model into nested dataframe
+  
+  country_model <- function(df) {
+    lm(lifeExp ~ year, data = df)
+  }
+
+#The data frames are in a list, so we can use purrr::map() 
+# to apply country_model to each element:
+    
+    models <- map(by_country$data, country_model)  
+  
+# however, instead of creating a new object in the global environment,
+# we’re going to create a new variable in the by_country data frame.
+# That’s a job for dplyr::mutate():
+
+    by_country <- by_country %>% 
+      mutate(model = map(data, country_model))
+    by_country
+
+    # now you can filter and arrange 
+    
+    by_country %>% 
+      filter(continent == "Europe")
+    
+    by_country %>% 
+      arrange(continent, country)
+    
+    # 25.2.3 Unnesting  
+# To compute the residuals, we need to call add_residuals() with each model-data pair:
+    
+    by_country <- by_country %>% 
+      mutate(
+        resids = map2(data, model, add_residuals)
+      )
+    by_country
+
+# let's turn the list of DFs into a regular DF with unnest()
+    
+    resids <- unnest(by_country, resids)
+    resids    
+    
+    # now we can plot residusals 
+    resids %>% 
+      ggplot(aes(year, resid)) +
+      geom_line(aes(group = country), alpha = 1 / 3) + 
+      geom_smooth(se = FALSE)+
+      theme_test()
+    
+    # Facetting by continent is particularly revealing:
+      
+      resids %>% 
+      ggplot(aes(year, resid, group = country)) +
+      geom_line(alpha = 1 / 3) + 
+      facet_wrap(~continent)+
+        theme_light()
+
+     # 25.2.4 Model quality
+      
+      #The broom package provides a general set of functions to turn models into tidy data.
+      #Here we’ll use broom::glance() to extract some model quality metrics. 
+      
+      broom::glance(nz_mod)
+      
+ #We can use mutate() and unnest() to create a data frame with a row for each country:
+      
+      by_country %>% 
+        mutate(glance = map(model, broom::glance)) %>% 
+        unnest(glance)
+  # it still includes all the list columns. 
+  # To suppress these columns we use .drop = TRUE:
+      
+      glance <- by_country %>% 
+        mutate(glance = map(model, broom::glance)) %>% 
+        unnest(glance, .drop = TRUE)
+      
+      glance
+
+# With this data frame in hand, we can start to look for models that don’t fit well:
+        
+        glance %>% 
+        arrange(r.squared)
+# The worst models all appear to be in Africa. Let’s double check that with a plot. 
+        
+        glance %>% 
+          ggplot(aes(continent, r.squared)) + 
+          geom_jitter(width = 0.5)+
+          theme_test()
+      
+        glance %>% 
+          ggplot(aes(continent, r.squared)) + 
+          geom_boxplot(width = 0.5)+
+          theme_test()
+        
+# let's filter out bad R2 data and plot it
+        bad_fit <- filter(glance, r.squared < 0.25)
+        
+          gapminder %>% 
+          semi_join(bad_fit, by = "country") %>% 
+          ggplot(aes(year, lifeExp, colour = country)) +
+          geom_line()+
+          theme_test()
+         
+    # 25.3 List-columns
+    # https://r4ds.had.co.nz/many-models.html#list-columns-1    
+      
+          # data.frame() treats a list as a list of columns:    
+          data.frame(x = list(1:3, 3:5))
+          
+          # you can prevent data.frame() from doing this with I()
+          
+          data.frame(
+            x = I(list(1:3, 3:5)), 
+            y = c("1, 2", "3, 4, 5")
+          )
+          
+# Tibble alleviates this problem by being lazier (tibble() doesn’t modify its inputs) 
+# and by providing a better print method:
+          
+          tibble(
+            x = list(1:3, 3:5), 
+            y = c("1, 2", "3, 4, 5")
+          )
+          
+          tribble(
+            ~x, ~y,
+            1:3, "1, 2",
+            3:5, "3, 4, 5"
+          )
+          
+ # List-columns are often most useful as intermediate data structure
+          # 25.4 Creating list-columns
+.            
+# 25.4.1 With nesting
+      # 1 tidyr::nest()
+# nest() creates a nested data frame, which is a data frame with a list-column of data frames. 
+# There are two ways to use nest()
+
+gapminder %>% 
+  group_by(country, continent) %>% 
+  nest()
+
+# You can also use it on an ungrouped data frame, specifying which columns you want to nest:
+  
+  gapminder %>% 
+  nest(data = c(year:gdpPercap))
+          
+  # 25.4.2 From vectorised functions        
+  # Some useful functions take an atomic vector and return a list.            
+  
+  df <- tribble(
+    ~x1,
+    "a,b,c", 
+    "d,e,f,g"
+  )         
+
+df %>% 
+  mutate(x2 = stringr::str_split(x1, ","))
+
+# unnest() knows how to handle these lists of vectors:          
+df %>% 
+  mutate(x2 = stringr::str_split(x1, ",")) %>% 
+  unnest(x2)
+
+#Another example of this pattern is using the map(), map2(), pmap() from purrr. 
+
+sim <- tribble(
+  ~f,      ~params,
+  "runif", list(min = -1, max = 1),
+  "rnorm", list(sd = 5),
+  "rpois", list(lambda = 10)
+)
+
+sim %>%
+  mutate(sims = invoke_map(f, params, n = 10))
+
+# 25.4.3 From multivalued summaries
+# you can wrap the summarise() results in the list 
+
+mtcars %>% 
+  group_by(cyl) %>% 
+  summarise(q = list(quantile(mpg)))
+# To make useful results with unnest, you’ll also need to capture the probabilities:
+
+probs <- c(0.01, 0.25, 0.5, 0.75, 0.99)
+mtcars %>% 
+  group_by(cyl) %>% 
+  summarise(p = list(probs), q = list(quantile(mpg, probs))) %>% 
+  unnest(c(p, q))
+
+# 25.4.4 From a named list
+
+x <- list(
+  a = 1:5,
+  b = 3:4, 
+  c = 5:6
+) 
+
+df <- enframe(x)
+df
+
+# Now if you want to iterate over names and values in parallel, you can use map2():
+  
+  df %>% 
+  mutate(
+    smry = map2_chr(name, value, ~ stringr::str_c(.x, ": ", .y[1]))
+  )
+
+# 25.5 Simplifying list-columns 
+  
+#  If you want a single value, use mutate() with map_lgl(), map_int(), map_dbl(), and map_chr() 
+# to create an atomic vector.
+  
+  # 25.5.1 List to vector
+  
+  df <- tribble(
+    ~x,
+    letters[1:5],
+    1:3,
+    runif(5)
+  )
+  
+  df %>% mutate(
+    type = map_chr(x, typeof),
+    length = map_int(x, length)
+  )
+# Don’t forget about the map_*() shortcuts - you can use map_chr(x, "apple")
+# to extract the string stored in apple for each element of x.   
+  
+  df <- tribble(
+    ~x,
+    list(a = 1, b = 2),
+    list(a = 2, c = 4)
+  )
+  df %>% mutate(
+    a = map_dbl(x, "a"),
+    b = map_dbl(x, "b", .null = NA_real_)
+  )
+  
+  # If you want many values, use unnest() to convert list-columns back to regular columns,
+  # repeating the rows as many times as necessary.
+  
+  
+  tibble(x = 1:2, y = list(1:4, 1)) %>% unnest(y)
+  
+  # Ok, because y and z have the same number of elements in
+  # every row
+  df1 <- tribble(
+    ~x, ~y,           ~z,
+    1, c("a", "b"), 1:2,
+    2, "c",           3
+  )
+  df1
+
+  df1 %>% unnest(c(y, z))
+  
+  
+  # Doesn't work because y and z have different number of elements
+  df2 <- tribble(
+    ~x, ~y,           ~z,
+    1, "a",         1:2,  
+    2, c("b", "c"),   3
+  )
+  df2
+  df2 %>% unnest(c(y, z))
+  
+  
+  # 25.6 Making tidy data with broom 
+  
+  # The broom package provides three general tools
+  
+  # 1.broom::glance(model) returns a row for each model. 
+  # 2. broom::tidy(model) returns a row for each coefficient in the model. 
+  # 3. broom::augment(model, data) returns a row for each row in data, 
+  # adding extra values like residuals, and influence statistics.
+  
+  
+
+  # 27 R Markdown
+  
+  #  https://rstudio.com/resources/cheatsheets/ 
+  
+  # 27.2 R Markdown basics
+    library(knitr)
+  # http://yihui.name/knitr/
+  # I made a test rds.Rmd file with some test for markdown
+  
+  #  28 Graphics for communication with ggplot2
+  # https://r4ds.had.co.nz/graphics-for-communication.html 
+  
+  
+  library(tidyverse) 
+  
+  # 28.2 Label
+  
+# You add labels with the labs() function.  
+  
+  ggplot(mpg, aes(displ, hwy)) +
+    geom_point(aes(color = class)) +
+    geom_smooth(se = FALSE) +
+    labs(title = "Fuel efficiency generally decreases with engine size")+
+    theme_test ()
+    
+  ggplot(mpg, aes(displ, hwy)) +
+    geom_point(aes(color = class)) +
+    geom_smooth(se = TRUE) +
+    labs(title = "Fuel efficiency generally decreases with engine size")+
+    theme_test ()
+
+  # subtitle adds additional detail in a smaller font beneath the title.
+  # caption adds text at the bottom right of the plot, often used to describe the source of the data.
+    
+  ggplot(mpg, aes(displ, hwy)) +
+    geom_point(aes(color = class)) +
+    geom_smooth(se = FALSE) +
+    labs(
+      title = "Fuel efficiency generally decreases with engine size",
+      subtitle = "Two seaters (sports cars) are an exception because of their light weight",
+      caption = "Data from fueleconomy.gov"
+    )+
+    theme_test()
+  
+  # You can also use labs() to replace the axis and legend titles.
+  
+  ggplot(mpg, aes(displ, hwy)) +
+    geom_point(aes(colour = class)) +
+    geom_smooth(se = FALSE) +
+    labs(
+      x = "Engine displacement (L)",
+      y = "Highway fuel economy (mpg)",
+      colour = "Car type"
+    )+
+    theme_classic()
+# It’s possible to use mathematical equations instead of text strings. 
+# Just switch "" out for quote() and read about the available options in ?plotmath:  
+  
+  df <- tibble(
+    x = runif(10),
+    y = runif(10)
+  )
+  ggplot(df, aes(x, y)) +
+    geom_point() +
+    labs(
+      x = quote(sum(x[i] ^ 2, i == 1, n)),
+      y = quote(alpha + beta + frac(delta, theta))
+    )+
+    theme_test()
+
+# 28.3 Annotations
+  
+  #  https://r4ds.had.co.nz/graphics-for-communication.html#annotations 
+  #  geom_text() is similar to geom_point(), but it has an additional aesthetic: label.
+  
+  best_in_class <- mpg %>%
+    group_by(class) %>%
+    filter(row_number(desc(hwy)) == 1)
+  
+  ggplot(mpg, aes(displ, hwy)) +
+    geom_point(aes(colour = class)) +
+    geom_text(aes(label = model), data = best_in_class)+
+    theme_test()
+  
+  ggplot(mpg, aes(displ, hwy)) +
+    geom_point(aes(colour = class)) +
+    geom_label(aes(label = model), data = best_in_class, nudge_y = 2, alpha = 0.5)+
+    theme_test()
+  
+  # use use the ggrepel package to adjust lable positions
+  
+  ggplot(mpg, aes(displ, hwy)) +
+    geom_point(aes(colour = class)) +
+    geom_point(size = 3, shape = 1, data = best_in_class) +
+    ggrepel::geom_label_repel(aes(label = model), data = best_in_class)+
+    theme_test()
+  
+  # theme(legend.position = "none")
+  
+  class_avg <- mpg %>%
+    group_by(class) %>%
+    summarise(
+      displ = median(displ),
+      hwy = median(hwy)
+    )
+  #> `summarise()` ungrouping output (override with `.groups` argument)
+  
+  ggplot(mpg, aes(displ, hwy, colour = class)) +
+    ggrepel::geom_label_repel(aes(label = class),
+                              data = class_avg,
+                              size = 6,
+                              label.size = 0,
+                              segment.color = NA
+    ) +
+    geom_point() +
+    theme(legend.position = "none")+
+    theme_test()
+# reate a new data frame using summarise() to compute the maximum values of x and y.
+  
+  label <- mpg %>%
+    summarise(
+      displ = max(displ),
+      hwy = max(hwy),
+      label = "Increasing engine size is \nrelated to decreasing fuel economy."
+    )
+  
+  ggplot(mpg, aes(displ, hwy)) +
+    geom_point() +
+    geom_text(aes(label = label), data = label, vjust = "top", hjust = "right")+
+    theme_test()
+  
+# If you want to place the text exactly on the borders of the plot, you can use +Inf and -Inf.
+  
+  label <- tibble(
+    displ = Inf,
+    hwy = Inf,
+    label = "Increasing engine size is \nrelated to decreasing fuel economy."
+  )
+  
+  ggplot(mpg, aes(displ, hwy)) +
+    geom_point() +
+    geom_text(aes(label = label), data = label, vjust = "top", hjust = "right")+
+    theme_test()
+  
+# Another approach is to use stringr::str_wrap() to automatically add line breaks
+  
+  "Increasing engine size is related to decreasing fuel economy." %>%
+    stringr::str_wrap(width = 40) %>%
+    writeLines()
+  #> Increasing engine size is related to
+  #> decreasing fuel economy.
+  
+ # Use geom_hline() and geom_vline() to add reference lines. 
+  
+ # Use geom_rect() to draw a rectangle around points of interest. 
+ # The boundaries of the rectangle are defined by aesthetics xmin, xmax, ymin, ymax.
+  
+ # Use geom_segment() with the arrow argument to draw attention to a point with an arrow. 
+  
+  # 28.4 Scales 
+  
+  ggplot(mpg, aes(displ, hwy)) +
+    geom_point(aes(colour = class))+
+    theme_test()
+
+  # that means that ggplot added
+  
+  ggplot(mpg, aes(displ, hwy)) +
+    geom_point(aes(colour = class)) +
+    scale_x_continuous() +
+    scale_y_continuous() +
+    scale_colour_discrete()
+  
+  # 28.4.1 Axis ticks and legend keys
+  # arguments breaks() controll the ticks
+  
+  ggplot(mpg, aes(displ, hwy)) +
+    geom_point() +
+    scale_y_continuous(breaks = seq(15, 40, by = 5))+
+    theme_test()
+  
+  # labels can be use in the same way 
+  
+  ggplot(mpg, aes(displ, hwy)) +
+    geom_point() +
+    scale_x_continuous(labels = NULL) +
+    scale_y_continuous(labels = NULL)+
+    theme_bw()
+  
+# this is an interesting plot
+    presidential %>%
+    mutate(id = 33 + row_number()) %>%
+    ggplot(aes(start, id)) +
+    geom_point() +
+    geom_segment(aes(xend = end, yend = id)) +
+    scale_x_date(NULL, breaks = presidential$start, date_labels = "'%y")+
+    theme_bw()
+  
+  # date_labels takes a format specification, in the same form as parse_datetime().
+  # date_breaks (not shown here), takes a string like “2 days” or “1 month”.
+    
+    # 28.4.2 Legend layout
+    # control the theme() setting
+    
+    base <- ggplot(mpg, aes(displ, hwy)) +
+      geom_point(aes(colour = class))
+    
+    base + theme(legend.position = "left")
+    base + theme(legend.position = "top")
+    base + theme(legend.position = "bottom")
+    base + theme(legend.position = "right") # default
+    
+    #To control the display of individual legends, use guides() along with guide_legend() 
+    # or guide_colourbar(). 
+    
+    ggplot(mpg, aes(displ, hwy)) +
+      geom_point(aes(colour = class)) +
+      geom_smooth(se = FALSE) +
+      theme(legend.position = "bottom") +
+      guides(colour = guide_legend(nrow = 1, override.aes = list(size = 4)))
+         #> `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+    
+    # 28.4.3 Replacing a scale
+    ggplot(diamonds, aes(carat, price)) +
+      geom_bin2d()+
+      theme_bw()
+    
+    ggplot(diamonds, aes(log10(carat), log10(price))) +
+      geom_bin2d()+
+      theme_test()
+    
+    # log transfroming the scale instead
+    ggplot(diamonds, aes(carat, price)) +
+      geom_bin2d() + 
+      scale_x_log10() + 
+      scale_y_log10()
+  
+    # alternatives are the ColorBrewer scales
+    
+    ggplot(mpg, aes(displ, hwy)) +
+      geom_point(aes(color = drv))
+    
+    ggplot(mpg, aes(displ, hwy)) +
+      geom_point(aes(color = drv)) +
+      scale_colour_brewer(palette = "Set1")+
+      theme_test()
+    
+  # Don’t forget simpler techniques like mapping the shape 
+    
+    ggplot(mpg, aes(displ, hwy)) +
+      geom_point(aes(color = drv, shape = drv)) +
+      scale_colour_brewer(palette = "Set1")+
+      theme_test()
+    # The ColorBrewer scales are documented online at http://colorbrewer2.org/
+    # and made available in R via the RColorBrewer package
+    
+    
+    # scale_color_manual()
+    
+    presidential %>%
+      mutate(id = 33 + row_number()) %>%
+      ggplot(aes(start, id, colour = party)) +
+      geom_point() +
+      geom_segment(aes(xend = end, yend = id)) +
+      scale_colour_manual(values = c(Republican = "red", Democratic = "blue"))+
+      theme_bw()
+# For continuous colour, you can use the built-in scale_colour_gradient() 
+# or scale_fill_gradient().     
+    
+# Another option is scale_colour_viridis() provided by the viridis package. 
+    df <- tibble(
+      x = rnorm(10000),
+      y = rnorm(10000)
+    )
+    ggplot(df, aes(x, y)) +
+      geom_hex() +
+      coord_fixed()+
+      theme_classic()
+    
+    ggplot(df, aes(x, y)) +
+      geom_hex() +
+      viridis::scale_fill_viridis() +
+      coord_fixed()+
+      theme_bw()
+
+    # 28.5 Zooming
+    
+# controlling the plot limits
+    
+    ggplot(mpg, mapping = aes(displ, hwy)) +
+      geom_point(aes(color = class)) +
+      geom_smooth() +
+      coord_cartesian(xlim = c(5, 7), ylim = c(10, 30))
+    
+    mpg %>%
+      filter(displ >= 5, displ <= 7, hwy >= 10, hwy <= 30) %>%
+      ggplot(aes(displ, hwy)) +
+      geom_point(aes(color = class)) +
+      geom_smooth()
+    
+    suv <- mpg %>% filter(class == "suv")
+    compact <- mpg %>% filter(class == "compact")
+    
+    ggplot(suv, aes(displ, hwy, colour = drv)) +
+      geom_point()
+    
+    ggplot(compact, aes(displ, hwy, colour = drv)) +
+      geom_point()
+    
+      # One way to overcome this problem is to share scales across multiple plot
+    x_scale <- scale_x_continuous(limits = range(mpg$displ))
+    y_scale <- scale_y_continuous(limits = range(mpg$hwy))
+    col_scale <- scale_colour_discrete(limits = unique(mpg$drv))
+    
+    ggplot(suv, aes(displ, hwy, colour = drv)) +
+      geom_point() +
+      x_scale +
+      y_scale +
+      col_scale
+    
+    ggplot(compact, aes(displ, hwy, colour = drv)) +
+      geom_point() +
+      x_scale +
+      y_scale +
+      col_scale
+  
+    # 28.6 Themes
+    
+    ggplot(mpg, aes(displ, hwy)) +
+      geom_point(aes(color = class)) +
+      geom_smooth(se = FALSE) +
+      theme_bw()
+     # read the ggplot2 book for the full details
+    # https://github.com/hadley/ggplot2-book 
+    
+      # the extensions https://exts.ggplot2.tidyverse.org/gallery/ 
+    
+      # 28.7 Saving your plots 
+    # ggsave() and knitr. ggsave() will save the most recent plot to disk: 
+  
+    ggplot(mpg, aes(displ, hwy)) + geom_point()
+    ggsave("my-plot.png")
+    
+# 28.7.1 Figure sizing 
+    #There are five main options that control figure sizing: 
+    #fig.width, fig.height, fig.asp, out.width and out.height. 
+    
+    # I set fig.width = 6 (6") and fig.asp = 0.618 (the golden ratio) in the defaults
+    
+    ggedit(p)
+    
+    # 29.7.1 htmlwidgets 
+    
+    install.packages("leaflet")
+    
+    library(leaflet)
+    leaflet() %>%
+      setView(174.764, -36.877, zoom = 16) %>% 
+      addTiles() %>%
+      addMarkers(174.764, -36.877, popup = "Maungawhau") 
+  
+    library(leaflet)
+    leaflet() %>%
+      setView(70.27190, 53.07894, zoom = 13) %>% 
+      addTiles() %>%
+      addMarkers(70.27190, 53.07894, popup = "Borovoe")
+    
+    
+   # dygraphs, http://rstudio.github.io/dygraphs/, for interactive time series visualisations.
+    
+    
+   # DT, http://rstudio.github.io/DT/, for interactive tables.
+    
+   # threejs, https://github.com/bwlewis/rthreejs for interactive 3d plots.
+    
+  # DiagrammeR, http://rich-iannone.github.io/DiagrammeR/ for diagrams 
+    #(like flow charts and simple node-link diagrams).
+    
+    
+    # 29.7.2 Shiny 
+  # https://r4ds.had.co.nz/r-markdown-formats.html#shiny
+   #  Learn more about Shiny at http://shiny.rstudio.com/. 
+    
+  
+    

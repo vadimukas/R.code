@@ -84,7 +84,7 @@ grid.arrange(a1, a2, a3, a4, a5, a6, nrow = 2, ncol = 3)
 
 # or save as file
 boxHL1<-grid.arrange(a1, a2, a3, a4, a5, a6, nrow = 2, ncol = 3)
-ggsave(boxHL1, filename = "boxHL1.pdf", dpi = 70)
+ggsave(boxHL1, filename = "boxHL1.png", dpi = 300)
 dev.off()
 
 a7<-WQ_samples_2019_HL %>%
@@ -148,6 +148,8 @@ a12<-WQ_samples_2019_HL %>%
   theme(plot.title = element_text(color="blue", size=13, face="plain", vjust = -10, hjust = 0.5))+
   theme(axis.title = element_text(size=11))
 
+grid.arrange(a7, a8, a9, a10, a11, a12, nrow = 2, ncol = 3)
+
 a13<-WQ_samples_2019_HL %>%
   ggplot() +
   aes(x = Period, y =`Al [ug/L]` ) +
@@ -177,8 +179,6 @@ a15<-WQ_samples_2019_HL %>%
   ggthemes::theme_base()+  
   theme(plot.title = element_text(color="blue", size=13, face="plain", vjust = -10, hjust = 0.5))+
   theme(axis.title = element_text(size=11))
-
-grid.arrange(a7, a8, a9, a10, a11, a12, a13, a14, a15, nrow = 3, ncol = 3)
 
 a16<-WQ_samples_2019_HL %>%
   ggplot() +
@@ -210,11 +210,13 @@ a18<-WQ_samples_2019_HL %>%
   theme(plot.title = element_text(color="blue", size=13, face="plain", vjust = -10, hjust = 0.5))+
   theme(axis.title = element_text(size=11))
 
+grid.arrange(a13, a14, a15, a16, a17, a18, nrow = 2, ncol = 3)
+
 a19<-WQ_samples_2019_HL %>%
   ggplot() +
   aes(x = Period, y =`Sr [ug/L]` ) +
   geom_boxplot(fill = "#ffffff") +
-  geom_point(aes(y=`Sr [ug/L]`), alpha=0.7, position=position_jitter(0.1))+
+  geom_point(aes(y=`Sr [ug/L]`), alpha=0.7, position=position_jitter(0.01))+
   labs(title = "Sr [ug/L]") +
   ggthemes::theme_base()+  
   theme(plot.title = element_text(color="blue", size=13, face="plain", vjust = -10, hjust = 0.5))+
@@ -224,19 +226,18 @@ a20<-WQ_samples_2019_HL %>%
   ggplot() +
   aes(x = Period, y =`Zn [ug/L]` ) +
   geom_boxplot(fill = "#ffffff") +
-  geom_point(aes(y=`Zn [ug/L]`), alpha=0.7, position=position_jitter(0.1))+
+  geom_point(aes(y=`Zn [ug/L]`), alpha=0.7, position=position_jitter(0.01))+
   labs(title = "Zn [ug/L]") +
   ggthemes::theme_base()+  
   theme(plot.title = element_text(color="blue", size=13, face="plain", vjust = -10, hjust = 0.5))+
   theme(axis.title = element_text(size=11))
 
-grid.arrange(a16, a17,a18, a19, a20, nrow = 2, ncol = 3)
 
 a21<-WQ_samples_2019_HL %>%
   ggplot() +
   aes(x = Period, y =`Cd [ug/L]` ) +
   geom_boxplot(fill = "#ffffff") +
-  geom_point(aes(y=`Cd [ug/L]`), alpha=0.7, position=position_jitter(0.1))+
+  geom_point(aes(y=`Cd [ug/L]`), alpha=0.7, position=position_jitter(0.01))+
   labs(title = "Cd [ug/L]") +
   ggthemes::theme_base()+  
   theme(plot.title = element_text(color="blue", size=13, face="plain", vjust = -10, hjust = 0.5))+
@@ -246,21 +247,24 @@ a22<-WQ_samples_2019_HL %>%
   ggplot() +
   aes(x = Period, y =`Co [ug/L]` ) +
   geom_boxplot(fill = "#ffffff") +
-  geom_point(aes(y=`Co [ug/L]`), alpha=0.7, position=position_jitter(0.1))+
+  geom_point(aes(y=`Co [ug/L]`), alpha=0.7, position=position_jitter(0.01))+
   labs(title = "Co [ug/L]") +
   ggthemes::theme_base()+  
   theme(plot.title = element_text(color="blue", size=13, face="plain", vjust = -10, hjust = 0.5))+
   theme(axis.title = element_text(size=11))
 
+grid.arrange(a19, a20,a21, a22, nrow = 2, ncol = 2)
+
 a23<-WQ_samples_2019_HL %>%
   ggplot() +
   aes(x = Period, y =`Cr [ug/L]` ) +
   geom_boxplot(fill = "#ffffff") +
-  geom_point(aes(y=`Cr [ug/L]`), alpha=0.7, position=position_jitter(0.1))+
+  geom_point(aes(y=`Cr [ug/L]`), alpha=0.7, position=position_jitter(0.01))+
   labs(title = "Cr [ug/L]") +
   ggthemes::theme_base()+  
   theme(plot.title = element_text(color="blue", size=13, face="plain", vjust = -10, hjust = 0.5))+
   theme(axis.title = element_text(size=11))
+
 
 a24<-WQ_samples_2019_HL %>%
   ggplot() +
@@ -272,6 +276,7 @@ a24<-WQ_samples_2019_HL %>%
   theme(plot.title = element_text(color="blue", size=13, face="plain", vjust = -10, hjust = 0.5))+
   theme(axis.title = element_text(size=11))
 
+
 a25<-WQ_samples_2019_HL %>%
   ggplot() +
   aes(x = Period, y =`Pb [ug/L]` ) +
@@ -282,4 +287,4 @@ a25<-WQ_samples_2019_HL %>%
   theme(plot.title = element_text(color="blue", size=13, face="plain", vjust = -10, hjust = 0.5))+
   theme(axis.title = element_text(size=11))
 
-grid.arrange(a21, a22,a23, a24, a25, nrow = 2, ncol = 3)
+grid.arrange(a23, a24, a25, nrow = 2, ncol = 2)

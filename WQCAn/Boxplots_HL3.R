@@ -7,6 +7,8 @@ library(psych)
 library(DescTools)
 library(pastecs)
 library(gridExtra)
+library(ggstatsplot)
+library(StanHeaders)
 
 #set working directory to subfolder WQCAn
 setwd("D:/R/R.code/WQCAn")
