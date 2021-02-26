@@ -3,6 +3,7 @@ library(openair)
 library(lubridate)
 library(methods)
 
+setwd()
 # Read prepared wind data file
 data.davis <- read.delim('wd_davis_2016P.txt')
 

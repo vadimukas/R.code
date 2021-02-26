@@ -9,6 +9,8 @@ library(DataExplorer)
 library(psych)
 library(DescTools)
 library(pastecs)
+library(gridExtra)
+library(xts)
 
 #set working directory to subfolder WQCAloc
 setwd("D:/R/R.code/WQCAloc")
@@ -16,6 +18,7 @@ setwd("D:/R/R.code/WQCAloc")
 # first load updated local measurements data
 
 library(readr)
+
 
 local_WQ <- read_csv("local_WQ.csv", col_types = cols(Month = col_factor(levels = c("1", 
                                                                                     "2", "3", "4", "5", "6", "7", "8", "9", 
@@ -25,6 +28,18 @@ local_WQm <- read_csv("local_WQm.csv", col_types = cols(Month = col_factor(level
                                                                                     "2", "3", "4", "5", "6", "7", "8", "9", 
                                                                                     "10", "11", "12")), Country = col_factor(levels = c("KZ", 
                                                                                                                                         "KG", "UZ", "TJ"))))
+library(readr)
+local_WQm <- read_csv("local_WQm.csv", col_types = cols(Month = col_factor(levels = c("1", 
+                                                                                      "2", "3", "4", "5", "6", "7", "8", "9", 
+                                                                                      "10", "11", "12")),
+                                                        Country = col_factor(levels = c("KZ", "KG", "UZ", "TJ")),
+                                                        `Sample description` = col_factor(levels = c("KZ-1", "KZ-2", "KZ-3", "KZ-4", "KZ-5", "KZ-6", "KZ-12", "KG-1", "KG-2", "KG-3", "KG-4",                                                                                                                                                                                     "KZ-7", "KZ-8", "KZ-9", "KZ-10", "KZ-11", 
+                                                                                                     "KG-5", "KG-6", "KG-7", "UZ-1", "UZ-2",  "UZ-3", "UZ-4", "UZ-5", "UZ-6", "UZ-7",                                                                                                                                                                                                           
+                                                                                                     "UZ-8", "UZ-9", "UZ-10", "TJ-1", "TJ-2",  "TJ-3", "TJ-4", "TJ-5", "TJ-6", "TJ-7"))))                                                                                                       
+                                                                                                                                                                                                          
+                                                                                                                                                                                                           
+                                                                                                                                                                                                          
+View(local_WQm)
 local_WQm_up <- read_csv("local_WQm_up.csv", col_types = cols(Month = col_factor(levels = c("1", 
                                                                                       "2", "3", "4", "5", "6", "7", "8", "9", 
                                                                                       "10", "11", "12")), Country = col_factor(levels = c("KZ", 
@@ -33,45 +48,90 @@ local_WQm_down <- read_csv("local_WQm_down.csv", col_types = cols(Month = col_fa
                                                                                             "2", "3", "4", "5", "6", "7", "8", "9", 
                                                                                             "10", "11", "12")), Country = col_factor(levels = c("KZ", 
                                                                                                                                                 "KG", "UZ", "TJ"))))
-
-
-View(local_WQ)
+local_WQm_down2 <- read_csv("local_WQm_down2.csv", col_types = cols(Month = col_factor(levels = c("1", 
+                                                                                                "2", "3", "4", "5", "6", "7", "8", "9", 
+                                                                                                "10", "11", "12")), Country = col_factor(levels = c("KZ", 
+                                                                                                                                                    "KG", "UZ", "TJ"))))
 
 library(lubridate)
-local_WQd <-local_WQ %>% 
+local_WQd <-local_WQm %>% 
   mutate(date = make_date(Year, Month, Day))
+
+
+
+
+
+# experimenting with Date 
+local_WQt <- read_csv("local_WQm.csv", col_types = cols(Month = col_factor(levels = c("1", 
+                                                                                    "2", "3", "4", "5", "6", "7", "8", "9", 
+                                                                                    "10", "11", "12")), Country = col_factor(levels = c("KZ", 
+                                                                                                                "KG", "UZ", "TJ"))))
+
+
+library(lubridate)
+date<-parse_date_time(local_WQm$Date, order = "dmy")
+is.POSIXct(date)
+
+local_WQt <- read.delim('local_WQm.txt')
+local_WQt <- read.delim('local_WQm.txt')
+Sys.timezone()
+local_WQt$Date<-as.POSIXct(local_WQt$Date, tz="Asia/Dhaka", format = "%Y-%m-%d")
+
+local_WQx$Date<-parse_date_time(local_WQm$Date, order = "dmy")
+is.POSIXct(local_WQx$Date)
+
+local_WQt$Date<-as.POSIXct(local_WQm$Date, tz="Asia/Dhaka")
+tz(local_WQt$Date)
+is.POSIXct(local_WQt$Date)
+is.Date(local_WQt$Date)
+as.Date(local_WQt$Date)
+is.Date(local_WQt$Date)
+
+head(local_WQt)
+
+local_WQm %>% parse_date_time(Date, order = "dmy", tz = "UTC")  
+is.Date(local_WQx$date)
+is.POSIXct(local_WQx$date)
+is.Date(local_WQx$Date)
+is.POSIXct(local_WQx$Date)
+mutate(date=parse_date_time(local_WQm$Date, order = "dmy"))  
+
+library(anytime)
+anydate(local_WQm$Date)
+
+is.Date(local_WQm$Date)
 
 View(local_WQd)
 
 is.Date(local_WQd$Date)
 is.Date(local_WQd$date)
 
-summary(local_WQ)
-describe(local_WQ)
+summary(local_WQm)
+describe(local_WQm)
 
-CoefVar(local_WQ$`EC [microS/cm]`, na.rm = TRUE)
-stat_local_WQ<-stat.desc(local_WQ [c(12:18)])
+CoefVar(local_WQm$`EC [microS/cm]`, na.rm = TRUE)
+stat_local_WQ<-stat.desc(local_WQm [c(12:18)])
 
 # I did it
 dev.print(png, file = "NO3.png", width = 6, height = 6, units="in", res=600)
 png(filename = "NO3.png", bg="transparent")
 ggplot(data = local_WQd)+
-  geom_point(mapping = aes(x = `EC [microS/cm]`, y = `NO+3-N [mg/L]`))+
+  geom_point(mapping = aes(x = `EC [microS/cm]`, y = `NO3-N [mg/L]`))+
   geom_abline(aes(intercept = -0.392218, slope =  0.006663), data =local_WQd, color = "red")+
-  geom_smooth(mapping = aes(x =`EC [microS/cm]` , y = `NO+3-N [mg/L]`))+
+  geom_smooth(mapping = aes(x =`EC [microS/cm]` , y = `NO3-N [mg/L]`))+
   theme_test()
 
 dev.off()
 
 ggplot(data = local_WQd)+
-  geom_point(mapping = aes(x = `EC [microS/cm]`, y = `NO+3-N [mg/L]`))+
+  geom_point(mapping = aes(x = `EC [microS/cm]`, y = `NO3-N [mg/L]`))+
   theme_test()
 
-lm(data=local_WQd, `NO+3-N [mg/L]` ~ `EC [microS/cm]`)
+lm(data=local_WQd, `NO3-N [mg/L]` ~ `EC [microS/cm]`)
 ggplot(data = local_WQd)+
-  geom_point(mapping = aes(x = `EC [microS/cm]`, y = `NO+3-N [mg/L]`))+
-  geom_abline(aes(intercept = -0.392218, slope =  0.006663), data =local_WQd, color = "red")+
-  geom_smooth(mapping = aes(x =`EC [microS/cm]` , y = `NO+3-N [mg/L]`))+
+  geom_point(mapping = aes(x = `EC [microS/cm]`, y = `NO3-N [mg/L]`))+
+  geom_abline(aes(intercept = -0.390938, slope =  0.006602), data =local_WQd, color = "red")+
+  geom_smooth(mapping = aes(x =`EC [microS/cm]` , y = `NO3-N [mg/L]`))+
   theme_test()
 
 # png(filename = "NO+3-N [mg/L]` vs EC [microS/cm].png", width = 1024, height=1024, units="px", res=300)
@@ -102,7 +162,7 @@ ggplot(local_WQd, aes(Month, `EC [microS/cm]`))+
   geom_boxplot(geom_boxplot_args = list("outlier.color" = "blue"))+
   theme_test()
 
-ggplot(local_WQd, aes(date, `NO+3-N [mg/L]`))+
+ggplot(local_WQd, aes(date, `NO3-N [mg/L]`))+
   geom_point()+
   theme_test()
 
@@ -112,12 +172,41 @@ ggplot(local_WQd, aes(Month, `EC [microS/cm]`))+
   geom_point(position = "jitter", size=1)+
   theme_test()
 
-# trying some more plots
-ggplot (local_WQd, aes(Month, `EC [microS/cm]`))+
-  geom_boxplot(color= "red")+
-  geom_point(position = "jitter", size=1)+
+# The boxplots of EC across all sites by faceted by month
+figEC<-ggplot (local_WQd, aes(Month, `EC [microS/cm]`))+
+  geom_boxplot(color= "black")+
+  geom_point(position = "jitter", size=0.5)+
   theme_test()+
   facet_wrap(~Location)
+ggsave(figEC, filename = "fig_EC.png", width = 8, height = 7, units="in", dpi = 600)
+dev.off()
+
+figEC<-ggplot (local_WQd, aes(Month, `EC [microS/cm]`))+
+  geom_boxplot(color= "red")+
+  geom_point(position = "jitter", size=0.5)+
+  theme_test()+
+  facet_wrap(~Site)
+ggsave(figEC, filename = "fig_EC.png", width = 9, height = 8, units="in", dpi = 600)
+dev.off()
+
+# The boxplots of NO3-N across all sites by faceted by month
+figNO3<-ggplot (local_WQd, aes(Month, `NO3-N [mg/L]`))+
+  geom_boxplot(color= "red")+
+  geom_point(position = "jitter", size=0.5)+
+  theme_test()+
+  facet_wrap(~Location)
+ggsave(figNO3, filename = "fig_NO3.png", width = 8, height = 7, units="in", dpi = 600)
+dev.off()
+
+# The boxplots of NO3-N across all sites by faceted by month
+figPO4<-ggplot (local_WQd, aes(Month, `PO4-P [mg/L]`))+
+  geom_boxplot(color= "blue")+
+  geom_point(position = "jitter", size=0.5, color= "black")+
+  theme_test()+
+  facet_wrap(~Location)
+ggsave(figPO4, filename = "fig_PO4.png", width = 8, height = 7, units="in", dpi = 600)
+dev.off()
+
 
 # trying upstream sites 
 
@@ -208,7 +297,7 @@ ggplot (local_WQm_down, aes(Month, `PO3-4-P [mg/L]`))+
 # figure 3 without jitter EC, NO3 and PO4 for UPSTREAM - NOW this WORKING Version
 # this time  making a figure 3 on a single pane as a grid
 
-f3a <- local_WQm_up %>% 
+fig3a <- local_WQm_up %>% 
   ggplot()+
   aes(Month, `EC [microS/cm]`)+
   geom_line (color="black")+
@@ -222,49 +311,49 @@ fig_3a <- local_WQm_up %>%
   geom_line (color="black")+
   geom_point(size=1)+
   theme_test()+
-  facet_wrap(~Location) 
+  facet_wrap(~Site) 
 ggsave(fig_3a, filename = "fig_3a.png", width = 5, height = 4, units="in", dpi = 300)
-dev.off()
-
-f3b <- local_WQm_up %>% 
-  ggplot()+
-  aes(Month, `NO3-N [mg/L]`)+
-  geom_line (color="red")+
-  geom_point(size=1)+
-  theme_test()+
-  facet_wrap(~Location)
-
-fig_3b <- local_WQm_up %>% 
-  ggplot()+
-  aes(Month, `NO3-N [mg/L]`)+
-  geom_line (color="red")+
-  geom_point(size=1)+
-  theme_test()+
-  facet_wrap(~Location)
-ggsave(fig_3b, filename = "fig_3b.png", width = 5, height = 4, units="in", dpi = 300)
 dev.off()
 
 f3c <- local_WQm_up %>% 
   ggplot()+
-  aes(Month, `PO4-P [mg/L]`)+
-  geom_line (color="blue")+
+  aes(Month, `NO3-N [mg/L]`)+
+  geom_line (color="red")+
   geom_point(size=1)+
   theme_test()+
   facet_wrap(~Location)
 
 fig_3c <- local_WQm_up %>% 
   ggplot()+
+  aes(Month, `NO3-N [mg/L]`)+
+  geom_line (color="red")+
+  geom_point(size=1)+
+  theme_test()+
+  facet_wrap(~Site)
+ggsave(fig_3c, filename = "fig_3c.png", width = 5, height = 4, units="in", dpi = 300)
+dev.off()
+
+f3e <- local_WQm_up %>% 
+  ggplot()+
   aes(Month, `PO4-P [mg/L]`)+
   geom_line (color="blue")+
   geom_point(size=1)+
   theme_test()+
   facet_wrap(~Location)
-ggsave(fig_3c, filename = "fig_3c.png", width = 5, height = 4, units="in", dpi = 300)
+
+fig_3e <- local_WQm_up %>% 
+  ggplot()+
+  aes(Month, `PO4-P [mg/L]`)+
+  geom_line (color="blue")+
+  geom_point(size=1)+
+  theme_test()+
+  facet_wrap(~Site)
+ggsave(fig_3e, filename = "fig_3e.png", width = 5, height = 4, units="in", dpi = 300)
 dev.off()
 
 # figure 3 for a pane second column - DOWNSTREAM
 
-f3d <- local_WQm_down %>%
+f3b <- local_WQm_down %>%
 ggplot () +
   aes(Month, `EC [microS/cm]`)+
   geom_line (color="black")+
@@ -272,18 +361,17 @@ ggplot () +
   theme_test()+
   facet_wrap(~Location)
 
-fig_3d <- local_WQm_down %>%
+fig_3b <- local_WQm_down %>%
   ggplot () +
   aes(Month, `EC [microS/cm]`)+
   geom_line (color="black")+
   geom_point(size=1)+
   theme_test()+
-  facet_wrap(~Location)
-
-ggsave(fig_3d, filename = "fig_3d.png", width = 5, height = 4, units="in", dpi = 300)
+  facet_wrap(~Site)
+ggsave(fig_3b, filename = "fig_3b.png", width = 5, height = 4, units="in", dpi = 300)
 dev.off()
 
-f3e <- local_WQm_down %>%
+f3d <- local_WQm_down %>%
 ggplot ()+
   aes(Month, `NO3-N [mg/L]`)+
   geom_line (color="red")+
@@ -291,14 +379,14 @@ ggplot ()+
   theme_test()+
   facet_wrap(~Location)
 
-fig_3e <- local_WQm_down %>%
+fig_3d <- local_WQm_down %>%
   ggplot ()+
   aes(Month, `NO3-N [mg/L]`)+
   geom_line (color="red")+
   geom_point(size=1)+
   theme_test()+
-  facet_wrap(~Location)
-ggsave(fig_3e, filename = "fig_3e.png", width = 5, height = 4, units="in", dpi = 300)
+  facet_wrap(~Site)
+ggsave(fig_3d, filename = "fig_3d.png", width = 5, height = 4, units="in", dpi = 300)
 dev.off()
 
 f3f <- local_WQm_down %>%
@@ -315,12 +403,70 @@ fig_3f <- local_WQm_down %>%
   geom_line (color="blue")+
   geom_point(size=1)+
   theme_test()+
-  facet_wrap(~Location)
+  facet_wrap(~Site)
 ggsave(fig_3f, filename = "fig_3f.png", width = 5, height = 4, units="in", dpi = 300)
 dev.off()
 
 
-grid.arrange(f3a, f3b, f3c, f3d, f3e, f3f, nrow = 2, ncol = 3)
+fig_3v1<-grid.arrange(fig_3a, fig_3b, fig_3c, fig_3d, fig_3e, fig_3f, nrow = 3, ncol = 2)
+ggsave(fig_3v1, filename = "fig_3v1.png", width = 10, height = 9, units="in", dpi = 600)
+dev.off()
+
+# figure 3 for a pane second column - DOWNSTREAM with Otegen Batyr
+
+f3b2 <- local_WQm_down2 %>%
+  ggplot () +
+  aes(Month, `EC [microS/cm]`)+
+  geom_line (color="black")+
+  geom_point(size=1)+
+  theme_test()+
+  facet_wrap(~Location)
+
+fig_3b2 <- local_WQm_down2 %>%
+  ggplot () +
+  aes(Month, `EC [microS/cm]`)+
+  geom_line (color="black")+
+  geom_point(size=1)+
+  theme_test()+
+  facet_wrap(~Site)
+ggsave(fig_3b2, filename = "fig_3b2.png", width = 5, height = 4, units="in", dpi = 300)
+dev.off()
+
+f3d2 <- local_WQm_down2 %>%
+  ggplot ()+
+  aes(Month, `NO3-N [mg/L]`)+
+  geom_line (color="red")+
+  geom_point(size=1)+
+  theme_test()+
+  facet_wrap(~Location)
+
+fig_3b2 <- local_WQm_down2 %>%
+  ggplot ()+
+  aes(Month, `NO3-N [mg/L]`)+
+  geom_line (color="red")+
+  geom_point(size=1)+
+  theme_test()+
+  facet_wrap(~Site)
+ggsave(fig_3d2, filename = "fig_3d2.png", width = 5, height = 4, units="in", dpi = 300)
+dev.off()
+
+f3f2 <- local_WQm_down2 %>%
+  ggplot ()+
+  aes(Month, `PO4-P [mg/L]`)+
+  geom_line (color="blue")+
+  geom_point(size=1)+
+  theme_test()+
+  facet_wrap(~Location)
+
+fig_3f2 <- local_WQm_down2 %>%
+  ggplot ()+
+  aes(Month, `PO4-P [mg/L]`)+
+  geom_line (color="blue")+
+  geom_point(size=1)+
+  theme_test()+
+  facet_wrap(~Site)
+ggsave(fig_3f2, filename = "fig_3f2.png", width = 5, height = 4, units="in", dpi = 300)
+dev.off()
 
 # or save as file
 fig_3<-grid.arrange(f3a, f3b, f3c, f3d, f3e, f3f, nrow = 3, ncol = 2)
@@ -413,111 +559,6 @@ ggplot(data = local_WQ_str)+
   geom_smooth(mapping = aes(x =`EC [microS/cm]` , y = `NO+3-N [mg/L]`))+
   theme_test()
 
-# making time series for bubble plots
-# starting with Phosphate in KG 
-library(readr)
-Phosphate_KG_TS <- read_csv("Phosphate KG TS.csv", 
-                            col_types = cols(year = col_integer(), 
-                                             month = col_integer(), day = col_integer()))
-
-library(lubridate)
-Phosphate_KG_TSd <-Phosphate_KG_TS %>% 
-  mutate(Date = make_date(year, month, day))
-
-is.Date(Phosphate_KG_TSd$Date)
-
-
-library(ggplot2)
-
-library(dplyr)
-Phosphate_KG_TSd <- Phosphate_KG_TSd %>%
-  select(Date, `KG-1`, `KG-5`) %>%
-  gather(key = "variable", value = "value", -Date)
-
-fig_4c<-ggplot(Phosphate_KG_TSd, aes(x = Date, y = value)) + 
-  geom_line(aes(color = variable), size = 0.7, show.legend = FALSE) +
-  geom_point(size = 1.5, color= "black") +
-  scale_color_manual(values = c("blue", "red")) +
-   labs(y = "P04-P [mg/L]") +
-  scale_x_date(date_labels = "%m-%y", date_breaks = "1 month")+
-      ggthemes::theme_base()+
-  theme(text=element_text(size = 12),axis.text.x = element_text(angle = 45, hjust = 1))
-
-ggsave(fig_4c, filename = "fig_4c.png", width = 6, height = 4, units="in", dpi = 300)
-dev.off()
-
-library(lattice)
-
-xyplot(`KG-1`+`KG-5` ~ Date, data = Phosphate_KG_TSd, type = "l", auto.key = TRUE)
-
-ggplot(Phosphate_KG_TSd) +
- aes(x = Date, y = `KG-1`) +
- geom_line(size = 0.5, colour = "blue") +
-  geom_point(size = 1.5, color = "blue")+
- labs(y = "P04-P [mg/L]") +
-  scale_x_date(date_labels = "%m-%y", date_breaks = "2 month")+
-  theme(axis.text.x=element_text(angle=60, hjust=1))+ 
- ggthemes::theme_base()
-
-ggplot(Phosphate_KG_TSd) +
- aes(x = Date, y = `KG-5`) +
- geom_line(size = 1L, colour = "#0c4c8a") +
- labs(y = "P04-P [mg\\L]") +
- ggthemes::theme_base()
-
-# continue with nitrate in Groundwater TJ-6
-Nitrate_TJ_TS <- read_csv("Nitrate TJ TS.csv", 
-                            col_types = cols(year = col_integer(), 
-                                             month = col_integer(), day = col_integer()))
-
-library(lubridate)
-Nitrate_TJ_TSd <-Nitrate_TJ_TS %>% 
-  mutate(Date = make_date(year, month, day))
-
-is.Date(Nitrate_TJ_TSd$Date)
-
-
-fig_4b<-ggplot(Nitrate_TJ_TSd, aes(x = Date, y = `TJ-6 NO3-N [mg/L]`)) + 
-  geom_line(size = 0.7, color="red") +
-  geom_point(size = 1.5, color= "black") +
-  labs(y = "N03-N [mg/L]", title = "TJ-6") +
-  scale_x_date(date_labels = "%m-%y", date_breaks = "1 month")+
-  geom_hline(yintercept = 10, color="red", size= 0.5, linetype="dashed")+
-  ggthemes::theme_base()+
-  theme(text=element_text(size = 12),axis.text.x = element_text(angle = 45, hjust = 1), plot.title = element_text(color="red", size=12, face="plain", vjust = -20, hjust = 0.35))
-
-ggsave(fig_4b, filename = "fig_4b.png", width = 6, height = 4, units="in", dpi = 300)
-dev.off()
-
-# and finishing with EC for KZ site in streamwater 
-EC_KZ_TS <- read_csv("EC KZ TS.csv", 
-                          col_types = cols(year = col_integer(), 
-                                           month = col_integer(), day = col_integer()))
-
-library(lubridate)
-EC_KZ_TSd <-EC_KZ_TS %>% 
-  mutate(Date = make_date(year, month, day))
-
-is.Date(EC_KZ_TSd$Date)
-
-library(ggplot2)
-
-library(dplyr)
-EC_KZ_TSd <- EC_KZ_TSd %>%
-  select(Date, `KZ-8`, `KZ-9`) %>%
-  gather(key = "variable", value = "value", -Date)
-
-fig_4a<-ggplot(EC_KZ_TSd, aes(x = Date, y = value)) + 
-  geom_line(aes(color = variable), size = 0.7, show.legend = FALSE) +
-  geom_point(size = 1.5, color= "black") +
-  scale_color_manual(values = c("red", "blue")) +
-  labs(y = "EC [microS/cm]") +
-  scale_x_date(date_labels = "%m-%y", date_breaks = "1 month")+
-  ggthemes::theme_base()+
-  theme(text=element_text(size = 12),axis.text.x = element_text(angle = 45, hjust = 1))
-
-ggsave(fig_4a, filename = "fig_4a.png", width = 6, height = 4, units="in", dpi = 300)
-dev.off()
 
 
 # Making a summary table of local WQ data
@@ -546,7 +587,4 @@ library(stargazer)
 
 stargazer(local_WQm, type = "text", title = "Descriptive stats", digits = 1, out = "table.txt")
 stargazer(local_WQ, type = "text", title = "Descriptive stats", digits = 1, summary = FALSE)
-
-
-
 
