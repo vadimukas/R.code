@@ -148,4 +148,16 @@ str(dfl)
   
 # Subsetting
 
-  
+# 4.2.3 Matrices and arrays
+
+a <- matrix(1:9, nrow = 3)
+colnames(a) <- c("A", "B", "C")
+a[1:2, ]
+a[c(TRUE, FALSE, TRUE), c("B", "A")]
+
+
+#4.3 Selecting a single element
+
+x <- list(1:3, "a", 4:6)
+x[[3]]
+

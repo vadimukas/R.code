@@ -46,14 +46,17 @@ Sys.Date()
 
 # fasttime packages to import data into R
 library(fasttime)
-fastPOSIXct("2003-02-27")
+fastPOSIXct("2003-02-27","2003-02-28")
 
 # farst_strtime() vs lubridate
 library(lubridate)
 parse_date_time(x, order = "ymd")
+parse_date_time(local_WQm$Date, order = "dmy")
 
 library(fasttime)
 fast_strptime(x, format = "%Y-%m-%d")
+fast_strptime(local_WQm$Date, format = "%d-%m-%Y")
+
 library(fasttime)
 # Examine structure of dates
 str(dates)
@@ -577,4 +580,72 @@ p <- animation_slider(p,
                       currentvalue = list(prefix = "Year "))
 
 widgetframe::frameWidget(p)
+
+# The Tidyverse Cookbook 
+
+# https://rstudio-education.github.io/tidyverse-cookbook/ 
+
+# some plots from Datacamp course on ggplot
+#Introduction to Data Visualization with ggplot2 
+
+library(tidyverse)
+library(ggthemes)
+ggplot(mtcars, aes(wt, mpg, color = cyl)) +
+  # Set the shape and size of the points
+  geom_point(shape = 1, size = 4)+
+  theme_classic()
+
+ggplot(mtcars, aes(wt, mpg, fill = cyl)) +
+  # Change point shape; set alpha
+  geom_point(shape = 21, size = 4, alpha = 0.6)+
+  theme_light()
+
+# Base layer
+plt_mpg_vs_wt <- ggplot(mtcars, aes(wt, mpg))
+
+# Use text layer and map fcyl to label
+plt_mpg_vs_wt + geom_text(aes(label = cyl))
+
+# making a summary stats and plotting it
+
+iris %>%
+  group_by(Species) %>%
+  summarise_all(mean) -> iris.summary
+
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, col = Species)) +
+  # Inherits both data and aes from ggplot()
+  geom_point(shape = 1) +
+  # Different data, but inherited aes
+  geom_point(data = iris.summary, shape = 19, size = 5)+
+  theme_test()
+
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, col = Species)) +
+  # Inherits both data and aes from ggplot()
+  geom_point(shape = 1) +
+  # Different data, but inherited aes
+  geom_point(data = iris.summary, shape = 19, size = 5)+
+  theme_wsj()
+
+# more plots from Datacamp course on ggplot
+
+library (gapminder)
+head(gapminder)
+
+
+# Set the color scale
+library(RColorBrewer)
+palette <- brewer.pal(5, "RdYlBu")[-(2:4)]
+
+# Add a title and caption
+top10 <- gapminder %>% top_n(10,  lifeExp)
+bottom10 <- gapminder %>% top_n(-10,  lifeExp)
+top_bottom10 <- gapminder %>% arrange() %>% top_frac(0.1, wt= lifeExp)
+ggplot(top10, aes(x = lifeExp, y = country, color = lifeExp)) +
+  geom_point(size = 4) +
+  geom_segment(aes(xend = 30, yend = country), size = 2) +
+  geom_text(aes(label = round(lifeExp,1)), color = "white", size = 1.5) +
+  scale_x_continuous("", expand = c(0,0), limits = c(30,90), position = "top") +
+  scale_color_gradientn(colors = palette) +
+  labs(title = "Highest life expectancies", caption ="Source: gapminder" )+
+  theme_test()
 
