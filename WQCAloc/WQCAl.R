@@ -94,6 +94,7 @@ is.Date(local_WQx$date)
 is.POSIXct(local_WQx$date)
 is.Date(local_WQx$Date)
 is.POSIXct(local_WQx$Date)
+
 mutate(date=parse_date_time(local_WQm$Date, order = "dmy"))  
 
 library(anytime)
@@ -132,6 +133,13 @@ ggplot(data = local_WQd)+
   geom_point(mapping = aes(x = `EC [microS/cm]`, y = `NO3-N [mg/L]`))+
   geom_abline(aes(intercept = -0.390938, slope =  0.006602), data =local_WQd, color = "red")+
   geom_smooth(mapping = aes(x =`EC [microS/cm]` , y = `NO3-N [mg/L]`))+
+  theme_test()
+
+lm(data=local_WQd, `EC [microS/cm]`~ `NO3-N [mg/L]`)
+ggplot(data = local_WQd)+
+  geom_point(mapping = aes(x = `NO3-N [mg/L]`, y = `EC [microS/cm]`))+
+  geom_abline(aes(intercept = 224.86, slope =  70.77), data =local_WQd, color = "red")+
+  geom_smooth(mapping = aes(x = `NO3-N [mg/L]`, y = `EC [microS/cm]`))+
   theme_test()
 
 # png(filename = "NO+3-N [mg/L]` vs EC [microS/cm].png", width = 1024, height=1024, units="px", res=300)
@@ -543,7 +551,7 @@ pairs.panels(local_WQ_str [c(11:16)],
              main = "local WQ in streams correlations, Peason"
 )
 
-pairs.panels(local_WQ_str [c(11:16)],
+pairs.panels(local_WQ_str [c(13:18)],
              method="kendall",
              hist.col="green",
              density=TRUE,
@@ -552,14 +560,76 @@ pairs.panels(local_WQ_str [c(11:16)],
 
 # fitting the EC vs NO3-N only for streamwater data with linear and smooth curves
 
-lm(data=local_WQ_str, `NO+3-N [mg/L]`~ `EC [microS/cm]`)
-ggplot(data = local_WQ_str)+
-  geom_point(mapping = aes(x = `EC [microS/cm]`, y = `NO+3-N [mg/L]`))+
-  geom_abline(aes(intercept = 0.254, slope =  0.00404), data =local_WQ_str, color = "red")+
-  geom_smooth(mapping = aes(x =`EC [microS/cm]` , y = `NO+3-N [mg/L]`))+
+head (local_WQ_str)
+
+lmNO3N<-lm(data=local_WQ_str, `EC [microS/cm]` ~ `NO3-N [mg/L]`)
+
+summary(lmNO3N)$r.squared
+print(corr.test(local_WQ_strm$`NO3-N [mg/L]`, local_WQ_strm$`EC [microS/cm]`,
+                use = "pairwise", method = "kendall", alpha = .05, ci = TRUE), short = FALSE) 
+
+c1<-ggplot(data = local_WQ_str)+
+  geom_point(mapping = aes(x =`NO3-N [mg/L]` , y = `EC [microS/cm]`))+
+  geom_abline(aes(intercept = 154.6, slope =  120.4), data =local_WQ_str, color = "red")+
+  geom_smooth(mapping = aes(x =`NO3-N [mg/L]`, y = `EC [microS/cm]`), method = "loess", se = )+
+  labs(title = expression(R^`2` ~'='~ '0.5165'))+
+  xlab(expression(NO[3]-N~mg~L^-1))+
+  ylab(expression(paste("EC ("~uS~cm^-1,")")))+
+  ggthemes::theme_base() +
+  theme(plot.title = element_text(color="black", size=10, face="bold", vjust = -20, hjust = 0.70))+
+  theme(axis.title = element_text(size=11))+
+  theme(legend.title = element_text(size = 11))
+
+
+ggsave(c1, filename = "fig_0.png", width = 6, height = 5, units="in", dpi = 600)
+  
+
+local_WQ_str <-local_WQ_str %>% 
+  mutate(`NO3 [mg/L]`=`NO3-N [mg/L]` * 4.427)
+lmNO3<-lm(data=local_WQ_strm, `EC [microS/cm]` ~ `NO3 [mg/L]`)
+summary(lmNO3)$r.squared
+
+
+ggplot(data = local_WQ_strm)+
+  geom_point(mapping = aes(x =`NO3 [mg/L]` , y = `EC [microS/cm]`))+
+  geom_abline(aes(intercept = 154.61, slope =  27.19), data =local_WQ_str, color = "red")+
+  geom_smooth(mapping = aes(x =`NO3 [mg/L]`, y = `EC [microS/cm]`))+
   theme_test()
 
+# and for Phosphate
+lmPO4P<-lm(data=local_WQ_str, `EC [microS/cm]` ~ `PO4-P [mg/L]`)
 
+summary(lmPO4P)$r.squared
+print(corr.test(local_WQ_strm$`PO4-P [mg/L]`, local_WQ_strm$`EC [microS/cm]`,
+                use = "pairwise", method = "kendall", alpha = .05, ci = TRUE), short = FALSE) 
+
+c2<-ggplot(data = local_WQ_str)+
+  geom_point(mapping = aes(x =`PO4-P [mg/L]` , y = `EC [microS/cm]`))+
+  geom_abline(aes(intercept = 369.64, slope =  -13.88), data =local_WQ_str, color = "red")+
+  geom_smooth(mapping = aes(x =`PO4-P [mg/L]`, y = `EC [microS/cm]`))+
+  labs(title = expression(R^`2` ~'='~ '0.0002'))+
+  xlab(expression(PO[4]- P~mg~L^-1))+
+  ylab(expression(paste("EC ("~uS~cm^-1,")")))+
+  ggthemes::theme_base() +
+  theme(plot.title = element_text(color="black", size=10, face="bold", vjust = -20, hjust = 0.70))+
+  theme(axis.title = element_text(size=11))+
+  theme(legend.title = element_text(size = 11))
+
+grid.arrange(c1, c2, nrow = 1, ncol = 2)
+
+
+pairs.panels(local_WQ_str [c(15,17)],
+             method="kendall",
+             hist.col="green",
+             density=TRUE,
+             main = "local WQ in streams correlations, Kendall"
+)
+pairs.panels(local_WQ_str [c(17,15)],
+             method="kendall",
+             hist.col="green",
+             density=TRUE,
+             main = "local WQ in streams correlations, Kendall"
+)
 
 # Making a summary table of local WQ data
 # What are the options?

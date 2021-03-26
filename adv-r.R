@@ -1,5 +1,6 @@
 # the book is here
 # https://adv-r.hadley.nz/ 
+library(tidyverse)
 
 # the books on solutions are here 
 # https://advanced-r-solutions.rbind.io/ 
@@ -148,7 +149,8 @@ str(dfl)
   
 # Subsetting
 
-# 4.2.3 Matrices and arrays
+#
+4.2.3 Matrices and arrays
 
 a <- matrix(1:9, nrow = 3)
 colnames(a) <- c("A", "B", "C")
@@ -161,3 +163,133 @@ a[c(TRUE, FALSE, TRUE), c("B", "A")]
 x <- list(1:3, "a", 4:6)
 x[[3]]
 
+x<-1:5
+x[c(1,2)]<-2:3
+x<-2:3
+x
+
+x[-1] 
+x[-1] <-4:1
+x
+
+x[c(1, 1)] <-2:3
+x
+
+mtcars[]<-lapply(mtcars, as.integer)
+mtcars <-lapply(mtcars, as.integer)
+
+# 4.5.1 Lookup tables (character subsetting)
+
+x <- c("m", "f", "u", "f", "f", "m", "m")
+lookup <- c(m = "Male", f = "Female", u = NA)
+lookup[x]
+unname(lookup[x])
+
+# 4.5.2 Matching and merging by hand (integer subsetting
+
+grades <- c(1, 2, 2, 3, 1)
+
+info <- data.frame(
+  grade = 3:1,
+  desc = c("Excellent", "Good", "Poor"),
+  fail = c(F, F, T)
+)
+
+id <- match(grades, info$grade)
+id
+
+info[id, ]
+
+rownames(info) <- info$grade
+info[as.character(grades),]
+
+# 4.5.4 Ordering (integer subsetting)
+
+x <- c("b", "c", "a")
+order(x)
+
+x[order(x)]
+
+df <- data.frame(x = c(1, 2, 3, 1, 2), y = 5:1, z = letters[1:5])
+
+# Randomly reorder df
+df2 <- df[sample(nrow(df)), 3:1]
+df2
+df2[order(df2$x), ]
+df2[, order(names(df2))]
+
+#4.5.5 Expanding aggregated counts (integer subsetting)
+
+df <- data.frame(x = c(2, 4, 1), y = c(9, 11, 6), n = c(3, 5, 1))
+df
+rep(1:nrow(df), df$n)
+df[rep(1:nrow(df), df$n), ]
+
+# 4.5.6 Removing columns from data frames (character )
+
+# You can set individual columns to NULL:
+df <- data.frame(x = 1:3, y = 3:1, z = letters[1:3])
+df$z <- NULL
+df
+
+# Or you can subset to return only the columns you want:
+
+df <- data.frame(x = 1:3, y = 3:1, z = letters[1:3])
+df[c("x", "y")]
+
+df[setdiff(names(df), "z")]
+
+
+# 4.5.7 Selecting rows based on a condition (logical subsetting)
+# https://adv-r.hadley.nz/subsetting.html#selecting-rows-based-on-a-condition-logical-subsetting 
+
+head(mtcars)
+
+mtcars[mtcars$gear == 5, ]
+mtcars[mtcars$gear == 5 & mtcars$cyl == 4, ]
+
+subset(mtcars, gear == 5)
+subset(mtcars, gear ==5 & cyl == 4)
+
+# 4.5.8 Boolean algebra versus sets (logical and integer )
+
+x <- sample(10) < 4
+which(x)
+#> [1] 2 3 4
+? which()
+
+unwhich <- function(x, n) {
+  out <- rep_len(FALSE, n)
+  out[x] <- TRUE
+  out
+}
+unwhich(which(x), 10)
+#>  [1] FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+
+# Let’s create two logical vectors and their integer equivalents, and then explore the relationship between
+# Boolean and set operations.
+
+# vector 1 to 10 which divides on 2 (5) without decimal fraction (ostatka) or 
+(x1 <- 1:10 %% 2 == 0)  
+(x2 <- which(x1))
+(y1 <- 1:10 %% 5 == 0)
+(y2 <- which(y1))
+
+x1 & y1
+intersect(x2, y2)
+
+# union
+x1 | y1
+x2
+y2
+union(x2, y2)
+
+#setdiff
+x1 & !y1
+setdiff(x2, y2)
+
+?xor()
+# xor produces a compound expression that gives the EXCLUSIVE-OR of two expressions.
+xor(x1, y1)
+x1
+y1

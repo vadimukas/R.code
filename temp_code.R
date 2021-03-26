@@ -581,6 +581,13 @@ p <- animation_slider(p,
 
 widgetframe::frameWidget(p)
 
+# https://statsandr.com/blog/rstudio-addins-or-how-to-make-your-coding-life-easier/ 
+# Reordering factors with # {questionr}
+
+library(questionr)
+# https://statsandr.com/blog/rstudio-addins-or-how-to-make-your-coding-life-easier/#reordering-factors
+  
+
 # The Tidyverse Cookbook 
 
 # https://rstudio-education.github.io/tidyverse-cookbook/ 
@@ -649,3 +656,6 @@ ggplot(top10, aes(x = lifeExp, y = country, color = lifeExp)) +
   labs(title = "Highest life expectancies", caption ="Source: gapminder" )+
   theme_test()
 
+# formating R code with formatR 
+library(formatR)
+# https://yihui.org/formatr/
