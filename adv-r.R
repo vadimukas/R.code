@@ -149,8 +149,7 @@ str(dfl)
   
 # Subsetting
 
-#
-4.2.3 Matrices and arrays
+#4.2.3 Matrices and arrays
 
 a <- matrix(1:9, nrow = 3)
 colnames(a) <- c("A", "B", "C")
@@ -293,3 +292,83 @@ setdiff(x2, y2)
 xor(x1, y1)
 x1
 y1
+
+## Chapter 6  Functions  -------------------------------------------------------------
+# https://adv-r.hadley.nz/functions.html#functions 
+
+x <- 10
+f1 <- function(x) {
+  function() {
+    x + 10
+  }
+}
+f1(x)()
+
+# install package pryr to explore what happens when modifying vectors in place
+
+install.packages("pryr")
+
+library(pryr)
+
+#6.2 Function fundamentals
+# To understand functions in R you need to internalise two important ideas:
+  
+#  - Functions can be broken down into three components: -- arguments,  --- body, and  --environment.
+#  - There are exceptions to every rule, and in this case, there is a small selection of “primitive” base
+# functions that are implemented purely in C.
+
+
+# !!!Functions are objects, just as vectors are objects
+
+# 6.2.1 Function components
+
+# the body () - the code inside the function 
+
+# the formals()  - the list of arguments
+
+# the environment ()  - the "map" of the location of function variables
+
+
+f02 <- function(x, y) {
+  # A comment
+  x + y
+}
+
+formals(f02)
+body(f02)
+environment(f02)
+
+f02(3, 5)
+
+attr(f02, "srcref")
+
+# 6.2.4 Invoking a function
+# what happens if you have the arguments already in a data structure?
+
+# You can instead use do.call(): it has two arguments
+
+args <- list(1:10, na.rm = TRUE)
+do.call(mean, args)
+
+# 6.3 Function composition
+
+square <- function(x) x^2
+deviation <- function(x) x - mean(x)
+
+# runif generates random deviates
+x<-runif(100, min = 1, max = 100)
+square(x)
+deviation(x)
+hist(x)
+
+# trying to build mine
+
+f03 <- function(x) { 
+      3* x + 7
+}
+
+
+body(f03)
+formals(f03)
+f03(5)
+
