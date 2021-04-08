@@ -659,3 +659,11 @@ ggplot(top10, aes(x = lifeExp, y = country, color = lifeExp)) +
 # formating R code with formatR 
 library(formatR)
 # https://yihui.org/formatr/
+
+
+library(ggplot2)
+library(gridExtra)
+ggplot(iris, aes(Sepal.Length, Sepal.Width)) +
+  geom_point() +
+  geom_smooth(method="loess") +
+  facet_wrap(~ Species)

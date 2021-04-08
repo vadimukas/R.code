@@ -3,7 +3,7 @@
 # https://www.macalester.edu/~kaplan/ISM/
 
 # load the data ISM.RData
-load("D:/R/R.code/Kaplan/ISM.RData")a
+load("D:/R/R.code/Kaplan/ISM.RData")
 
 library(tidyverse)
 
@@ -54,3 +54,55 @@ bwplot(height ~ sex, data = galton)
 
 prop.table(table(galton$sex))
 barchart(table(galton$sex))
+
+
+# The language of Models
+library(lattice)
+utils<-read.csv("D:/R/R.code/Kaplan/utilities.csv")
+
+cps<-read.csv("D:/R/R.code/Kaplan/cps.csv")
+
+xyplot(ccf ~ temp, data = utils)
+
+bwplot(wage ~ sex, data = cps)
+
+bwplot(wage ~ sector, data = cps, scales = list(rot=45))
+
+densityplot(~ wage, groups = sex, data = cps, auto.key = TRUE)
+
+# Multiple explanatory variables 
+
+xyplot(wage ~ age, groups = sex, data = cps, auto.key = TRUE)
+
+# splitting the plot
+xyplot(wage ~ age | sex, data = cps)
+
+# 4.7.2 Fitting models and finding model values
+swim<-read.csv("D:/R/R.code/Kaplan/swim100m.csv")
+
+mod1=lm(time ~ 1, data = swim)
+mod1               
+plot(mod1)                 
+
+xyplot(time + fitted(mod1) ~ year, data = swim)
+
+mod2=lm(time ~ 1 + year, data = swim) 
+# or 
+mod2=lm(time ~ year, data = swim)
+
+mod3=lm(time ~ 1 + sex, data = swim)
+mod4=lm(time ~ 1 + sex + year, data = swim)
+mod5=lm(time ~ 1 + year + sex+year:sex, data = swim)
+# or
+mod5<-lm(time ~ year * sex, data = swim)
+
+xyplot(fitted(mod5) + fitted(mod3) ~ year, data = swim, auto.key = TRUE)
+xyplot(fitted(mod5) ~ year, data = swim, auto.key = TRUE)
+
+# suppressing the intercepter term
+
+mod6<-lm(time ~ year-1, data = swim)
+xyplot(fitted(mod6) ~ year, data = swim, auto.key = TRUE)
+
+mod7<-lm(time ~ year + I(year^2) + sex, data = swim)
+xyplot(time + fitted(mod7) ~ year, data = swim, auto.key = TRUE)

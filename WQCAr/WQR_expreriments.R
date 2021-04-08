@@ -131,3 +131,109 @@ WQ_samples_2019_2020 %>%
   theme(axis.title = element_text(size=11))+
   facet_wrap(vars(`Sample type`))
 
+# making new figure 5 mappping to catchements-countries
+# first start with major anions 
+
+l1<-WQ_samples_2019_2020 %>%
+  filter(`Sample type` %in% 
+           c("streamwater", "groundwater", "glaciermelt", "snowpack")) %>%
+  ggplot() +
+  aes(x = Country, y = `HCO3 [mg/L]`,  colour = Country) +
+  geom_boxplot(show.legend = FALSE)+
+  scale_color_manual(values = c("blue", "red" , "black","#008B8B")) +
+  ylab(expression()) +
+  geom_point(shape=16, show.legend = FALSE)+
+  labs(title = expression(HCO[3]^`-` ~ mg ~ L^-1)) +
+  ggthemes::theme_base() +
+  theme(strip.text.x = element_text(size = 14))+
+  theme(plot.title = element_text(color="Blue", size=15, face="plain", vjust = -8, hjust = 0.53))+
+  theme(axis.title = element_text(size=12))+
+  facet_wrap(vars(`Sample type`))
+
+l2<-WQ_samples_2019_2020 %>%
+  filter(`Sample type` %in% 
+           c("streamwater", "groundwater", "glaciermelt", "snowpack")) %>%
+  ggplot() +
+  aes(x = Country, y = `Cl [mg/L]`, color = Country) +
+  geom_boxplot(show.legend = FALSE) +
+  scale_color_manual(values = c("blue", "red" , "black","#008B8B")) +
+  ylab(expression()) +
+  geom_point(shape=16, show.legend = FALSE)+
+  labs(title = quote(Cl^'-' ~ mg~L^-1)) +
+  ggthemes::theme_base() +
+  theme(strip.text.x = element_text(size = 14))+
+  theme(plot.title = element_text(color="Blue", size=15, face="plain", vjust = -8, hjust = 0.53))+
+  theme(axis.title = element_text(size=12))+
+  facet_wrap(vars(`Sample type`))
+
+# filtering KZ-8 July 2020 (Ulken Almaty) 504.5 mg/L by limiting the scale to 250 mg\L
+l3<-WQ_samples_2019_2020 %>%
+  filter(`Sample type` %in% 
+           c("streamwater", "groundwater", "glaciermelt", "snowpack")) %>%
+  ggplot() +
+  aes(x = Country, y = `SO4[mg/L]`, color = Country) +
+  geom_boxplot(show.legend = FALSE) +
+  scale_color_manual(values = c("blue", "red" , "black","#008B8B")) +
+  ylab(expression()) +
+  ylim(0, 250)+
+  geom_point(shape=16, show.legend = FALSE)+
+  labs(title = expression(SO[4]^'2-'~mg~L^-1)) +
+  ggthemes::theme_base() +
+  theme(strip.text.x = element_text(size = 14))+
+  theme(plot.title = element_text(color="Blue", size=15, face="plain", vjust = -8, hjust = 0.53))+
+  theme(axis.title = element_text(size=12))+
+  facet_wrap(vars(`Sample type`))
+# WITHOUT filtering KZ-8 July 2020 (Ulken Almaty) 504.5 mg/L by limiting the scale to 250 mg\L
+l3<-WQ_samples_2019_2020 %>%
+  filter(`Sample type` %in% 
+           c("streamwater", "groundwater", "glaciermelt", "snowpack")) %>%
+  ggplot() +
+  aes(x = Country, y = `SO4[mg/L]`, color = Country) +
+  geom_boxplot(show.legend = FALSE) +
+  scale_color_manual(values = c("blue", "red" , "black","#008B8B")) +
+  ylab(expression()) +
+  geom_point(shape=16, show.legend = FALSE)+
+  labs(title = expression(SO[4]^'2-'~mg~L^-1)) +
+  ggthemes::theme_base() +
+  theme(strip.text.x = element_text(size = 14))+
+  theme(plot.title = element_text(color="Blue", size=15, face="plain", vjust = -8, hjust = 0.53))+
+  theme(axis.title = element_text(size=12))+
+  facet_wrap(vars(`Sample type`))
+
+l4<-WQ_samples_2019_2020 %>%
+  filter(`Sample type` %in% 
+           c("streamwater", "groundwater", "glaciermelt", "snowpack")) %>%
+  ggplot() +
+  aes(x = Country, y = `Si [mg/L]`, color = Country) +
+  geom_boxplot(show.legend = FALSE) +
+  scale_color_manual(values = c("blue", "red" , "black","#008B8B")) +
+  ylab(expression()) +
+  geom_point(shape=16, show.legend = FALSE)+
+  labs(title = quote(Si ~ mg~L^-1)) +
+  ggthemes::theme_base() +
+  theme(strip.text.x = element_text(size = 14))+
+  theme(plot.title = element_text(color="Blue", size=15, face="plain", vjust = -8, hjust = 0.53))+
+  theme(axis.title = element_text(size=12))+
+  facet_wrap(vars(`Sample type`))
+
+fig_5a<-grid.arrange(l1, l4, l2, l3, nrow = 2, ncol = 2)
+ggsave(fig_5a, filename = "fig_5a.png",  width = 10, height = 7, units="in", dpi = 300)
+ggsave(fig_5a, filename = "fig_5aM.png",  width = 10, height = 7, units="in", dpi = 300)
+
+# color to sources 
+WQ_samples_2019_2020 %>%
+  filter(`Sample type` %in% 
+           c("streamwater", "groundwater", "glaciermelt", "snowpack")) %>%
+  ggplot() +
+  aes(x = Country, y = `Si [mg/L]`, color = `Sample type`) +
+  geom_boxplot(show.legend = FALSE) +
+  scale_color_manual(values = c("black", "red" , "blue","brown")) +
+  ylab(expression()) +
+  geom_point(shape=16, show.legend = FALSE)+
+  labs(title = quote(Si ~ mg~L^-1)) +
+  ggthemes::theme_base() +
+  theme(strip.text.x = element_text(size = 14))+
+  theme(plot.title = element_text(color="Blue", size=15, face="plain", vjust = -8, hjust = 0.53))+
+  theme(axis.title = element_text(size=12))+
+  facet_wrap(vars(`Sample type`))
+

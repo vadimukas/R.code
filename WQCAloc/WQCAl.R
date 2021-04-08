@@ -571,7 +571,7 @@ print(corr.test(local_WQ_strm$`NO3-N [mg/L]`, local_WQ_strm$`EC [microS/cm]`,
 c1<-ggplot(data = local_WQ_str)+
   geom_point(mapping = aes(x =`NO3-N [mg/L]` , y = `EC [microS/cm]`))+
   geom_abline(aes(intercept = 154.6, slope =  120.4), data =local_WQ_str, color = "red")+
-  geom_smooth(mapping = aes(x =`NO3-N [mg/L]`, y = `EC [microS/cm]`), method = "loess", se = )+
+  geom_smooth(mapping = aes(x =`NO3-N [mg/L]`, y = `EC [microS/cm]`), method = "loess" )+
   labs(title = expression(R^`2` ~'='~ '0.5165'))+
   xlab(expression(NO[3]-N~mg~L^-1))+
   ylab(expression(paste("EC ("~uS~cm^-1,")")))+
