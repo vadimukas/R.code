@@ -341,6 +341,7 @@ ggsave(fig_5e, filename = "fig_5e.png",  width = 10, height = 3.5, units="in", d
 
 # making new figure 5 mapping to catchments-countries
 # first start with major anions 
+# removing names of the coutries
 
 l1<-WQ_samples_2019_2020 %>%
   filter(`Sample type` %in% 
